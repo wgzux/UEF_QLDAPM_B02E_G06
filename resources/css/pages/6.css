@@ -1,0 +1,29 @@
+/* Scrollbar custom (tách từ <style>) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a67c52;
+}
+
+/* Font tiêu đề */
+.elegant-title {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Hover & transition mượt */
+a,
+button {
+    transition: all 0.3s ease;
+}
+
+/* Fix hover scale ảnh */
+img {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}

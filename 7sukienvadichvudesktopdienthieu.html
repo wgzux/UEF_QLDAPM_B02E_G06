@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dịch vụ và sự kiện - The Wandering Rose</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#A67B5B", // The warm brown/gold color for buttons and accents
+                        secondary: "#D1B094", // Lighter brown/beige
+                        "background-light": "#FAF9F6", // Off-white cream background
+                        "background-dark": "#1F1D1B", // Dark brownish-black for dark mode
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#2C2A28",
+                        "text-main": "#5D4037", // Darker brown for text
+                        "text-light": "#8D7B6F", // Lighter text
+                        "footer-bg": "#A67B5B", // Solid footer color
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        body: ["Quicksand", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "4px",
+                    },
+                },
+            },
+        };
+    </script>
+<style>.hero-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }.scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-200 font-body transition-colors duration-300">
+<header class="relative w-full h-[600px] md:h-[700px] overflow-hidden">
+<img alt="Relaxing by the water with food" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA-NhJolsL1pe0M8v6zPUFroLMJHrJLT1exiElf4fEQr1-EJ1L9COAxUwOqO0T2yHazkOHjCIjLrnI19-8uHAnkvc8dS9gPmM0R4J9JlN-LpS7d13K_J2FasqYA6SF60ErTNsRJjlxL5ZzBc0sBffKZQgjM1IWlZy9B9PYOLPXOHMEqGTpn9uwERuVJF3eN3bt7ubFRW4KD7UCFKNtwb7-g0Tz8FtFfEih53aK2nhwyPEBajXY271r1dnI5Jz2lBl-GbTn8DJnvuQY"/>
+<div class="absolute inset-0 hero-overlay flex flex-col justify-end items-center pb-20">
+<h1 class="font-display text-4xl md:text-6xl text-white mb-8 text-shadow tracking-wider text-center">Dịch vụ và sự kiện</h1>
+<nav class="hidden md:flex space-x-8 text-xs md:text-sm text-white uppercase tracking-widest font-semibold">
+<a class="hover:text-primary transition-colors" href="#birthday">Tổ chức sinh nhật</a>
+<a class="hover:text-primary transition-colors" href="#teambuilding">Teambuilding</a>
+<a class="hover:text-primary transition-colors" href="#wedding">Tiệc cưới nhỏ</a>
+<a class="hover:text-primary transition-colors" href="#anniversary">Lễ kỷ niệm</a>
+<a class="hover:text-primary transition-colors" href="#booking">Đặt lịch</a>
+</nav>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" id="birthday">
+<div class="order-1 lg:order-1 space-y-6">
+<h2 class="font-display text-4xl md:text-5xl text-primary dark:text-primary">Tổ chức sinh nhật</h2>
+<p class="text-text-light dark:text-gray-400 leading-relaxed text-sm md:text-base">
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                </p>
+<div class="flex space-x-4 pt-4">
+<button class="bg-primary hover:bg-opacity-90 text-white px-6 py-2 text-xs uppercase tracking-wider font-bold transition-all">Xem chi tiết</button>
+<button class="border border-primary text-primary dark:text-primary dark:border-primary hover:bg-primary hover:text-white px-6 py-2 text-xs uppercase tracking-wider font-bold transition-all flex items-center">
+                        Đặt lịch <span class="material-icons text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="order-2 lg:order-2">
+<div class="overflow-hidden rounded-sm shadow-lg">
+<img alt="Birthday decoration setup outdoors" class="w-full h-[350px] object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7FlFDD3eFJinEqiXp1XERKRk4Kd2DYdJw1sqvEVcVXI1RSPgWM81K7fBlHYZwMlBuiveZ7F6wUuQbXUadesqI_3mQgNUwYztgYFlGXrnh_Zv7_z5kk9CcZhQY938bq0VXKz6-Dh48STVrQJ-a5rgOdxBiqcVtChAebzCNSATNv63-02_pUhPNXQCyrmE5tbf8sfStbu8VNjsk6uQDJwsNvjsQC8GX60GLqkFjOSwQ9Ppnv5JN6v-sVv2kA9ALoOfK6l08lzEubR2b"/>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" id="teambuilding">
+<div class="order-2 lg:order-1">
+<div class="overflow-hidden rounded-sm shadow-lg">
+<img alt="Group of people doing teambuilding activity" class="w-full h-[350px] object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1OZUeOiLe1_mxi4UzWXXtRtlFo4jW1vJBHhjzltiWupI1rCsG1Yn5YCySOhRLRh1qZ2QPQD6ESy2HguteTkb5cXFfXXP-UlNHXZSUDtLiRZRPWu9PtKenKrVpvJnpXugtVWE_3tLlrfLnSTgLNDksoR0wt3BqrNNn0xPVMD4yUw3k8nxyrs-ypKkP0LbMqvt7hTvyI9ceqHTAzPSXszr8SWHRaMCU2b-xaVAUXa29dYC8-wMIgOaBX94h4EUdBKQ1PnAxGp99UGj-"/>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-6 lg:pl-10">
+<h2 class="font-display text-4xl md:text-5xl text-primary dark:text-primary">Teambuilding</h2>
+<p class="text-text-light dark:text-gray-400 leading-relaxed text-sm md:text-base">
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                </p>
+<div class="flex space-x-4 pt-4">
+<button class="bg-primary hover:bg-opacity-90 text-white px-6 py-2 text-xs uppercase tracking-wider font-bold transition-all">Xem chi tiết</button>
+<button class="border border-primary text-primary dark:text-primary dark:border-primary hover:bg-primary hover:text-white px-6 py-2 text-xs uppercase tracking-wider font-bold transition-all flex items-center">
+                        Đặt lịch <span class="material-icons text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" id="wedding">
+<div class="order-1 lg:order-1 space-y-6">
+<h2 class="font-display text-4xl md:text-5xl text-primary dark:text-primary">Tiệc cưới nhỏ</h2>
+<p class="text-text-light dark:text-gray-400 leading-relaxed text-sm md:text-base">
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                </p>
+<div class="flex space-x-4 pt-4">
+<button class="bg-primary hover:bg-opacity-90 text-white px-6 py-2 text-xs uppercase tracking-wider font-bold transition-all">Xem chi tiết</button>
+<button class="border border-primary text-primary dark:text-primary dark:border-primary hover:bg-primary hover:text-white px-6 py-2 text-xs uppercase tracking-wider font-bold transition-all flex items-center">
+                        Đặt lịch <span class="material-icons text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="order-2 lg:order-2">
+<div class="overflow-hidden rounded-sm shadow-lg">
+<img alt="Small wedding table setup with lights" class="w-full h-[350px] object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtrnVbbEYIR4jfe4y7SptrN9ZbzhSqSyLAzy4yxpcWax6nC0MQlzGTnuDLDSFh2XrKVZj_5qorvn5RHvRQber1b8qpGvlqiSfufGIfXmVfHpUxbHHd8pnbcc1_40GS1EtTYQqMQu73WzC-zQ0SBpyrJTyfBoNTYr_qHbqXjhEOP7oaH-RUD6AiAsymZkhfSRJ0rMA0DM8gcGBn_4iRuc9gWoNpy3zjs787jyD-NJQFQY7Y-wdi8m15_8HrNFLamFcIyfsNU3Bx28CR"/>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" id="anniversary">
+<div class="order-2 lg:order-1">
+<div class="overflow-hidden rounded-sm shadow-lg">
+<img alt="Anniversary party garden setting" class="w-full h-[350px] object-cover hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC08R1162vEDJZzmlC8rkTOc_Kw_d-hd90F7vCQm7gXXfdznj0QsPGkhCB567LcrqmoJjS5wM5ByJ6SmSIZRdoZMPnAGhMGWfQEpDQFWOIJBkkiLEG4jHelk5KA8gnMP8MzTmxulEvxD-Rvmknimr8L8np5gSY-f4lWEDUvzbcHuP-Xx2qrfC44Jh3sznwmrKuph3FJOLtN-zfzwlzVQ_8GzRyMLTP7gCbvH9wKc61KDj2vlCHeHrqQQY8UtLQJ3xDPcQeZPLrVT2gI"/>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-6 lg:pl-10">
+<h2 class="font-display text-4xl md:text-5xl text-primary dark:text-primary">Lễ kỷ niệm</h2>
+<p class="text-text-light dark:text-gray-400 leading-relaxed text-sm md:text-base">
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+                </p>
+<div class="flex space-x-4 pt-4">
+<button class="bg-primary hover:bg-opacity-90 text-white px-6 py-2 text-xs uppercase tracking-wider font-bold transition-all">Xem chi tiết</button>
+<button class="border border-primary text-primary dark:text-primary dark:border-primary hover:bg-primary hover:text-white px-6 py-2 text-xs uppercase tracking-wider font-bold transition-all flex items-center">
+                        Đặt lịch <span class="material-icons text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-16" id="booking">
+<div class="space-y-6">
+<div class="overflow-hidden rounded-sm shadow-lg mb-8">
+<img alt="Relaxing resort setting" class="w-full h-[400px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHLHoZSErI_OjO6WZJdlYFfrEkFUkL23gGnNffmTdfyoWFRqrXpLI-WSz1slnsm4y8b9ZnPQtF8xM7CdWmUUTLEALBiMDSAUHoCi4mqVeyB9dCHOTkmdlL08bkCMiEfzJSdC4b9-trdNabcFpQkbPveJIaNb3sySwLHk9TeCZ302ylPyOBaHd6-gfaRN2nRRibgZwC2dmLkOTSVq8lnU1Mc9uKdjORCVvIfTLV63I7BP68JMqTc9hN7eGkLAq06RsRDsqNttDCF86_"/>
+</div>
+<ul class="list-disc pl-5 space-y-2 text-text-light dark:text-gray-400 text-sm">
+<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+<li>Donec lacinia sem eget justo bibendum malesuada.</li>
+<li>Etiam imperdiet odio eget nisl laoreet aliquam.</li>
+<li>Nunc pulvinar ante at lobortis gravida.</li>
+<li>Quisque hendrerit velit nec diam lacinia fermentum.</li>
+<li>Donec pretium augue sed tempus rhoncus.</li>
+</ul>
+</div>
+<div class="bg-white dark:bg-surface-dark p-0 lg:p-8 rounded-sm">
+<h2 class="font-display text-4xl text-primary dark:text-primary mb-8 text-center lg:text-left">Đặt lịch sự kiện</h2>
+<form class="space-y-4">
+<div>
+<label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Họ và tên *</label>
+<input class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded px-4 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Nhập họ và tên" type="text"/>
+<p class="text-[10px] text-red-500 mt-1">Vui lòng điền thông tin bên trên</p>
+</div>
+<div>
+<label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Email *</label>
+<input class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded px-4 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Nhập địa chỉ email" type="email"/>
+<p class="text-[10px] text-red-500 mt-1">Vui lòng điền thông tin bên trên</p>
+</div>
+<div>
+<label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Số điện thoại *</label>
+<div class="flex">
+<div class="w-16 border border-gray-200 dark:border-gray-600 dark:bg-gray-800 border-r-0 rounded-l flex items-center justify-center">
+<img alt="VN Flag" class="w-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUXlSRxPFehoTcHF8IRXeiLp2teLHinC0Rm19yqTu0drUFztOQPeRRDWvswL2I50tZFhiTbvDpf06rPJRHKyVZlJLn05Wzor37qfkzIagneCnoCYs9aVWraftYaCA2pqxUf7mk6p6_bNKFus3Vw6MypL9KSoqv4J5SSqUNAIItxPcZxDLCku2IpCPOrIQ1nH1Tp7jy0VVJF08xfAdtNCDs9p7LjCWcymjIn4vY7cRKXO3O6J-fMffkPDDvIIToOlnr4fx6N3uslHkq"/>
+<span class="material-icons text-gray-400 text-sm">arrow_drop_down</span>
+</div>
+<input class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-r px-4 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Nhập số điện thoại" type="tel"/>
+</div>
+<p class="text-[10px] text-red-500 mt-1">Vui lòng điền thông tin bên trên</p>
+</div>
+<div>
+<label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Chọn dịch vụ *</label>
+<select class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded px-4 py-2 text-sm text-gray-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:10px] bg-[right_1rem_center] bg-no-repeat">
+<option>Chọn</option>
+<option>Tổ chức sinh nhật</option>
+<option>Teambuilding</option>
+<option>Tiệc cưới nhỏ</option>
+<option>Lễ kỷ niệm</option>
+</select>
+<p class="text-[10px] text-red-500 mt-1">Vui lòng điền thông tin bên trên</p>
+</div>
+<div>
+<label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Tin nhắn (nếu có)</label>
+<textarea class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded px-4 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none" placeholder="Nhập tin nhắn" rows="4"></textarea>
+</div>
+<button class="bg-primary hover:bg-opacity-90 text-white px-8 py-3 text-xs uppercase tracking-wider font-bold transition-all mt-4" type="submit">
+                        Gửi tin nhắn đặt lịch
+                    </button>
+</form>
+</div>
+</section>
+</main>
+<section class="bg-[#A67B5B] dark:bg-[#3D2E24] py-16 px-4">
+<div class="max-w-7xl mx-auto">
+<h2 class="font-display text-4xl md:text-5xl text-white text-center mb-12">Tin tức và sự kiện</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+<div class="bg-transparent group cursor-pointer">
+<div class="overflow-hidden mb-4 relative aspect-[3/4]">
+<img alt="Music concert poster" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuuPUpGpIKMDWSl_5H3JBHUduteiDDXMhJ6uIwDTm3C6WXj8qGV0LYvhDK1BPCUf3OqCY6351Om8lpCQPcdqtJsfcIUzze4JKy_hNvzILoblLUVqGxXFSXyej3av0Q3VQZXOQTo1H2FSaZ-6s8llKB_F9lQmGxbGHUX79obLIZn2IXupY5B0SNrA8GwriWNiFCNpXq7W8lTc0g7omDlCyIV_fajejd9OtAyRs0soXddP4CXizTdrZp6oAziSBZwGgOD49oL3KFWu5L"/>
+</div>
+<div class="text-white">
+<p class="text-xs opacity-80 mb-1">Sự kiện âm nhạc</p>
+<h3 class="font-display text-2xl mb-4">Tên tin tức</h3>
+<button class="border border-white/50 hover:bg-white hover:text-primary text-white px-4 py-2 text-[10px] uppercase tracking-wider transition-all flex items-center w-fit">
+                            Tìm hiểu <span class="material-icons text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-transparent group cursor-pointer">
+<div class="overflow-hidden mb-4 relative aspect-[3/4]">
+<img alt="Concert music poster blue" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcRFrdvhaUevIw7CdFP8whw4CilP1S7h4ytKD2P8WagcM4C8akXiM46vCBNMQrxtf-lO4vv30t5OZw4NHDQpoK8b60Gy9jpJBRd0rJXy0Kn56G0K7GbQlvlKzUeHBzGmmcxQSJbqwzisebjrrzXq9lssmXgpcq6L-bZILDGU_FSFBBY2sIqw2tMJMEWmHKxQtk4v7KvVsv7VNoBDeArl9oJ9xGjJuhnQomy-aV5cJ-Kv_sP729jIK3Lctvu0opXKlEFpj7ak1MDPyx"/>
+</div>
+<div class="text-white">
+<p class="text-xs opacity-80 mb-1">Tên loại tin tức</p>
+<h3 class="font-display text-2xl mb-4">Tên tin tức</h3>
+<button class="border border-white/50 hover:bg-white hover:text-primary text-white px-4 py-2 text-[10px] uppercase tracking-wider transition-all flex items-center w-fit">
+                            Tìm hiểu <span class="material-icons text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-transparent group cursor-pointer">
+<div class="overflow-hidden mb-4 relative aspect-[3/4]">
+<img alt="Pop music concert red" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPMI2e-6HNh1qVVSk6IlOZ-dEcGb_WkGXU3UI0prIO6-M9nvWPE0U1c494pTrutANWrNUyXwhpW13hgdMBFTs0tLxxeGdV0a8QlUycUEaDRBzjeDAXzRxjWu2fno291swk627LZRzKFnWVrmGhSIv8-l0NK408LVb5ht7fREVSa5PizTDIsKCSYB6Dpk2rp3h5Ldh4arYgWVPXQvUETPZ76CrHASUPvzf1BUHLIBAn7TorthUkF0qSAgo1odwOV1d7EKaeV0em2Czb"/>
+</div>
+<div class="text-white">
+<p class="text-xs opacity-80 mb-1">Tên loại tin tức</p>
+<h3 class="font-display text-2xl mb-4">Tên tin tức</h3>
+<button class="border border-white/50 hover:bg-white hover:text-primary text-white px-4 py-2 text-[10px] uppercase tracking-wider transition-all flex items-center w-fit">
+                            Tìm hiểu <span class="material-icons text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex justify-center space-x-4">
+<button class="w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-gray-100 transition-colors">
+<span class="material-icons">arrow_back</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-gray-100 transition-colors">
+<span class="material-icons">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<footer class="bg-primary dark:bg-[#2C211A] text-white pt-16 pb-8 border-t border-white/10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-center mb-12">
+<div class="text-center">
+<i class="fas fa-crown text-2xl mb-2"></i>
+<h3 class="font-display text-2xl uppercase tracking-widest">The Wandering Rose</h3>
+<p class="font-display italic text-sm">- Ba Vì -</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 border-b border-white/20 pb-12">
+<div>
+<h4 class="font-display text-lg uppercase mb-6 tracking-wide">Trang chủ</h4>
+<ul class="space-y-3 text-xs opacity-80 font-light">
+<li><a class="hover:underline" href="#">VỀ CHÚNG TÔI</a></li>
+<li><a class="hover:underline" href="#">SỰ KIỆN ÂM NHẠC</a></li>
+<li><a class="hover:underline" href="#">GALLERY HÌNH ẢNH &amp; VIDEO</a></li>
+<li><a class="hover:underline" href="#">TIN TỨC</a></li>
+<li><a class="hover:underline" href="#">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-display text-lg uppercase mb-6 tracking-wide">Hạng phòng</h4>
+<ul class="space-y-3 text-xs opacity-80 font-light">
+<li><a class="hover:underline" href="#">KHU WOODEN HOUSE</a></li>
+<li><a class="hover:underline" href="#">FOREST ROOM</a></li>
+<li><a class="hover:underline" href="#">DELUXE ROOM</a></li>
+<li><a class="hover:underline" href="#">FAMILY ROOM</a></li>
+<li><a class="hover:underline" href="#">KHU ROSE HOUSE</a></li>
+<li><a class="hover:underline" href="#">PINK ROSE HOUSE</a></li>
+<li><a class="hover:underline" href="#">WHITE ROSE HOUSE</a></li>
+<li><a class="hover:underline" href="#">RED ROSE HOUSE</a></li>
+<li><a class="hover:underline" href="#">THE WANDERING ROSE VILLA</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-display text-lg uppercase mb-6 tracking-wide">Trải nghiệm &amp; Tour</h4>
+<ul class="space-y-3 text-xs opacity-80 font-light mb-8">
+<li><a class="hover:underline" href="#">TOUR VƯỜN QUỐC GIA BA VÌ</a></li>
+<li><a class="hover:underline" href="#">TOUR AO VUA</a></li>
+<li><a class="hover:underline" href="#">KHOANG XANH - SUỐI TIÊN</a></li>
+<li><a class="hover:underline" href="#">CÁC TRẢI NGHIỆM BẢN ĐỊA</a></li>
+</ul>
+<h4 class="font-display text-lg uppercase mb-6 tracking-wide">Dịch vụ sự kiện</h4>
+<ul class="space-y-3 text-xs opacity-80 font-light">
+<li><a class="hover:underline" href="#">TỔ CHỨC SINH NHẬT</a></li>
+<li><a class="hover:underline" href="#">TEAMBUILDING</a></li>
+<li><a class="hover:underline" href="#">TIỆC CƯỚI NHỎ</a></li>
+<li><a class="hover:underline" href="#">TIỆC KỶ NIỆM</a></li>
+<li><a class="hover:underline" href="#">ĐĂNG KÝ TỔ CHỨC SỰ KIỆN</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-display text-lg uppercase mb-6 tracking-wide">Liên hệ</h4>
+<div class="space-y-3 text-xs opacity-80 font-light mb-6">
+<p>092 981 6699</p>
+<p>booking@thewanderingrosebavi.com</p>
+<p>Thôn Mít Mái, Ba Vì, Hà Nội</p>
+</div>
+<button class="border border-white hover:bg-white hover:text-primary px-6 py-2 text-xs uppercase tracking-wider transition-all flex items-center">
+                        Gửi liên hệ <span class="material-icons text-sm ml-2">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center text-xs opacity-70">
+<p>© Copyright 2025 The Wandering Rose</p>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a class="hover:text-white transition-colors" href="#"><i class="fab fa-facebook-f text-lg"></i></a>
+<a class="hover:text-white transition-colors" href="#"><i class="fab fa-youtube text-lg"></i></a>
+<a class="hover:text-white transition-colors" href="#"><i class="fab fa-instagram text-lg"></i></a>
+<a class="hover:text-white transition-colors" href="#"><i class="fab fa-pinterest-p text-lg"></i></a>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>
