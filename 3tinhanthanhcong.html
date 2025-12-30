@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Confirmation - The Wandering Rose</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#AD7D56", // Copper/Brown from screenshot
+                        secondary: "#C69C6D", // Lighter Gold/Bronze for text
+                        "background-light": "#FFFCF7", // Creamy white
+                        "background-dark": "#121212", // Dark mode background
+                        "surface-dark": "#1E1E1E", // Dark mode surface
+                        "brown-dark": "#7a563a", // Darker shade for dark mode brown sections
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        body: ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "4px",
+                    },
+                },
+            },
+        };
+    </script>
+<style>html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="font-body text-gray-700 dark:text-gray-300 antialiased bg-background-light dark:bg-background-dark transition-colors duration-300">
+<section class="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-12 lg:py-20 relative">
+<div class="max-w-3xl w-full space-y-8 animate-fade-in-up">
+<h1 class="font-display text-4xl md:text-6xl text-secondary dark:text-[#e0b888] font-normal leading-tight">
+                Gửi tin nhắn thành công
+            </h1>
+<p class="text-gray-500 dark:text-gray-400 font-light text-lg">
+                Chúng tôi sẽ chủ động liên hệ lại trong thời gian ngắn nhất !
+            </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+<button class="w-full sm:w-auto px-8 py-3 bg-primary hover:bg-[#966b48] text-white text-sm font-semibold tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-lg rounded">
+                    Trở lại trang trước
+                </button>
+<a class="w-full sm:w-auto px-8 py-3 border border-gray-300 dark:border-gray-600 hover:border-primary dark:hover:border-primary text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm font-semibold tracking-wider uppercase transition-all duration-300 rounded flex items-center justify-center gap-2 group" href="#">
+                    Về trang chủ
+                    <span class="material-icons text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<section class="bg-primary dark:bg-brown-dark text-white py-20 px-4 transition-colors duration-300">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-display text-4xl md:text-5xl font-normal mb-2">
+                    Tin tức và sự kiện
+                </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] w-full overflow-hidden mb-6 relative shadow-xl">
+<img alt="Music concert event with vibrant lights" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2bbxDMnH4zMoRQGBy73v03UVPqZogzQ9AxtuXlDZGU76KTSjw-i9s3wNUc9BjiSmc8O9h_Ey_TLZ8qiGH8rcWqx-0fBKr5jyAX-rH127_0CduqP4LteaRl8jKD7NajIFIwofw2qYZaDbavGP4edrsgRGzWntOpkIeqj5Viri-e_kNhgA5gzLr3Qu_vNnrccgDSYnhukcC8e5bfTVPaGeunS9uNhhBmsDgLJOzdOt9JKm2XPAfR5SW_garzuWKM305HNGyRMs5JH2G"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="space-y-3">
+<p class="text-xs font-light tracking-widest opacity-80 uppercase">Sự kiện âm nhạc</p>
+<h3 class="font-display text-2xl md:text-3xl font-normal">Tên tin tức</h3>
+<button class="mt-2 px-4 py-2 border border-white/50 hover:border-white text-xs uppercase tracking-widest hover:bg-white hover:text-primary transition-all duration-300 flex items-center gap-2 w-fit">
+                            Tìm hiểu
+                            <span class="material-icons text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] w-full overflow-hidden mb-6 relative shadow-xl">
+<img alt="Crowd at a concert with blue lighting" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdHwZb4YcKo7yw-G-aThypJQCQxnF9E_qPJ-9iulwBkyIr-7X6hHYvKV1E4YJIB4jx1ydioxuEntc0552atAzObzBxQD72i84TWRJJUGo-C10D0SJRuvXGaJst2EGuV1rea57x7WAQhD8o0jKWFpQu5NHl6xQXoYdi-WWFVuRKwhj6UE6h4wsMW9y7Y6Yw4FLlh6AqK7YDqPD9VKEJ5_-1CcD60sDmlu2ceqGuEWw2DvHlg-nsQLnW6JDF3erQ09U3s-c0BTj_liSS"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="space-y-3">
+<p class="text-xs font-light tracking-widest opacity-80 uppercase">Tên loại tin tức</p>
+<h3 class="font-display text-2xl md:text-3xl font-normal">Tên tin tức</h3>
+<button class="mt-2 px-4 py-2 border border-white/50 hover:border-white text-xs uppercase tracking-widest hover:bg-white hover:text-primary transition-all duration-300 flex items-center gap-2 w-fit">
+                            Tìm hiểu
+                            <span class="material-icons text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] w-full overflow-hidden mb-6 relative shadow-xl">
+<img alt="Excited crowd at a pop music concert" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHS2VpwuY01UXfn8Fm51T5sa06-2X9Op9e8vHBLPNWit4a2HfYvDMOUsUPrsVSksWhqT01FU2uNm4peO24s3js357GTf2bd9zKdzF1zqGSXy8YqAaJ1_mnuvL_4Fuy5nSnOhbcNyJfxIYClBm0HjHUYetfUQ-q1oFE8TX82HUSkZcWzW9WWofxJdXb9rXtf45IV78h7yXC8DThBTR33ODALbS7MYDr4wElz_hK7VJxzke-Nj_xJcHPqgRsbrW3XS5rutU3ZQNjA6CX"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+</div>
+<div class="space-y-3">
+<p class="text-xs font-light tracking-widest opacity-80 uppercase">Tên loại tin tức</p>
+<h3 class="font-display text-2xl md:text-3xl font-normal">Tên tin tức</h3>
+<button class="mt-2 px-4 py-2 border border-white/50 hover:border-white text-xs uppercase tracking-widest hover:bg-white hover:text-primary transition-all duration-300 flex items-center gap-2 w-fit">
+                            Tìm hiểu
+                            <span class="material-icons text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex justify-center gap-4 mt-16">
+<button class="w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-gray-100 transition-colors shadow-lg">
+<span class="material-icons">arrow_back</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-white text-primary flex items-center justify-center hover:bg-gray-100 transition-colors shadow-lg">
+<span class="material-icons">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<footer class="bg-primary dark:bg-brown-dark text-white border-t border-white/10 pt-16 pb-8 px-4 transition-colors duration-300">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col items-center mb-16">
+<div class="text-center">
+<span class="material-icons text-4xl mb-2">local_florist</span>
+<h3 class="font-display text-2xl uppercase tracking-widest">The Wandering Rose</h3>
+<p class="font-display italic text-lg opacity-80">Ba Vì</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<h4 class="font-display text-xl mb-6 uppercase tracking-wider">Trang Chủ</h4>
+<ul class="space-y-3 text-sm font-light opacity-90">
+<li><a class="hover:underline hover:opacity-100" href="#">Về chúng tôi</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Sự kiện âm nhạc</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Gallery hình ảnh &amp; video</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Tin tức</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-display text-xl mb-6 uppercase tracking-wider">Hạng Phòng</h4>
+<ul class="space-y-3 text-sm font-light opacity-90">
+<li><a class="hover:underline hover:opacity-100" href="#">Khu Wooden House</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Forest Room</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Deluxe Room</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Family Room</a></li>
+</ul>
+</div>
+<div class="md:mt-0 mt-8 lg:mt-12"> 
+<h4 class="font-display text-xl mb-6 uppercase tracking-wider opacity-0 hidden lg:block">Spacer</h4> 
+<ul class="space-y-3 text-sm font-light opacity-90">
+<li><a class="hover:underline hover:opacity-100" href="#">Khu Rose House</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Pink Rose House</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">White Rose House</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Red Rose House</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">The Wandering Rose Villa</a></li>
+</ul>
+</div>
+<div></div>
+</div>
+<div class="w-full h-px bg-white/20 my-10"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+<div>
+<h4 class="font-display text-xl mb-6 uppercase tracking-wider">Trải Nghiệm &amp; Tour</h4>
+<ul class="space-y-3 text-sm font-light opacity-90">
+<li><a class="hover:underline hover:opacity-100" href="#">Tour vườn quốc gia Ba Vì</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Tour Ao Vua</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Khoang Xanh - Suối Tiên</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Các trải nghiệm bản địa</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-display text-xl mb-6 uppercase tracking-wider">Dịch Vụ Sự Kiện</h4>
+<ul class="space-y-3 text-sm font-light opacity-90">
+<li><a class="hover:underline hover:opacity-100" href="#">Tổ chức sinh nhật</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Teambuilding</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Tiệc cưới nhỏ</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Tiệc kỷ niệm</a></li>
+<li><a class="hover:underline hover:opacity-100" href="#">Đăng ký tổ chức sự kiện</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-display text-xl mb-6 uppercase tracking-wider">Liên Hệ</h4>
+<ul class="space-y-3 text-sm font-light opacity-90 mb-6">
+<li>092 981 6699</li>
+<li>booking@thewanderingrosebavi.com</li>
+<li>Thôn Mít Mái, Ba Vì, Hà Nội</li>
+</ul>
+<a class="inline-flex items-center gap-2 px-6 py-2 border border-white hover:bg-white hover:text-primary transition-all duration-300 text-sm uppercase tracking-wider" href="#">
+                        Gửi liên hệ
+                        <span class="material-icons text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-light opacity-80">
+<p>© Copyright 2025 The Wandering Rose</p>
+<div class="flex items-center gap-6">
+<a class="hover:text-white hover:opacity-100 transition-opacity" href="#">Facebook</a>
+<a class="hover:text-white hover:opacity-100 transition-opacity" href="#">Youtube</a>
+<a class="hover:text-white hover:opacity-100 transition-opacity" href="#">Instagram</a>
+<a class="hover:text-white hover:opacity-100 transition-opacity" href="#">Pinterest</a>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>

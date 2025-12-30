@@ -1,0 +1,20 @@
+/* Font fallback */
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Hiệu ứng mượt hơn */
+button {
+    transition: all 0.3s ease;
+}
+
+/* Tối ưu icon hover */
+i {
+    transition: transform 0.3s ease;
+}
+
+/* Fix ảnh tránh rung khi hover scale */
+img {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
