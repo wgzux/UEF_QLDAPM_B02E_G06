@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class CartItem extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'cart_id',
+        'service_type', // 'Room', 'Activity'
+        'room_type_id', // Nullable
+        'activity_id',  // Nullable
+        'quantity',
+        'check_in_date',
+        'check_out_date',
+        'snapshot_price'
+    ];
+
+    protected $casts = [
+        'check_in_date' => 'date',
+        'check_out_date' => 'date',
+    ];
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
+    }
+
+    // Liên kết lỏng lẻo tới RoomType
+    public function roomType()
+    {
+        return $this->belongsTo(RoomType::class, 'room_type_id');
+    }
+
+    // Liên kết lỏng lẻo tới Activity
+    public function activity()
+    {
+        return $this->belongsTo(Activity::class, 'activity_id');
+    }
+
+    // Helper: Lấy thông tin sản phẩm dựa trên service_type
+    public function getProductAttribute()
+    {
+        return $this->service_type === 'Room' ? $this->roomType : $this->activity;
+    }
+}
