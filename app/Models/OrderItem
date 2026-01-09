@@ -1,0 +1,31 @@
+<?php
+
+namespace app\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class OrderItem extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'order_id',
+        'room_type_id',
+        'activity_id',
+        'quantity',
+        'price_per_unit',
+        'total_line_price'
+    ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    // Nếu item này là phòng, nó sẽ có 1 bản ghi booking đi kèm
+    public function roomBooking()
+    {
+        return $this->hasOne(RoomBooking::class, 'order_item_id');
+    }
+}

@@ -1,0 +1,34 @@
+<?php
+
+namespace app\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Room extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'room_type_id',
+        'room_number',
+        'status', // 'Active', 'Maintenance'
+    ];
+
+    public function roomType()
+    {
+        return $this->belongsTo(RoomType::class, 'room_type_id');
+    }
+
+    // Quan hệ 1-N: Một phòng có nhiều lịch sử đặt
+    public function bookings()
+    {
+        return $this->hasMany(RoomBooking::class, 'room_id');
+    }
+    
+    // Scope để tìm phòng đang hoạt động
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'Active');
+    }
+}

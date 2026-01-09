@@ -1,0 +1,18 @@
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #B0835D;
+  border-radius: 4px;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(to right, #C69C72, #B0835D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
