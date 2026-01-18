@@ -66,9 +66,9 @@
 <label class="text-[10px] text-gray-400 mb-0.5">Check out</label>
 <input class="bg-white text-gray-800 border-none px-2 py-1 text-xs rounded w-32 focus:ring-1 focus:ring-primary" type="date"/>
 </div>
-<button class="mt-4 bg-transparent border border-white hover:bg-white hover:text-black transition px-4 py-1 uppercase text-xs rounded h-[34px] flex items-center">
+<a href="/booking" class="mt-4 inline-flex bg-transparent border border-white hover:bg-white hover:text-black transition px-4 py-1 uppercase text-xs rounded h-[34px] items-center">
                 Đặt Ngay <span class="material-icons-outlined text-sm ml-1">arrow_forward</span>
-</button>
+</a>
 </div>
 </div>
 <header class="bg-gray-900 text-white py-4 px-4 md:px-12 sticky top-0 z-50 shadow-lg">
@@ -84,15 +84,15 @@
 </div>
 </div>
 <nav class="hidden md:flex space-x-6 text-xs uppercase tracking-widest font-light text-gray-300">
-<a class="hover:text-primary transition" href="#">Trang Chủ</a>
-<a class="hover:text-primary transition" href="#">Về Chúng Tôi</a>
-<a class="hover:text-primary transition" href="#">Hạng Phòng</a>
+<a class="hover:text-primary transition" href="/">Trang Chủ</a>
+<a class="hover:text-primary transition" href="{{ route('contact') }}">Về Chúng Tôi</a>
+<a class="hover:text-primary transition" href="/booking">Hạng Phòng</a>
 </nav>
 <div class="hidden md:flex items-center space-x-6">
 <nav class="flex space-x-6 text-xs uppercase tracking-widest font-light text-gray-300 mr-8">
-<a class="hover:text-primary transition" href="#">Dịch Vụ Sự Kiện</a>
-<a class="hover:text-primary transition" href="#">Trải Nghiệm &amp; Tour</a>
-<a class="hover:text-primary transition" href="#">Liên Hệ</a>
+<a class="hover:text-primary transition" href="/booking">Dịch Vụ Sự Kiện</a>
+<a class="hover:text-primary transition" href="/booking">Trải Nghiệm &amp; Tour</a>
+<a class="hover:text-primary transition" href="{{ route('contact') }}">Liên Hệ</a>
 </nav>
 <div class="text-xs flex items-center text-gray-300">
 <span class="material-icons-outlined text-sm mr-2 text-primary">phone</span> 092 981 6699
@@ -115,7 +115,7 @@
 <p class="text-gray-600 dark:text-gray-300 mb-8 font-light leading-relaxed">
                     There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
                 </p>
-<a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="#">
+<a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="{{ route('contact') }}">
                     Xem thêm <span class="material-icons-outlined ml-2 text-sm">arrow_forward</span>
 </a>
 </div>
@@ -128,7 +128,7 @@
 <p class="text-gray-600 dark:text-gray-300 mb-8 font-light leading-relaxed">
                     There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
                 </p>
-<a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="#">
+<a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="{{ route('contact') }}">
                     Xem thêm <span class="material-icons-outlined ml-2 text-sm">arrow_forward</span>
 </a>
 </div>
@@ -392,29 +392,29 @@
 <div>
 <h4 class="font-display text-lg mb-6 uppercase tracking-widest">Trang Chủ</h4>
 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Về chúng tôi</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Sự kiện âm nhạc</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Gallery hình ảnh &amp; Video</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Tin tức</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">FAQ</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Về chúng tôi</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="/fragnews">Sự kiện âm nhạc</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="/fragnews">Gallery hình ảnh &amp; Video</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="/fragnews">Tin tức</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="/fragnews">FAQ</a></li>
 </ul>
 </div>
 <div>
 <h4 class="font-display text-lg mb-6 uppercase tracking-widest">Hạng Phòng</h4>
 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Khu Wooden House</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Forest Room</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Deluxe Room</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Family Room</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Khu Wooden House</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Forest Room</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Deluxe Room</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Family Room</a></li>
 </ul>
 </div>
 <div class="md:mt-12"> 
 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Khu Rose House</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Pink Rose House</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">White Rose House</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Red Rose House</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">The Wandering Rose Villa</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Khu Rose House</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Pink Rose House</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">White Rose House</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Red Rose House</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">The Wandering Rose Villa</a></li>
 </ul>
 </div>
 <div>
@@ -430,12 +430,12 @@
 </div>
 <div class="col-span-1 md:col-span-4 flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 mt-8">
 <p class="text-xs opacity-60 mb-4 md:mb-0">© Copyright 2023 The Wandering Rose</p>
-<div class="flex space-x-6">
-<a class="opacity-60 hover:opacity-100 transition" href="#"><i class="fab fa-facebook-f"></i></a>
-<a class="opacity-60 hover:opacity-100 transition" href="#"><i class="fab fa-youtube"></i></a>
-<a class="opacity-60 hover:opacity-100 transition" href="#"><i class="fab fa-instagram"></i></a>
-<a class="opacity-60 hover:opacity-100 transition" href="#"><i class="fab fa-pinterest"></i></a>
-</div>
+            <div class="flex space-x-6">
+                    <a class="opacity-60 hover:opacity-100 transition" href="/fragnews"><i class="fab fa-facebook-f"></i></a>
+                    <a class="opacity-60 hover:opacity-100 transition" href="/fragnews"><i class="fab fa-youtube"></i></a>
+                    <a class="opacity-60 hover:opacity-100 transition" href="/fragnews"><i class="fab fa-instagram"></i></a>
+                    <a class="opacity-60 hover:opacity-100 transition" href="/fragnews"><i class="fab fa-pinterest"></i></a>
+                </div>
 </div>
 </div>
 </div>

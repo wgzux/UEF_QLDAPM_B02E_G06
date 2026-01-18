@@ -73,11 +73,11 @@
             <div>
                 <h4 class="font-display text-lg mb-6 uppercase tracking-widest">Trang Chủ</h4>
                 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-                    <li><a class="footer-link" href="#">Về chúng tôi</a></li>
-                    <li><a class="footer-link" href="#">Sự kiện âm nhạc</a></li>
-                    <li><a class="footer-link" href="#">Gallery hình ảnh & Video</a></li>
-                    <li><a class="footer-link" href="#">Tin tức</a></li>
-                    <li><a class="footer-link" href="#">FAQ</a></li>
+                    <li><a class="footer-link" href="{{ route('contact') }}">Về chúng tôi</a></li>
+                    <li><a class="footer-link" href="/fragnews">Sự kiện âm nhạc</a></li>
+                    <li><a class="footer-link" href="/fragnews">Gallery hình ảnh & Video</a></li>
+                    <li><a class="footer-link" href="/fragnews">Tin tức</a></li>
+                    <li><a class="footer-link" href="/fragnews">FAQ</a></li>
                 </ul>
             </div>
             
@@ -85,21 +85,21 @@
             <div>
                 <h4 class="font-display text-lg mb-6 uppercase tracking-widest">Hạng Phòng</h4>
                 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-                    <li><a class="footer-link" href="#">Khu Wooden House</a></li>
-                    <li><a class="footer-link" href="#">Forest Room</a></li>
-                    <li><a class="footer-link" href="#">Deluxe Room</a></li>
-                    <li><a class="footer-link" href="#">Family Room</a></li>
+                    <li><a class="footer-link" href="{{ route('contact') }}">Khu Wooden House</a></li>
+                    <li><a class="footer-link" href="{{ route('contact') }}">Forest Room</a></li>
+                    <li><a class="footer-link" href="{{ route('contact') }}">Deluxe Room</a></li>
+                    <li><a class="footer-link" href="{{ route('contact') }}">Family Room</a></li>
                 </ul>
             </div>
             
             {{-- Hạng Phòng Links Column 2 --}}
             <div class="md:mt-12">
                 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-                    <li><a class="footer-link" href="#">Khu Rose House</a></li>
-                    <li><a class="footer-link" href="#">Pink Rose House</a></li>
-                    <li><a class="footer-link" href="#">White Rose House</a></li>
-                    <li><a class="footer-link" href="#">Red Rose House</a></li>
-                    <li><a class="footer-link" href="#">The Wandering Rose Villa</a></li>
+                    <li><a class="footer-link" href="{{ route('contact') }}">Khu Rose House</a></li>
+                    <li><a class="footer-link" href="{{ route('contact') }}">Pink Rose House</a></li>
+                    <li><a class="footer-link" href="{{ route('contact') }}">White Rose House</a></li>
+                    <li><a class="footer-link" href="{{ route('contact') }}">Red Rose House</a></li>
+                    <li><a class="footer-link" href="{{ route('contact') }}">The Wandering Rose Villa</a></li>
                 </ul>
             </div>
             
@@ -110,9 +110,9 @@
                     <p>092 981 6699</p>
                     <p>booking@thewanderingrosebavi.com</p>
                     <p>Thôn Mít Mái, Ba Vì, Hà Nội</p>
-                    <button class="footer-btn border border-white/50 px-4 py-2 rounded uppercase tracking-wider mt-2">
+                    <a href="{{ route('contact') }}" class="footer-btn inline-block border border-white/50 px-4 py-2 rounded uppercase tracking-wider mt-2">
                         Gửi liên hệ <i class="fas fa-arrow-right ml-1"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
             
@@ -120,10 +120,10 @@
             <div class="col-span-1 md:col-span-4 flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 mt-8">
                 <p class="text-xs opacity-60 mb-4 md:mb-0">© Copyright 2023 The Wandering Rose</p>
                 <div class="flex space-x-6">
-                    <a class="social-icon opacity-60" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="social-icon opacity-60" href="#"><i class="fab fa-youtube"></i></a>
-                    <a class="social-icon opacity-60" href="#"><i class="fab fa-instagram"></i></a>
-                    <a class="social-icon opacity-60" href="#"><i class="fab fa-pinterest"></i></a>
+                    <a class="social-icon opacity-60" href="/fragnews"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-icon opacity-60" href="/fragnews"><i class="fab fa-youtube"></i></a>
+                    <a class="social-icon opacity-60" href="/fragnews"><i class="fab fa-instagram"></i></a>
+                    <a class="social-icon opacity-60" href="/fragnews"><i class="fab fa-pinterest"></i></a>
                 </div>
             </div>
         </div>

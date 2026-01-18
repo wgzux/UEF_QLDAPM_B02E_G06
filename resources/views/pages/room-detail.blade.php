@@ -14,7 +14,7 @@
     <img src="{{ $room['hero_image'] }}" alt="{{ $room['name'] }} - Interior">
     <div class="room-detail-hero-content">
         <h1>{{ $room['name'] }}</h1>
-        <a href="#" class="btn-book-hero">
+        <a href="/booking" class="btn-book-hero">
             ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 16px;">arrow_forward</span>
         </a>
     </div>
@@ -123,7 +123,7 @@
                 </div>
             </div>
             
-            <a href="#" class="btn-book-detail">
+            <a href="/booking" class="btn-book-detail">
                 ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 16px;">arrow_forward</span>
             </a>
         </div>
@@ -163,7 +163,7 @@
                             </div>
                         </div>
                         <div class="other-room-actions">
-                            <a href="#" class="btn-book-small">
+                            <a href="/booking" class="btn-book-small">
                                 ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 12px;">arrow_forward</span>
                             </a>
                             <a href="/room/{{ $roomSlug }}" class="btn-view-small">
