@@ -61,7 +61,7 @@
             <button class="px-8 py-3 bg-primary hover:bg-[#966b48] text-white text-sm font-semibold tracking-wider uppercase shadow-md rounded transition-all">
                 Trở lại trang trước
             </button>
-            <a href="#" class="px-8 py-3 border border-gray-300 hover:border-primary text-gray-500 hover:text-primary text-sm font-semibold tracking-wider uppercase rounded flex items-center gap-2 group transition-all">
+            <a href="/" class="px-8 py-3 border border-gray-300 hover:border-primary text-gray-500 hover:text-primary text-sm font-semibold tracking-wider uppercase rounded flex items-center gap-2 group transition-all">
                 Về trang chủ
                 <span class="material-icons text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </a>

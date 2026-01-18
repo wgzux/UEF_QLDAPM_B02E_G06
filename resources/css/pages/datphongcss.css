@@ -1,0 +1,22 @@
+/* đặtphòngcss - tách từ style inline của view đặt phòng */
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 20px;
+}
+.dark ::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+}
+
+/* reset cơ bản */
+html, body {
+    margin: 0;
+    padding: 0;
+}

@@ -17,10 +17,10 @@
                     <div class="relative group">
                         <input class="header-date-input w-32 bg-gray-800 text-gray-200 border-none rounded-sm px-3 py-1 text-[10px] focus:ring-1 focus:ring-primary focus:bg-gray-700 transition-colors" placeholder="Check-out" type="date"/>
                     </div>
-                    <button class="bg-transparent border border-white hover:bg-white hover:text-black text-white px-4 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider transition-all duration-300 h-[32px] flex items-center gap-1">
+                    <a href="/booking" class="bg-transparent inline-flex border border-white hover:bg-white hover:text-black text-white px-4 py-1 rounded-sm text-[10px] font-bold uppercase tracking-wider transition-all duration-300 h-[32px] items-center gap-1">
                         <span>Book</span>
                         <span class="material-icons text-[12px]">arrow_forward</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -67,37 +67,37 @@
             <nav>
                 <ul class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-center py-3">
                     <li>
-                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="#">
-                            Trang Chủ
-                            <span class="nav-link-underline"></span>
-                        </a>
+                            <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="/">
+                                Trang Chủ
+                                <span class="nav-link-underline"></span>
+                            </a>
                     </li>
                     <li>
-                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="#">
+                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="/about">
                             Về Chúng Tôi
                             <span class="nav-link-underline"></span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="#">
+                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="/rooms">
                             Hạng Phòng
                             <span class="nav-link-underline"></span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="#">
+                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="{{ route('contact') }}">
                             Dịch Vụ
                             <span class="nav-link-underline"></span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="#">
+                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="/6">
                             Tour
                             <span class="nav-link-underline"></span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="#">
+                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="{{ route('contact') }}">
                             Liên Hệ
                             <span class="nav-link-underline"></span>
                         </a>

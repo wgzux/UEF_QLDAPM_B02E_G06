@@ -50,7 +50,7 @@
 <body class="bg-background-light dark:bg-background-dark text-gray-700 dark:text-gray-300 font-body transition-colors duration-300">
 
 <header class="pt-6 pb-4 px-4 md:px-12 flex justify-between items-center bg-transparent relative z-10">
-  <a class="flex items-center text-xs tracking-widest text-primary hover:opacity-80 transition-opacity uppercase" href="#">
+  <a class="flex items-center text-xs tracking-widest text-primary hover:opacity-80 transition-opacity uppercase" href="/booking">
     <span class="material-icons-outlined text-sm mr-1">arrow_back</span>
     Trở về
   </a>
@@ -129,9 +129,9 @@
 </div>
 <div class="flex items-center space-x-6">
 <div class="font-display text-xl font-bold">100.000.000 <span class="text-sm font-sans font-normal align-top">đ</span></div>
-<button class="bg-[#dcd0c2] text-brand-brown dark:bg-gray-200 dark:text-gray-800 hover:bg-white text-xs font-bold uppercase px-4 py-2 rounded transition-colors">
-                    Đặt ngay
-                </button>
+        <a href="/checkout" class="bg-[#dcd0c2] inline-block text-brand-brown dark:bg-gray-200 dark:text-gray-800 hover:bg-white text-xs font-bold uppercase px-4 py-2 rounded transition-colors">
+          Đặt ngay
+        </a>
 </div>
 </div>
 </div>

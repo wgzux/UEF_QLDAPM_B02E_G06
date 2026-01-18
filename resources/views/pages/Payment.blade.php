@@ -55,7 +55,7 @@
 
   <header class="container mx-auto px-4 py-6">
     <div class="flex flex-col md:flex-row justify-between items-center relative">
-      <a class="absolute left-0 top-1/2 -translate-y-1/2 md:relative md:translate-y-0 text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors flex items-center text-sm uppercase tracking-wide" href="#">
+      <a class="absolute left-0 top-1/2 -translate-y-1/2 md:relative md:translate-y-0 text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors flex items-center text-sm uppercase tracking-wide" href="/bookingdetails">
         <span class="material-icons text-base mr-1">arrow_back</span>
         Trở về
       </a>

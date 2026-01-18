@@ -29,7 +29,7 @@
         <p class="room-section-desc">
             Wooden House tại The Wandering Rose Villa là chốn dừng chân lý tưởng cho những ai đang kiếm tìm sự ấm áp, bình yên và một nhịp sống chậm rãi hơn. Không gian được thiết kế theo phong cách mộc mạc, kết hợp hài hòa giữa sắc mộc mác và gỗ thanh, tạo nên sự gần gũi và thư giãn.
         </p>
-        <a href="#" class="btn-detail">
+        <a href="{{ route('contact') }}" class="btn-detail">
             XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 16px;">arrow_forward</span>
         </a>
     </div>
@@ -61,10 +61,10 @@
                     </div>
                 </div>
                 <div class="room-card-actions">
-                    <a href="#" class="btn-book">
+                    <a href="/booking" class="btn-book">
                         ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
-                    <a href="#" class="btn-view">
+                    <a href="/room/forest-room" class="btn-view">
                         XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
                 </div>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="room-card-actions">
-                    <a href="#" class="btn-book">
+                    <a href="/booking" class="btn-book">
                         ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
                     <a href="/room/white-rose-house" class="btn-view">
@@ -133,10 +133,10 @@
                     </div>
                 </div>
                 <div class="room-card-actions">
-                    <a href="#" class="btn-book">
+                    <a href="/booking" class="btn-book">
                         ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
-                    <a href="#" class="btn-view">
+                    <a href="/room/family-room" class="btn-view">
                         XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
                 </div>
@@ -152,7 +152,7 @@
         <p class="room-section-desc">
             There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
         </p>
-        <a href="#" class="btn-detail">
+        <a href="{{ route('contact') }}" class="btn-detail">
             XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 16px;">arrow_forward</span>
         </a>
     </div>
@@ -184,10 +184,10 @@
                     </div>
                 </div>
                 <div class="room-card-actions">
-                    <a href="#" class="btn-book">
+                    <a href="/booking" class="btn-book">
                         ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
-                    <a href="#" class="btn-view">
+                    <a href="/room/pink-rose-house" class="btn-view">
                         XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
                 </div>
@@ -220,10 +220,10 @@
                     </div>
                 </div>
                 <div class="room-card-actions">
-                    <a href="#" class="btn-book">
+                    <a href="/booking" class="btn-book">
                         ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
-                    <a href="#" class="btn-view">
+                    <a href="/room/red-rose-house" class="btn-view">
                         XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
                 </div>
@@ -239,7 +239,7 @@
         <p class="room-section-desc">
             There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
         </p>
-        <a href="#" class="btn-detail">
+        <a href="{{ route('contact') }}" class="btn-detail">
             XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 16px;">arrow_forward</span>
         </a>
     </div>
@@ -269,10 +269,10 @@
                 </div>
             </div>
             <div class="room-card-actions">
-                <a href="#" class="btn-book">
-                    BUTTON TEXT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
+                <a href="/booking" class="btn-book">
+                    ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                 </a>
-                <a href="#" class="btn-view">
+                <a href="/room/villa" class="btn-view">
                     XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                 </a>
             </div>

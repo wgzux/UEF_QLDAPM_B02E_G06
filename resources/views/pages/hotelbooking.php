@@ -37,11 +37,11 @@
         };
     </script>
     {{-- Load CSS đã tách (public) --}}
-    <link rel="stylesheet" href="{{ asset('css/pages/đặtphòngcss.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pages/datphongcss.css') }}">
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-200 font-body transition-colors duration-300 min-h-screen flex flex-col">
 <header class="w-full px-6 py-6 md:px-12 flex justify-between items-start">
-<a class="flex items-center text-primary hover:opacity-80 transition-opacity text-sm font-semibold tracking-wide uppercase mt-2" href="#">
+<a class="flex items-center text-primary hover:opacity-80 transition-opacity text-sm font-semibold tracking-wide uppercase mt-2" href="/">
 <span class="material-icons-outlined text-base mr-1">west</span>
             Trở về
         </a>
