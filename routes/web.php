@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('pages.5');
+    return view('pages.HomeDesktop');
 });
 Route::get('/2', function () {
     return view('pages.5');
-    return view('pages.HomeDesktop');
+    
 });
 
 Route::get('/fragnews', function () {
@@ -27,8 +27,8 @@ Route::get('/confirm', function () {
     return view('pages.Confirm');
 });
 Route::get('/bookingdetails', function () {
-    return view('pages.bookingdetails');
+    return view('pages.BookingDetails');
 });
 Route::get('/booking', function () {
-    return view('pages.booking');
+    return view('pages.Booking');
 });
