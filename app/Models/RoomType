@@ -1,0 +1,27 @@
+<?php
+
+namespace app\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class RoomType extends Model
+{
+    use HasFactory;
+
+    protected $table = 'room_types';
+
+    protected $fillable = [
+        'type_name',
+        'description',
+        'base_price',
+        'max_occupancy',
+        'thumbnail_url'
+    ];
+
+    // Quan hệ 1-N: Một loại phòng có nhiều phòng vật lý
+    public function rooms()
+    {
+        return $this->hasMany(Room::class, 'room_type_id');
+    }
+}

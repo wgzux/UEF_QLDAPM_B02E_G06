@@ -1,0 +1,61 @@
+/* Footer Styles - The Wandering Rose */
+
+/* Footer background và text */
+.footer-section {
+    background: #c7a17a; /* Màu nâu nhạt giống hình */
+    color: #fff;
+}
+
+/* Newsletter card hover effect */
+.newsletter-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newsletter-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(168, 139, 104, 0.2);
+}
+
+/* Event card overlay */
+.event-card-overlay {
+    transition: opacity 0.5s ease;
+}
+
+.event-card:hover .event-card-overlay {
+    opacity: 1;
+}
+
+/* Footer links hover effect */
+.footer-link {
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-link:hover {
+    color: white;
+    opacity: 1;
+}
+
+/* Social icons hover */
+.social-icon {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* Button hover effects */
+.footer-btn {
+    transition: all 0.3s ease;
+}
+
+.footer-btn:hover {
+    background-color: white;
+    color: #a88b68;
+}
+
+/* Divider line */
+.footer-divider {
+    border-color: rgba(255, 255, 255, 0.2);
+}

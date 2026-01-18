@@ -1,0 +1,64 @@
+/* Header Styles - The Wandering Rose */
+
+/* Scrollbar cho header */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a88b68;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8c7354;
+}
+
+/* Chỉnh màu icon lịch trong header tối */
+.header-date-input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+/* Hiệu ứng underline cho menu */
+.nav-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.nav-link-underline {
+    position: absolute;
+    bottom: 0.25rem;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #a88b68;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover .nav-link-underline {
+    width: 100%;
+}
+
+/* Logo icon animation */
+.logo-icon {
+    transition: transform 0.5s ease;
+}
+
+.logo-group:hover .logo-icon {
+    transform: scale(1.1);
+}
+
+/* Phone number hover effect */
+.phone-link {
+    transition: color 0.3s ease;
+}
+
+.phone-icon {
+    transform: rotate(-15deg);
+}
