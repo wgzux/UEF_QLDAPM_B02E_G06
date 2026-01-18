@@ -51,9 +51,7 @@
 <label class="text-[8px]">Text box 10</label>
 <input class="bg-transparent border-none text-[10px] p-0 focus:ring-0" type="date"/>
 </div>
-<button class="bg-zinc-700 px-4 py-1 hover:bg-zinc-600 transition flex items-center gap-2">
-                Button Text <span class="material-icons-outlined text-xs">arrow_forward</span>
-</button>
+<a href="/booking" class="bg-zinc-700 px-4 py-1 hover:bg-zinc-600 transition flex items-center gap-2 inline-flex">ĐẶT PHÒNG <span class="material-icons-outlined text-xs">arrow_forward</span></a>
 </div>
 </div>
 <header class="bg-white/95 dark:bg-zinc-900/95 sticky top-0 z-50 border-b border-gray-100 dark:border-zinc-800">
@@ -115,8 +113,8 @@
 <div class="text-center mb-12">
 <h2 class="text-5xl font-display mb-4 text-primary">Pink Rose House</h2>
 <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id nulla et tellus faucibus blandit at vitae lorem.</p>
-<a class="text-[10px] uppercase tracking-widest text-primary flex items-center justify-center gap-2" href="#">
-                Button Text <span class="material-icons-outlined text-xs">arrow_forward</span>
+<a class="text-[10px] uppercase tracking-widest text-primary flex items-center justify-center gap-2" href="/KhuRoseHouseDesktop">
+                XEM CHI TIẾT <span class="material-icons-outlined text-xs">arrow_forward</span>
 </a>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -147,8 +145,8 @@
 </div>
 </div>
 <div class="flex gap-4 pt-4">
-<button class="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase hover:bg-deep-brown transition flex-1">Đặt Phòng</button>
-<button class="border border-primary text-primary px-8 py-3 text-xs tracking-widest uppercase hover:bg-primary hover:text-white transition flex-1">Xem Chi Tiết</button>
+<a href="/booking" class="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase hover:bg-deep-brown transition flex-1 inline-block text-center">Đặt Phòng</a>
+<a href="/KhuRoseHouseDesktop" class="border border-primary text-primary px-8 py-3 text-xs tracking-widest uppercase hover:bg-primary hover:text-white transition flex-1 inline-block text-center">Xem Chi Tiết</a>
 </div>
 </div>
 </div>
@@ -158,8 +156,8 @@
 <div class="text-center mb-12">
 <h2 class="text-5xl font-display mb-4 text-primary">White Rose House</h2>
 <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id nulla et tellus faucibus blandit at vitae lorem.</p>
-<a class="text-[10px] uppercase tracking-widest text-primary flex items-center justify-center gap-2" href="#">
-                    Button Text <span class="material-icons-outlined text-xs">arrow_forward</span>
+<a class="text-[10px] uppercase tracking-widest text-primary flex items-center justify-center gap-2" href="/KhuRoseHouseDesktop">
+                    XEM CHI TIẾT <span class="material-icons-outlined text-xs">arrow_forward</span>
 </a>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -190,8 +188,8 @@
 </div>
 </div>
 <div class="flex gap-4 pt-4">
-<button class="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase hover:bg-deep-brown transition flex-1">Đặt Phòng</button>
-<button class="border border-primary text-primary px-8 py-3 text-xs tracking-widest uppercase hover:bg-primary hover:text-white transition flex-1">Xem Chi Tiết</button>
+<a href="/booking" class="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase hover:bg-deep-brown transition flex-1 inline-block text-center">Đặt Phòng</a>
+<a href="/KhuRoseHouseDesktop" class="border border-primary text-primary px-8 py-3 text-xs tracking-widest uppercase hover:bg-primary hover:text-white transition flex-1 inline-block text-center">Xem Chi Tiết</a>
 </div>
 </div>
 </div>

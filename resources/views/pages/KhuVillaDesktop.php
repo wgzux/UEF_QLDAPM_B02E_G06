@@ -48,9 +48,7 @@
 <div class="absolute inset-0 hero-overlay"></div>
 <div class="relative z-10 px-4">
 <h1 class="text-white font-display text-5xl md:text-7xl mb-8 tracking-wide">The Wandering Rose Villa</h1>
-<button class="border border-white text-white px-8 py-3 uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-all duration-300 flex items-center mx-auto">
-                ĐẶT PHÒNG <span class="material-icons-outlined ml-2 text-sm">arrow_forward</span>
-</button>
+<a href="/booking" class="border border-white text-white px-8 py-3 uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-all duration-300 flex items-center mx-auto inline-block text-center">ĐẶT PHÒNG <span class="material-icons-outlined ml-2 text-sm">arrow_forward</span></a>
 </div>
 </header>
 <section class="max-w-6xl mx-auto px-6 py-20 text-center">

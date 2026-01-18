@@ -132,8 +132,8 @@
 </div>
 </div>
 <div class="flex gap-4 pt-4">
-<button class="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase flex-1 hover:bg-opacity-90 transition-all">ĐẶT PHÒNG →</button>
-<button class="border border-primary text-primary px-8 py-3 text-xs tracking-widest uppercase flex-1 hover:bg-primary hover:text-white transition-all">XEM CHI TIẾT</button>
+<a href="/booking" class="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase flex-1 hover:bg-opacity-90 transition-all inline-block text-center">ĐẶT PHÒNG →</a>
+<a href="/KhuWoodenHouseDesktop" class="border border-primary text-primary px-8 py-3 text-xs tracking-widest uppercase flex-1 hover:bg-primary hover:text-white transition-all inline-block text-center">XEM CHI TIẾT</a>
 </div>
 </div>
 </div>
@@ -167,8 +167,8 @@
 </div>
 </div>
 <div class="flex gap-4 pt-4">
-<button class="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase flex-1">ĐẶT PHÒNG →</button>
-<button class="border border-primary text-primary px-8 py-3 text-xs tracking-widest uppercase flex-1">XEM CHI TIẾT</button>
+<a href="/booking" class="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase flex-1 inline-block text-center">ĐẶT PHÒNG →</a>
+<a href="/DuluxeRoomDesktop" class="border border-primary text-primary px-8 py-3 text-xs tracking-widest uppercase flex-1 inline-block text-center">XEM CHI TIẾT</a>
 </div>
 </div>
 </div>
@@ -202,8 +202,8 @@
 </div>
 </div>
 <div class="flex gap-4 pt-4">
-<button class="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase flex-1">ĐẶT PHÒNG →</button>
-<button class="border border-primary text-primary px-8 py-3 text-xs tracking-widest uppercase flex-1">XEM CHI TIẾT</button>
+<a href="/booking" class="bg-primary text-white px-8 py-3 text-xs tracking-widest uppercase flex-1 inline-block text-center">ĐẶT PHÒNG →</a>
+<a href="/FamilyRoomDesktop" class="border border-primary text-primary px-8 py-3 text-xs tracking-widest uppercase flex-1 inline-block text-center">XEM CHI TIẾT</a>
 </div>
 </div>
 </div>

@@ -138,9 +138,10 @@
 <main class="relative px-4 md:px-12 py-12 max-w-7xl mx-auto">
 
 <!-- BOOKING MODAL -->
-<div id="bookingModal" class="relative z-30 mb-20 md:mb-32">
+<!-- Hidden by default; call openModal() to show -->
+<div id="bookingModal" class="relative z-30 mb-20 md:mb-32 hidden">
   <!-- Backdrop: click ra ngoài để đóng -->
-  <div id="modalBackdrop" class="fixed inset-0 z-20 bg-black/20"></div>
+  <div id="modalBackdrop" class="fixed inset-0 z-20 bg-black/20 hidden"></div>
 
   <!-- Modal box -->
   <div class="relative z-30 bg-surface-light dark:bg-surface-dark shadow-2xl max-w-2xl mx-auto rounded-lg overflow-hidden border border-gray-100 dark:border-gray-700 animate-fade-in-up">
@@ -357,6 +358,7 @@
 
   function closeModal() {
     modal.classList.add("hidden");
+    if (backdrop) backdrop.classList.add("hidden");
     if (pageContent) {
       pageContent.classList.remove(
         "opacity-40",
@@ -371,6 +373,7 @@
 
   function openModal() {
     modal.classList.remove("hidden");
+    if (backdrop) backdrop.classList.remove("hidden");
     if (pageContent) {
       pageContent.classList.add(
         "opacity-40",
@@ -406,6 +409,21 @@
   // Nếu muốn mở modal từ nút "Đặt ngay" bên ngoài:
   // gắn onclick="openModal()" vào nút đó.
   window.openBookingModal = openModal; // optional
+
+  // Bind all room "Đặt ngay" buttons to open the modal instead of navigating.
+  // This targets <button> elements whose visible text contains "Đặt ngay" (case-insensitive).
+  document.querySelectorAll('button').forEach(btn => {
+    try{
+      const text = (btn.textContent||'').trim().toLowerCase();
+      if(text.includes('đặt ngay')){
+        btn.addEventListener('click', (e)=>{
+          // prevent anchors or form submissions where applicable
+          e.preventDefault();
+          openModal();
+        });
+      }
+    }catch(err){/* ignore */}
+  });
 </script>
 
 

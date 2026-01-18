@@ -85,13 +85,13 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="{{ route('contact') }}">
+                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="{{ route('services') }}">
                             Dịch Vụ
                             <span class="nav-link-underline"></span>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="/6">
+                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="{{ route('tours') }}">
                             Tour
                             <span class="nav-link-underline"></span>
                         </a>

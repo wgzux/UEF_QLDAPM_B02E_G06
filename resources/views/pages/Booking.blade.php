@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="w-full lg:w-auto flex justify-center lg:justify-end">
-				<button class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded shadow-lg hover:shadow-xl transition-all flex items-center gap-2 text-sm font-medium tracking-wide uppercase">
+				<button id="booking-search" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded shadow-lg hover:shadow-xl transition-all flex items-center gap-2 text-sm font-medium tracking-wide uppercase">
 					TÌM KIẾM
 					<span class="material-icons text-sm">search</span>
 				</button>
@@ -219,6 +219,20 @@
 		});
 
 		if(bsClear) bsClear.addEventListener('click', ()=>{ checkIn=null; checkOut=null; toggleSelection(); summary.classList.add('hidden'); bsCheckin.textContent='—'; bsCheckout.textContent='—'; bsNights.textContent='0'; bsTotal.textContent='0 ₫'; bsLink.href='/bookingdetails'; });
+
+		// Search button: navigate to booking details with selected dates
+		const searchBtn = document.getElementById('booking-search');
+		if(searchBtn){
+			searchBtn.addEventListener('click', ()=>{
+				if(checkIn && checkOut){
+					const calc = calculateTotal();
+					window.location.href = `/bookingdetails?check_in=${checkIn}&check_out=${checkOut}&nights=${calc.nights}`;
+				}else{
+					// if dates not fully selected, show the summary panel to prompt selection
+					summary.classList.remove('hidden');
+				}
+			});
+		}
 	})();
 </script>
 @endpush

@@ -75,9 +75,7 @@
 <div class="absolute inset-0 hero-gradient"></div>
 <div class="relative z-10 text-center text-white">
 <h2 class="font-display text-7xl md:text-8xl mb-8 font-light italic">Deluxe room</h2>
-<button class="border border-white px-8 py-3 uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-all flex items-center mx-auto gap-2">
-                ĐẶT PHÒNG <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
+<a href="/booking" class="border border-white px-8 py-3 uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-all flex items-center mx-auto gap-2 inline-block text-center">ĐẶT PHÒNG <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
 </div>
 </section>
 <section class="max-w-7xl mx-auto px-6 py-20">
@@ -144,9 +142,7 @@
 <span>01 giường 1m8 x 2m</span>
 </li>
 </ul>
-<button class="mt-8 bg-primary text-white px-10 py-3 uppercase tracking-widest text-sm hover:brightness-110 transition-all flex items-center gap-2">
-                    ĐẶT PHÒNG <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
+<a href="/booking" class="mt-8 bg-primary text-white px-10 py-3 uppercase tracking-widest text-sm hover:brightness-110 transition-all flex items-center gap-2 inline-block text-center">ĐẶT PHÒNG <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
 </div>
 </div>
 </section>
@@ -165,8 +161,8 @@
 <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">bed</span> 08 đệm 1m6 x 1m8</li>
 </ul>
 <div class="flex gap-2">
-<button class="bg-primary text-white px-4 py-2 text-[10px] tracking-widest uppercase">ĐẶT PHÒNG</button>
-<button class="border border-primary text-primary px-4 py-2 text-[10px] tracking-widest uppercase">XEM CHI TIẾT</button>
+<a href="/booking" class="bg-primary text-white px-4 py-2 text-[10px] tracking-widest uppercase inline-block text-center">ĐẶT PHÒNG</a>
+<a href="/KhuWoodenHouseDesktop" class="border border-primary text-primary px-4 py-2 text-[10px] tracking-widest uppercase inline-block text-center">XEM CHI TIẾT</a>
 </div>
 </div>
 <div class="group">
@@ -181,8 +177,8 @@
 <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">bed</span> 02 giường 1m6 x 2m</li>
 </ul>
 <div class="flex gap-2">
-<button class="bg-primary text-white px-4 py-2 text-[10px] tracking-widest uppercase">ĐẶT PHÒNG</button>
-<button class="border border-primary text-primary px-4 py-2 text-[10px] tracking-widest uppercase">XEM CHI TIẾT</button>
+<a href="/booking" class="bg-primary text-white px-4 py-2 text-[10px] tracking-widest uppercase inline-block text-center">ĐẶT PHÒNG</a>
+<a href="/FamilyRoomDesktop" class="border border-primary text-primary px-4 py-2 text-[10px] tracking-widest uppercase inline-block text-center">XEM CHI TIẾT</a>
 </div>
 </div>
 <div class="group">
@@ -197,8 +193,8 @@
 <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">bed</span> 02 giường 1m8 x 2m</li>
 </ul>
 <div class="flex gap-2">
-<button class="bg-primary text-white px-4 py-2 text-[10px] tracking-widest uppercase">ĐẶT PHÒNG</button>
-<button class="border border-primary text-primary px-4 py-2 text-[10px] tracking-widest uppercase">XEM CHI TIẾT</button>
+<a href="/booking" class="bg-primary text-white px-4 py-2 text-[10px] tracking-widest uppercase inline-block text-center">ĐẶT PHÒNG</a>
+<a href="/KhuRoseHouseDesktop" class="border border-primary text-primary px-4 py-2 text-[10px] tracking-widest uppercase inline-block text-center">XEM CHI TIẾT</a>
 </div>
 </div>
 </div>

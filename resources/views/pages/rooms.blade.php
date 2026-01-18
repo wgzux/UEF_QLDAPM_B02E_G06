@@ -64,7 +64,7 @@
                     <a href="/booking" class="btn-book">
                         ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
-                    <a href="/room/forest-room" class="btn-view">
+                    <a href="/KhuWoodenHouseDesktop" class="btn-view">
                         XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
                 </div>
@@ -100,7 +100,7 @@
                     <a href="/booking" class="btn-book">
                         ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
-                    <a href="/room/white-rose-house" class="btn-view">
+                    <a href="/KhuRoseHouseDesktop" class="btn-view">
                         XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
                 </div>
@@ -136,7 +136,7 @@
                     <a href="/booking" class="btn-book">
                         ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
-                    <a href="/room/family-room" class="btn-view">
+                    <a href="/FamilyRoomDesktop" class="btn-view">
                         XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
                 </div>
@@ -187,7 +187,7 @@
                     <a href="/booking" class="btn-book">
                         ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
-                    <a href="/room/pink-rose-house" class="btn-view">
+                    <a href="/KhuRoseHouseDesktop" class="btn-view">
                         XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
                 </div>
@@ -223,7 +223,7 @@
                     <a href="/booking" class="btn-book">
                         ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
-                    <a href="/room/red-rose-house" class="btn-view">
+                    <a href="/RedRoseHouseDesktop" class="btn-view">
                         XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                     </a>
                 </div>
@@ -272,7 +272,7 @@
                 <a href="/booking" class="btn-book">
                     ĐẶT PHÒNG <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                 </a>
-                <a href="/room/villa" class="btn-view">
+                <a href="/KhuVillaDesktop" class="btn-view">
                     XEM CHI TIẾT <span class="material-icons-outlined" style="font-size: 14px;">arrow_forward</span>
                 </a>
             </div>

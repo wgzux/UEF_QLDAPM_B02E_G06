@@ -73,9 +73,7 @@
 <img alt="Red Rose House Interior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTLeC2W7-CDMNObXk1QAxDP4k1l1YAbCzSOsqsBMSWKuPEaDxNR-0bAzgPxddrqgBGJbPDBbvtU9lMV_VgIgqxyTXXBam-5Z16P0IEeIjzkzTYDAieaRpLA0sNddjrIW1tKgRzTc8mbtEMmY2PyLdIpWbNfUDZgeI14BiO5WRXc3th3CkWLf9UGcUBo4aAbnNWbMUx_3kYfJqJEndvo47bbvSXHaj-l-AUar8bRYlx30SEIlCsZ_74bc5K6RZWZA6rh8AthbJErQir"/>
 <div class="absolute inset-0 hero-gradient flex flex-col items-center justify-center text-center px-4">
 <h1 class="font-display text-white text-5xl md:text-7xl mb-8 italic">Red Rose House</h1>
-<button class="border border-white text-white px-10 py-3 uppercase text-xs tracking-[0.2em] hover:bg-white hover:text-black transition-all">
-                ĐẶT PHÒNG →
-            </button>
+<a href="/booking" class="border border-white text-white px-10 py-3 uppercase text-xs tracking-[0.2em] hover:bg-white hover:text-black transition-all inline-block text-center">ĐẶT PHÒNG →</a>
 </div>
 </section>
 <section class="py-20 container mx-auto px-4 max-w-5xl">
@@ -132,7 +130,7 @@
 <span>08 đệm 1m6 x 1m8</span>
 </div>
 </div>
-<button class="bg-primary text-white mt-10 py-3 px-8 text-xs tracking-widest hover:brightness-110 transition-all">ĐẶT PHÒNG →</button>
+<a href="/booking" class="bg-primary text-white mt-10 py-3 px-8 text-xs tracking-widest hover:brightness-110 transition-all inline-block text-center">ĐẶT PHÒNG →</a>
 </div>
 </div>
 </section>

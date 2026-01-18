@@ -32,7 +32,7 @@
                     <option>4 Người lớn</option>
                 </select>
             </div>
-            <button class="btn btn-primary">ĐẶT LỊCH VỚI GIÁ TỐT NHẤT</button>
+            <a href="/booking" class="btn btn-primary">ĐẶT LỊCH VỚI GIÁ TỐT NHẤT</a>
         </div>
     </div>
 

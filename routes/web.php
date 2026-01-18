@@ -19,6 +19,16 @@ Route::get('/fragnews', function () {
     return view('pages.FragNews');
 });
 
+// experiences & tours (Tour) page
+Route::get('/tours', function () {
+    return view('pages.experiencesandTours');
+})->name('tours');
+
+// services & events page
+Route::get('/services', function () {
+    return view('pages.servicesandevents');
+})->name('services');
+
 Route::get('/addcart', function () {
     return view('pages.Addcart');
 });
