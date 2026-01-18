@@ -1,0 +1,59 @@
+/* Các utility class thay cho <style type="text/tailwindcss"> */
+
+.input-field {
+  width: 100%;
+  border-radius: 0.375rem; /* rounded-md */
+  border: 1px solid var(--tw-border-opacity, 1);
+  border-color: #e5e7eb; /* border-border-light */
+  background: #ffffff;
+  padding: 0.625rem 1rem; /* py-2.5 px-4 */
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.25rem;
+  color: #374151; /* text-gray-700 */
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.dark .input-field {
+  border-color: #333333; /* border-border-dark */
+  background: #2a2a2a;
+  color: #e5e7eb; /* text-gray-200 */
+}
+
+.input-field::placeholder {
+  color: #9ca3af; /* placeholder-gray-400 */
+}
+
+.dark .input-field::placeholder {
+  color: #6b7280; /* placeholder-gray-500 */
+}
+
+.input-field:focus {
+  border-color: #c19a6b; /* primary */
+  box-shadow: 0 0 0 1px #c19a6b; /* focus:ring-1 focus:ring-primary */
+}
+
+/* Label */
+.label-text {
+  display: block;
+  margin-bottom: 0.375rem; /* mb-1.5 */
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.25rem;
+  font-weight: 500; /* font-medium */
+  color: #6b7280; /* text-gray-500 */
+}
+
+.dark .label-text {
+  color: #9ca3af; /* text-gray-400 */
+}
+
+/* Section title */
+.section-title {
+  font-family: "Playfair Display", serif; /* font-display */
+  font-size: 1.875rem; /* text-3xl */
+  line-height: 2.25rem;
+  color: #c19a6b; /* text-primary */
+  text-align: center;
+  margin-bottom: 2rem; /* mb-8 */
+}
