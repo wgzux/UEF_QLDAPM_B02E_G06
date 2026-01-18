@@ -28,3 +28,27 @@ Route::get('/bookingdetails', function () {
 Route::get('/booking', function () {
     return view('pages.booking');
 });
+Route::get('/KhuVillaDesktop', function () {
+    return view('pages.KhuVillaDesktop');
+});
+Route::get('/KhuRoseHouseDesktop', function () {
+    return view('pages.KhuRoseHouseDesktop');
+});
+Route::get('/KhuWoodenHouseDesktop', function () {
+    return view('pages.KhuWoodenHouseDesktop');
+});
+Route::get('/TiecCuoiNhoDesktop', function () {
+    return view('pages.TiecCuoiNhoDesktop');
+});
+Route::get('/TourBavi', function () {
+    return view('pages.TourBavi');
+});
+Route::get('/FamilyRoomDesktop', function () {
+    return view('pages.FamilyRoomDesktop');
+});
+Route::get('/DuluxeRoomDesktop', function () {
+    return view('pages.DuluxeRoomDesktop');
+});
+Route::get('/RedRoseHouseDesktop', function () {
+    return view('pages.RedRoseHouseDesktop');
+});
