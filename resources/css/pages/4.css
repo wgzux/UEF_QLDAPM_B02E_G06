@@ -1,0 +1,39 @@
+/* Font utility (tách từ <style>) */
+.font-display {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.font-body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Scroll mượt */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Animation map icon */
+.animate-bounce {
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Hover & transition mượt */
+a,
+button {
+    transition: all 0.3s ease;
+}
+
+/* Fix ảnh hover scale */
+img {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
