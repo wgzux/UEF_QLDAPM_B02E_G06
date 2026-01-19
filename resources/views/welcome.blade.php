@@ -66,9 +66,9 @@
 <label class="text-[10px] text-gray-400 mb-0.5">Check out</label>
 <input class="bg-white text-gray-800 border-none px-2 py-1 text-xs rounded w-32 focus:ring-1 focus:ring-primary" type="date"/>
 </div>
-<button class="mt-4 bg-transparent border border-white hover:bg-white hover:text-black transition px-4 py-1 uppercase text-xs rounded h-[34px] flex items-center">
+<a href="/booking" class="mt-4 inline-flex bg-transparent border border-white hover:bg-white hover:text-black transition px-4 py-1 uppercase text-xs rounded h-[34px] items-center">
                 Đặt Ngay <span class="material-icons-outlined text-sm ml-1">arrow_forward</span>
-</button>
+</a>
 </div>
 </div>
 <header class="bg-gray-900 text-white py-4 px-4 md:px-12 sticky top-0 z-50 shadow-lg">
@@ -84,15 +84,15 @@
 </div>
 </div>
 <nav class="hidden md:flex space-x-6 text-xs uppercase tracking-widest font-light text-gray-300">
-<a class="hover:text-primary transition" href="#">Trang Chủ</a>
-<a class="hover:text-primary transition" href="#">Về Chúng Tôi</a>
-<a class="hover:text-primary transition" href="#">Hạng Phòng</a>
+<a class="hover:text-primary transition" href="/">Trang Chủ</a>
+<a class="hover:text-primary transition" href="{{ route('contact') }}">Về Chúng Tôi</a>
+<a class="hover:text-primary transition" href="/booking">Hạng Phòng</a>
 </nav>
 <div class="hidden md:flex items-center space-x-6">
 <nav class="flex space-x-6 text-xs uppercase tracking-widest font-light text-gray-300 mr-8">
-<a class="hover:text-primary transition" href="#">Dịch Vụ Sự Kiện</a>
-<a class="hover:text-primary transition" href="#">Trải Nghiệm &amp; Tour</a>
-<a class="hover:text-primary transition" href="#">Liên Hệ</a>
+<a class="hover:text-primary transition" href="/booking">Dịch Vụ Sự Kiện</a>
+<a class="hover:text-primary transition" href="/booking">Trải Nghiệm &amp; Tour</a>
+<a class="hover:text-primary transition" href="{{ route('contact') }}">Liên Hệ</a>
 </nav>
 <div class="text-xs flex items-center text-gray-300">
 <span class="material-icons-outlined text-sm mr-2 text-primary">phone</span> 092 981 6699
@@ -115,7 +115,7 @@
 <p class="text-gray-600 dark:text-gray-300 mb-8 font-light leading-relaxed">
                     There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
                 </p>
-<a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="#">
+<a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="{{ route('contact') }}">
                     Xem thêm <span class="material-icons-outlined ml-2 text-sm">arrow_forward</span>
 </a>
 </div>
@@ -128,7 +128,7 @@
 <p class="text-gray-600 dark:text-gray-300 mb-8 font-light leading-relaxed">
                     There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
                 </p>
-<a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="#">
+<a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="{{ route('contact') }}">
                     Xem thêm <span class="material-icons-outlined ml-2 text-sm">arrow_forward</span>
 </a>
 </div>
@@ -169,7 +169,7 @@
 <section class="py-20 px-4 md:px-12 max-w-7xl mx-auto">
 <div class="text-center mb-12">
 <h2 class="font-display text-4xl md:text-5xl text-primary mb-4">Các hạng phòng</h2>
-<button class="bg-primary text-white text-xs px-6 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition">Xem chi tiết</button>
+<a href="/rooms" class="bg-primary text-white text-xs px-6 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition inline-flex items-center">Xem chi tiết</a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <div class="group">
@@ -184,8 +184,8 @@
 <div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bed</span> 08 đệm</div>
 </div>
 <div class="flex space-x-3">
-<button class="bg-primary text-white text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition">Đặt phòng</button>
-<button class="border border-gray-300 text-gray-600 dark:text-gray-300 text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition">Xem chi tiết</button>
+<a href="/booking" class="bg-primary text-white text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition inline-flex items-center">Đặt phòng</a>
+<a href="/rooms" class="border border-gray-300 text-gray-600 dark:text-gray-300 text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition inline-flex items-center">Xem chi tiết</a>
 </div>
 </div>
 <div class="group">
@@ -200,8 +200,8 @@
 <div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bed</span> 01 giường</div>
 </div>
 <div class="flex space-x-3">
-<button class="bg-primary text-white text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition">Đặt phòng</button>
-<button class="border border-gray-300 text-gray-600 dark:text-gray-300 text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition">Xem chi tiết</button>
+<a href="/booking" class="bg-primary text-white text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition inline-flex items-center">Đặt phòng</a>
+<a href="/rooms" class="border border-gray-300 text-gray-600 dark:text-gray-300 text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition inline-flex items-center">Xem chi tiết</a>
 </div>
 </div>
 <div class="group">
@@ -216,8 +216,8 @@
 <div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bed</span> 02 giường</div>
 </div>
 <div class="flex space-x-3">
-<button class="bg-primary text-white text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition">Đặt phòng</button>
-<button class="border border-gray-300 text-gray-600 dark:text-gray-300 text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition">Xem chi tiết</button>
+<a href="/booking" class="bg-primary text-white text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition inline-flex items-center">Đặt phòng</a>
+<a href="/rooms" class="border border-gray-300 text-gray-600 dark:text-gray-300 text-[10px] px-4 py-2 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition inline-flex items-center">Xem chi tiết</a>
 </div>
 </div>
 </div>
@@ -257,7 +257,7 @@
 <section class="py-20 px-4 md:px-12 max-w-7xl mx-auto">
 <div class="text-center mb-12">
 <h2 class="font-display text-4xl md:text-5xl text-primary mb-4">Dịch vụ sự kiện</h2>
-<button class="bg-primary text-white text-xs px-6 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition">Xem chi tiết</button>
+<a href="/fragnews" class="bg-primary text-white text-xs px-6 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition inline-flex items-center">Xem chi tiết</a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 <div class="group">
@@ -265,27 +265,27 @@
 <img alt="Birthday" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl7qXHuVfHvL6nt9rI-4ZlyU57IqwaWXE3VqpAEWxG0LEqrWLnXbC8PsezXciiQ7zUwlGHcmkpbABF-HkX1nWVKG5bZ3Q-swfNs9wJv2bxPyI0W0nHgaoMTVXQ8hcjWsOIgCE4PmfrWOLTzK44K3GZF5487ajZbKmWAFHIu5ASLjt8NMlGCQNJLDcKDRmsbpLYjMDb1uM5XGroxRoTgoK0qt2kyO2Y3SawR7q1iC1bOfiCSCxc0HK3xkW0VWt7R1Yl_5gKeigIO8R2"/>
 </div>
 <h3 class="font-display text-2xl text-primary mb-2">Tổ chức sinh nhật</h3>
-<button class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition flex items-center w-fit">
+<a href="/booking" class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition inline-flex items-center w-fit">
                     Đặt lịch <span class="material-icons-outlined text-sm ml-1">arrow_forward</span>
-</button>
+</a>
 </div>
 <div class="group">
 <div class="overflow-hidden rounded-lg mb-4 h-64">
 <img alt="Teambuilding" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB29ZJWIJlrVnxcnFbac_y5-Xlidhgz-mDwngh2Jk1VZBMGnEJI0Yh4LcUcL7B6rpCQ6ec46X0zaIL9a0kY9QVOZ11vvhepIpLz6uMYKN_1pxfQ2ibzu2F_b9Y6hyUi5vsfwdeOJM8NvDDScV6FyEmj8MfENQ8atyd8J_zM9dlHQU7FVzqAy9-XL9XW3_dtvo6AQLVTOPUaW45UIjaPOf1QELumwenpHR-kwPypVzv6Sx_3t0J4aSkneu9nkAPKOy7ZyO7T0UynT9q1"/>
 </div>
 <h3 class="font-display text-2xl text-primary mb-2">Teambuilding</h3>
-<button class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition flex items-center w-fit">
+<a href="/booking" class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition inline-flex items-center w-fit">
                     Đặt lịch <span class="material-icons-outlined text-sm ml-1">arrow_forward</span>
-</button>
+</a>
 </div>
 <div class="group">
 <div class="overflow-hidden rounded-lg mb-4 h-64">
 <img alt="Wedding" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnX7AwH689xwKbcujEbqpZGqZjqJPuwgXEU6g2VTCC7p3jcaTnAQaRtaiu__U5vwqRa1wOSboqKEopbLh_PDR-PZDwUS38ZWPzq-3qg7Zp7k5GqdIWtltcGsVSe9WdrM2r_5Uu9OHi_HkTOtQ9xfq312_8ocm6VaZCoZmR2icIDdDtfi_iDY9s4cDTROkBkUDaANAb3AF0Bh5-XOE7dD5YgzZPox5SVCncDVTPeoCgNEsiErRnQipb0eeBPY3slbazTuMr3XMME6KY"/>
 </div>
 <h3 class="font-display text-2xl text-primary mb-2">Tiệc cưới nhỏ</h3>
-<button class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition flex items-center w-fit">
+<a href="/booking" class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition inline-flex items-center w-fit">
                     Đặt lịch <span class="material-icons-outlined text-sm ml-1">arrow_forward</span>
-</button>
+</a>
 </div>
 </div>
 </section>
@@ -293,7 +293,7 @@
 <div class="max-w-7xl mx-auto">
 <div class="text-center mb-12">
 <h2 class="font-display text-4xl md:text-5xl text-primary mb-4">Trải nghiệm và tour</h2>
-<button class="bg-primary text-white text-xs px-6 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition">Xem chi tiết</button>
+<a href="/tours" class="bg-primary text-white text-xs px-6 py-2 rounded uppercase tracking-wider hover:bg-primary-dark transition inline-flex items-center">Xem chi tiết</a>
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 <div class="group">
@@ -301,27 +301,27 @@
 <img alt="Ba Vi National Park" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1G3QviK1WswH9oXhly8ezQJkn6b6M6x6Iz-K7IQfcnS7oKVhCe6TkHBYjVoTxyhCG-_R-phxVsfIHRh6Wr4oiNo_MMAlFHllnaA-EnHK0NfuQOv1y4afuGypCPVz-7c5odSu1BA2OPfTC6Lj_2fL2K8GY1MlXJgyKOJWrpWwpKjGG-tL2sx-_JRMhZd9OvtfSrTC-y8a4uBVSBFc6pFbAXGP5ejcNJtkqRjy45kNAY9vi8mvl0NCoais1XGf5VPvy9mOATV7W3l_c"/>
 </div>
 <h3 class="font-display text-lg text-primary mb-2 min-h-[3rem]">Tour khám phá Vườn Quốc gia Ba Vì</h3>
-<button class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition flex items-center w-fit">
+<a href="/booking" class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition inline-flex items-center w-fit">
                         Đặt lịch <span class="material-icons-outlined text-sm ml-1">arrow_forward</span>
-</button>
+</a>
 </div>
 <div class="group">
 <div class="overflow-hidden rounded-lg mb-4 aspect-[4/5]">
 <img alt="Ao Vua" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWFMCH29Jq7C-HH5XhfSyFLaL0-JvYycmRfJ9FDmw-UY6VBomfCnwH8NbHzkH9HyxrqXxEbAPaR4XEkvW_NrPt4-pgNmhNk750YWq_GnAf5dU5xC2s8iIqjg8hy6laSXW7OjNmkXmtEwwksfxN-2ZxBa4ElmLIs0HKeEr1DARF8ClV7aEgOO__QBngXwFqGjlt0hwgW8cE1lFpO7nCKMiwMoISb0DuQBcFbPnd7XSmd7orqHHQrhYXnOzFTIX04hBRilMSSfi1uSpY"/>
 </div>
 <h3 class="font-display text-lg text-primary mb-2 min-h-[3rem]">Tour Ao Vua</h3>
-<button class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition flex items-center w-fit">
+<a href="/booking" class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition inline-flex items-center w-fit">
                         Đặt lịch <span class="material-icons-outlined text-sm ml-1">arrow_forward</span>
-</button>
+</a>
 </div>
 <div class="group">
 <div class="overflow-hidden rounded-lg mb-4 aspect-[4/5]">
 <img alt="Khoang Xanh Suoi Tien" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNJzeZR2Wgg9BOyNaYkU0ZgeEQUC0YcUOsBsG44uEC9HL0YA2EjPmwXiyPiFialz1KQnOVwf5v_N55kxTCIxR4MMcUkHi3anRZraG0vuqu3PFkT4net1AUXwsiGZ_hzI87QiFNoINPclL657TbgmEo1yN73JJv8RZW-CrJoRZqu1rmr5_T9P3kcAOU37p-X2yXYTwiIJ6jKZ6pBwlqJM3FmNRiLAopeWDNm3EgiUBmehdPi4fH4frDVgrmYu36k-AoXd-JXk-rbiJ3"/>
 </div>
 <h3 class="font-display text-lg text-primary mb-2 min-h-[3rem]">Khoang Xanh – Suối Tiên</h3>
-<button class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition flex items-center w-fit">
+<a href="/booking" class="border border-gray-300 text-gray-500 dark:text-gray-400 text-[10px] px-4 py-1.5 rounded uppercase tracking-wider hover:border-primary hover:text-primary transition inline-flex items-center w-fit">
                         Đặt lịch <span class="material-icons-outlined text-sm ml-1">arrow_forward</span>
-</button>
+</a>
 </div>
 <div class="group">
 <div class="overflow-hidden rounded-lg mb-4 aspect-[4/5]">
@@ -392,29 +392,29 @@
 <div>
 <h4 class="font-display text-lg mb-6 uppercase tracking-widest">Trang Chủ</h4>
 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Về chúng tôi</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Sự kiện âm nhạc</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Gallery hình ảnh &amp; Video</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Tin tức</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">FAQ</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Về chúng tôi</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="/fragnews">Sự kiện âm nhạc</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="/fragnews">Gallery hình ảnh &amp; Video</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="/fragnews">Tin tức</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="/fragnews">FAQ</a></li>
 </ul>
 </div>
 <div>
 <h4 class="font-display text-lg mb-6 uppercase tracking-widest">Hạng Phòng</h4>
 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Khu Wooden House</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Forest Room</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Deluxe Room</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Family Room</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Khu Wooden House</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Forest Room</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Deluxe Room</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Family Room</a></li>
 </ul>
 </div>
 <div class="md:mt-12"> 
 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Khu Rose House</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Pink Rose House</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">White Rose House</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">Red Rose House</a></li>
-<li><a class="hover:text-white transition hover:opacity-100" href="#">The Wandering Rose Villa</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Khu Rose House</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Pink Rose House</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">White Rose House</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">Red Rose House</a></li>
+<li><a class="hover:text-white transition hover:opacity-100" href="{{ route('contact') }}">The Wandering Rose Villa</a></li>
 </ul>
 </div>
 <div>
@@ -430,12 +430,12 @@
 </div>
 <div class="col-span-1 md:col-span-4 flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 mt-8">
 <p class="text-xs opacity-60 mb-4 md:mb-0">© Copyright 2023 The Wandering Rose</p>
-<div class="flex space-x-6">
-<a class="opacity-60 hover:opacity-100 transition" href="#"><i class="fab fa-facebook-f"></i></a>
-<a class="opacity-60 hover:opacity-100 transition" href="#"><i class="fab fa-youtube"></i></a>
-<a class="opacity-60 hover:opacity-100 transition" href="#"><i class="fab fa-instagram"></i></a>
-<a class="opacity-60 hover:opacity-100 transition" href="#"><i class="fab fa-pinterest"></i></a>
-</div>
+            <div class="flex space-x-6">
+                    <a class="opacity-60 hover:opacity-100 transition" href="/fragnews"><i class="fab fa-facebook-f"></i></a>
+                    <a class="opacity-60 hover:opacity-100 transition" href="/fragnews"><i class="fab fa-youtube"></i></a>
+                    <a class="opacity-60 hover:opacity-100 transition" href="/fragnews"><i class="fab fa-instagram"></i></a>
+                    <a class="opacity-60 hover:opacity-100 transition" href="/fragnews"><i class="fab fa-pinterest"></i></a>
+                </div>
 </div>
 </div>
 </div>

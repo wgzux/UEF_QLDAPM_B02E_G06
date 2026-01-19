@@ -50,7 +50,7 @@
 
 <body class="bg-background-light dark:bg-background-dark text-textPrimary dark:text-gray-300 min-h-screen flex flex-col items-center">
 <header class="w-full max-w-7xl px-6 py-6 flex justify-between items-center relative z-10">
-  <a class="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 hover:text-primary transition-colors flex items-center gap-2" href="#">
+  <a class="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 hover:text-primary transition-colors flex items-center gap-2" href="/payment">
     <span class="material-icons text-base">arrow_back</span> Trở về
   </a>
 

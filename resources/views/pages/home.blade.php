@@ -23,7 +23,7 @@
             <p class="text-gray-600 mb-8 font-light leading-relaxed">
                 Nằm giữa khung cảnh hùng vĩ của Ba Vì, The Wandering Rose mang đến không gian nghỉ dưỡng biệt lập, nơi bạn có thể hòa mình vào thiên nhiên, tận hưởng không khí trong lành và sự yên bình tuyệt đối.
             </p>
-            <a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="#">
+            <a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="{{ route('contact') }}">
                 Xem thêm <span class="material-icons-outlined ml-2 text-sm">arrow_forward</span>
             </a>
         </div>
@@ -38,7 +38,7 @@
             <p class="text-gray-600 mb-8 font-light leading-relaxed">
                 Trải nghiệm cảm giác thư thái khi dạo bước trong khu vườn xanh mát, lắng nghe tiếng suối chảy róc rách và tiếng chim hót líu lo. Một nơi trú ẩn hoàn hảo để tái tạo năng lượng.
             </p>
-            <a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="#">
+            <a class="inline-flex items-center text-primary border border-primary px-6 py-2 text-sm uppercase tracking-wider hover:bg-primary hover:text-white transition rounded" href="{{ route('contact') }}">
                 Xem thêm <span class="material-icons-outlined ml-2 text-sm">arrow_forward</span>
             </a>
         </div>
@@ -104,7 +104,7 @@
                             <span><i class="fas fa-bed mr-1"></i> 1 giường</span>
                             <span><i class="fas fa-ruler-combined mr-1"></i> 35m²</span>
                         </div>
-                        <a class="inline-block text-sm text-primary border border-primary px-6 py-2 rounded hover:bg-primary hover:text-white transition" href="#">
+                        <a class="inline-block text-sm text-primary border border-primary px-6 py-2 rounded hover:bg-primary hover:text-white transition" href="{{ route('contact') }}">
                             Chi tiết
                         </a>
                     </div>
@@ -122,7 +122,7 @@
                             <span><i class="fas fa-bed mr-1"></i> 1 giường</span>
                             <span><i class="fas fa-ruler-combined mr-1"></i> 30m²</span>
                         </div>
-                        <a class="inline-block text-sm text-primary border border-primary px-6 py-2 rounded hover:bg-primary hover:text-white transition" href="#">
+                        <a class="inline-block text-sm text-primary border border-primary px-6 py-2 rounded hover:bg-primary hover:text-white transition" href="{{ route('contact') }}">
                             Chi tiết
                         </a>
                     </div>
@@ -140,7 +140,7 @@
                             <span><i class="fas fa-bed mr-1"></i> 2 giường</span>
                             <span><i class="fas fa-ruler-combined mr-1"></i> 45m²</span>
                         </div>
-                        <a class="inline-block text-sm text-primary border border-primary px-6 py-2 rounded hover:bg-primary hover:text-white transition" href="#">
+                        <a class="inline-block text-sm text-primary border border-primary px-6 py-2 rounded hover:bg-primary hover:text-white transition" href="{{ route('contact') }}">
                             Chi tiết
                         </a>
                     </div>
@@ -158,7 +158,7 @@
                             <span><i class="fas fa-bed mr-1"></i> 1 giường</span>
                             <span><i class="fas fa-ruler-combined mr-1"></i> 50m²</span>
                         </div>
-                        <a class="inline-block text-sm text-primary border border-primary px-6 py-2 rounded hover:bg-primary hover:text-white transition" href="#">
+                        <a class="inline-block text-sm text-primary border border-primary px-6 py-2 rounded hover:bg-primary hover:text-white transition" href="{{ route('contact') }}">
                             Chi tiết
                         </a>
                     </div>
@@ -190,7 +190,7 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
                     <div>
                         <h3 class="font-display text-2xl mb-2">KHU WOODEN HOUSE</h3>
-                        <a class="text-sm border-b border-white pb-1 inline-block" href="#">Khám phá ngay</a>
+                        <a class="text-sm border-b border-white pb-1 inline-block" href="{{ route('contact') }}">Khám phá ngay</a>
                     </div>
                 </div>
             </div>
@@ -201,7 +201,7 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
                     <div>
                         <h3 class="font-display text-2xl mb-2">KHU ROSE HOUSE</h3>
-                        <a class="text-sm border-b border-white pb-1 inline-block" href="#">Khám phá ngay</a>
+                        <a class="text-sm border-b border-white pb-1 inline-block" href="{{ route('contact') }}">Khám phá ngay</a>
                     </div>
                 </div>
             </div>
@@ -212,7 +212,7 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
                     <div>
                         <h3 class="font-display text-2xl mb-2">KHU VILLA</h3>
-                        <a class="text-sm border-b border-white pb-1 inline-block" href="#">Khám phá ngay</a>
+                        <a class="text-sm border-b border-white pb-1 inline-block" href="{{ route('contact') }}">Khám phá ngay</a>
                     </div>
                 </div>
             </div>
@@ -233,7 +233,7 @@
                 <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300 flex flex-col justify-end p-6">
                     <h3 class="font-display text-2xl text-white mb-2">Tổ chức sự kiện</h3>
                     <p class="text-white/90 text-sm mb-4">Đám cưới, hội nghị, team building</p>
-                    <a class="text-white text-sm border-b border-white pb-1 inline-block w-fit" href="#">Xem chi tiết</a>
+                    <a class="text-white text-sm border-b border-white pb-1 inline-block w-fit" href="{{ route('contact') }}">Xem chi tiết</a>
                 </div>
             </div>
             
@@ -243,7 +243,7 @@
                 <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300 flex flex-col justify-end p-6">
                     <h3 class="font-display text-2xl text-white mb-2">Live Music</h3>
                     <p class="text-white/90 text-sm mb-4">Âm nhạc mỗi cuối tuần</p>
-                    <a class="text-white text-sm border-b border-white pb-1 inline-block w-fit" href="#">Xem chi tiết</a>
+                    <a class="text-white text-sm border-b border-white pb-1 inline-block w-fit" href="{{ route('contact') }}">Xem chi tiết</a>
                 </div>
             </div>
             
@@ -253,7 +253,7 @@
                 <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300 flex flex-col justify-end p-6">
                     <h3 class="font-display text-2xl text-white mb-2">Spa & Massage</h3>
                     <p class="text-white/90 text-sm mb-4">Thư giãn toàn diện</p>
-                    <a class="text-white text-sm border-b border-white pb-1 inline-block w-fit" href="#">Xem chi tiết</a>
+                    <a class="text-white text-sm border-b border-white pb-1 inline-block w-fit" href="{{ route('contact') }}">Xem chi tiết</a>
                 </div>
             </div>
         </div>
@@ -273,7 +273,7 @@
                 <div class="p-6">
                     <h3 class="font-display text-lg text-primary mb-2">Trekking núi Ba Vì</h3>
                     <p class="text-sm text-gray-600 mb-4">Chinh phục đỉnh núi Ba Vì</p>
-                    <a class="text-sm text-primary underline" href="#">Đặt tour</a>
+                    <a class="text-sm text-primary underline" href="/booking">Đặt tour</a>
                 </div>
             </div>
             
@@ -283,7 +283,7 @@
                 <div class="p-6">
                     <h3 class="font-display text-lg text-primary mb-2">Thác Khoang Xanh</h3>
                     <p class="text-sm text-gray-600 mb-4">Khám phá thác nước tuyệt đẹp</p>
-                    <a class="text-sm text-primary underline" href="#">Đặt tour</a>
+                    <a class="text-sm text-primary underline" href="/booking">Đặt tour</a>
                 </div>
             </div>
             
@@ -293,7 +293,7 @@
                 <div class="p-6">
                     <h3 class="font-display text-lg text-primary mb-2">Tour làng nghề</h3>
                     <p class="text-sm text-gray-600 mb-4">Tìm hiểu văn hóa địa phương</p>
-                    <a class="text-sm text-primary underline" href="#">Đặt tour</a>
+                    <a class="text-sm text-primary underline" href="/booking">Đặt tour</a>
                 </div>
             </div>
             
@@ -303,7 +303,7 @@
                 <div class="p-6">
                     <h3 class="font-display text-lg text-primary mb-2">Đạp xe xung quanh</h3>
                     <p class="text-sm text-gray-600 mb-4">Khám phá thiên nhiên bằng xe đạp</p>
-                    <a class="text-sm text-primary underline" href="#">Đặt tour</a>
+                    <a class="text-sm text-primary underline" href="/booking">Đặt tour</a>
                 </div>
             </div>
         </div>
@@ -328,7 +328,7 @@
             Để đảm bảo trải nghiệm tốt nhất, chúng tôi khuyên bạn nên đặt phòng trước. 
             Hãy liên hệ với chúng tôi ngay hôm nay để nhận ưu đãi đặc biệt!
         </p>
-        <a class="inline-block bg-primary text-white px-8 py-3 rounded text-sm uppercase tracking-wider hover:bg-primary-dark transition" href="#">
+        <a class="inline-block bg-primary text-white px-8 py-3 rounded text-sm uppercase tracking-wider hover:bg-primary-dark transition" href="/booking">
             Đặt phòng ngay
         </a>
     </div>

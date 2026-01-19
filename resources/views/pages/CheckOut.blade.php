@@ -59,7 +59,7 @@
       <div class="max-w-7xl mx-auto flex justify-between items-center relative">
         <a
           class="flex items-center text-primary hover:opacity-80 transition-opacity text-sm font-medium uppercase tracking-wider absolute left-0 top-1/2 -translate-y-1/2 md:static md:translate-y-0"
-          href="#"
+          href="/bookingdetails"
         >
           <i class="fas fa-arrow-left mr-2"></i> Trở về
         </a>
