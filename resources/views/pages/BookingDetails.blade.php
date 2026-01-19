@@ -76,43 +76,83 @@
   </div>
 </header>
 <div class="px-4 md:px-12 py-8 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 items-end relative z-0">
+@php
+  use Carbon\Carbon;
+  $rawCheckIn = request('check_in');
+  $rawCheckOut = request('check_out');
+  try {
+    $ci = $rawCheckIn ? Carbon::parse($rawCheckIn) : Carbon::now();
+  } catch (\Exception $e) { $ci = Carbon::now(); }
+  try {
+    $co = $rawCheckOut ? Carbon::parse($rawCheckOut) : Carbon::now()->addDay();
+  } catch (\Exception $e) { $co = Carbon::now()->addDay(); }
+  $rawNights = request('nights');
+  if(!is_null($rawNights)){
+    $displayNights = (int) round((float) $rawNights);
+    if($displayNights < 1) $displayNights = 1;
+  } else {
+    $displayNights = (int) max(1, $ci->diffInDays($co));
+  }
+  $displayRooms = request('rooms') ?? 1;
+  $displayAdults = request('adults') ?? 2;
+  $displayChildren = request('children') ?? 0;
+  $displayTotalRaw = request('total') ?? null;
+  $displayTotalSan = $displayTotalRaw ? preg_replace('/\\D+/', '', $displayTotalRaw) : null;
+  $displayTotalFormatted = $displayTotalSan ? number_format((int)$displayTotalSan,0,',','.') : null;
+  $headerConfirmParams = array_filter([
+    'check_in' => request('check_in'),
+    'check_out' => request('check_out'),
+    'nights' => request('nights'),
+    'rooms' => request('rooms') ?? $displayRooms,
+    'total' => $displayTotalSan,
+    'adults' => request('adults') ?? $displayAdults,
+    'children' => request('children') ?? $displayChildren,
+  ]);
+  $headerConfirmUrl = url('/confirm') . (count($headerConfirmParams) ? ('?' . http_build_query($headerConfirmParams)) : '');
+@endphp
+
 <div class="md:col-span-4 flex items-center space-x-6">
-<div>
-<span class="block text-xs font-bold uppercase tracking-wider mb-1">Ngày</span>
-<div class="flex items-baseline">
-<span class="font-display text-4xl text-gray-800 dark:text-gray-100">27</span>
-<div class="ml-2 text-xs leading-tight text-gray-500 dark:text-gray-400">
-                        Tháng 9<br/>2025
-                    </div>
-</div>
-</div>
-<div class="bg-brand-brown text-white text-[10px] px-2 py-1 rounded-sm transform -translate-y-2">10 Đêm</div>
-<div>
-<span class="block text-xs font-bold uppercase tracking-wider mb-1 invisible">End</span>
-<div class="flex items-baseline">
-<span class="font-display text-4xl text-gray-800 dark:text-gray-100">6</span>
-<div class="ml-2 text-xs leading-tight text-gray-500 dark:text-gray-400">
-                        Tháng 10<br/>2025
-                    </div>
-</div>
-</div>
+  <div>
+    <span class="block text-xs font-bold uppercase tracking-wider mb-1">Ngày</span>
+    <div class="flex items-baseline">
+      <span class="font-display text-4xl text-gray-800 dark:text-gray-100">{{ $ci->format('d') }}</span>
+      <div class="ml-2 text-xs leading-tight text-gray-500 dark:text-gray-400">
+        Tháng {{ $ci->format('n') }}<br/>{{ $ci->format('Y') }}
+      </div>
+    </div>
+  </div>
+  <div class="bg-brand-brown text-white text-[10px] px-2 py-1 rounded-sm transform -translate-y-2">{{ $displayNights }} Đêm</div>
+  <div>
+    <span class="block text-xs font-bold uppercase tracking-wider mb-1 invisible">End</span>
+    <div class="flex items-baseline">
+      <span class="font-display text-4xl text-gray-800 dark:text-gray-100">{{ $co->format('d') }}</span>
+      <div class="ml-2 text-xs leading-tight text-gray-500 dark:text-gray-400">
+        Tháng {{ $co->format('n') }}<br/>{{ $co->format('Y') }}
+      </div>
+    </div>
+  </div>
 </div>
 <div class="md:col-span-6 flex justify-center space-x-12">
-<div class="text-center">
-<span class="block text-xs font-bold uppercase tracking-wider mb-1">Phòng</span>
-<span class="font-display text-4xl text-gray-800 dark:text-gray-100">1</span>
-</div>
-<div class="text-center">
-<span class="block text-xs font-bold uppercase tracking-wider mb-1">Người lớn</span>
-<span class="font-display text-4xl text-gray-800 dark:text-gray-100">2</span>
-</div>
-<div class="text-center group cursor-pointer relative">
-<span class="block text-xs font-bold uppercase tracking-wider mb-1">Trẻ em</span>
-<div class="flex items-center justify-center">
-<span class="font-display text-4xl text-gray-800 dark:text-gray-100">0</span>
-<span class="material-icons-outlined ml-2 text-gray-400 group-hover:text-primary transition-colors">expand_more</span>
-</div>
-</div>
+  <div class="text-center">
+    <span class="block text-xs font-bold uppercase tracking-wider mb-1">Phòng</span>
+    <span id="hdr-rooms" class="font-display text-4xl text-gray-800 dark:text-gray-100">{{ $displayRooms }}</span>
+  </div>
+  <div class="text-center">
+    <span class="block text-xs font-bold uppercase tracking-wider mb-1">Người lớn</span>
+    <div class="flex items-center justify-center">
+      <button id="dec-adults" class="text-gray-500 mr-2 px-2">-</button>
+      <span id="hdr-adults" class="font-display text-4xl text-gray-800 dark:text-gray-100">{{ $displayAdults }}</span>
+      <button id="inc-adults" class="text-gray-500 ml-2 px-2">+</button>
+    </div>
+  </div>
+  <div class="text-center group cursor-pointer relative">
+    <span class="block text-xs font-bold uppercase tracking-wider mb-1">Trẻ em</span>
+    <div class="flex items-center justify-center">
+      <button id="dec-children" class="text-gray-500 mr-2 px-2">-</button>
+      <span id="hdr-children" class="font-display text-4xl text-gray-800 dark:text-gray-100">{{ $displayChildren }}</span>
+      <button id="inc-children" class="text-gray-500 ml-2 px-2">+</button>
+    </div>
+  </div>
 </div>
 <div class="md:col-span-2 text-right">
 <button class="bg-brand-brown hover:bg-brand-brown-dark text-white text-xs font-bold uppercase px-6 py-3 rounded shadow transition-colors w-full md:w-auto">
@@ -124,12 +164,12 @@
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
 <div class="text-xs font-bold tracking-widest uppercase mb-2 md:mb-0">
 <span class="opacity-70 mr-2">Bạn đã lựa chọn:</span>
-<span class="mr-4" id="sel-rooms">2 Phòng</span>
-<span id="sel-nights">10 Đêm</span>
+<span class="mr-4" id="sel-rooms">{{ $displayRooms }} Phòng</span>
+<span id="sel-nights">{{ $displayNights }} Đêm</span>
 </div>
 <div class="flex items-center space-x-6">
-<div class="font-display text-xl font-bold">100.000.000 <span class="text-sm font-sans font-normal align-top">đ</span></div>
-        <a href="/checkout" class="bg-[#dcd0c2] inline-block text-brand-brown dark:bg-gray-200 dark:text-gray-800 hover:bg-white text-xs font-bold uppercase px-4 py-2 rounded transition-colors">
+<div id="sel-total" class="font-display text-xl font-bold">{{ $displayTotalFormatted ?? '0' }} <span class="text-sm font-sans font-normal align-top">đ</span></div>
+  <a href="{{ $headerConfirmUrl }}" class="bg-[#dcd0c2] inline-block text-brand-brown dark:bg-gray-200 dark:text-gray-800 hover:bg-white text-xs font-bold uppercase px-4 py-2 rounded transition-colors">
           Đặt ngay
         </a>
 </div>
@@ -220,60 +260,51 @@
 
 </div>
 <div id="pageContent" class="space-y-16 transition-all duration-700">
+@foreach($roomTypes as $rt)
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-<div class="relative h-64 lg:h-80 rounded overflow-hidden shadow-md">
-<img alt="Deluxe Room Interior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOS6yi10lm0H28IruT7QXPqdDZb9qfX_sB1vAHew0Kf1K0btdh8YGbWjdCcQKQ5aGEH7quUqbz_0v6I65nyMl4-TasfL8nMoedti6HyFFPpBZPv8wR9rcLciz_4fG9Mav0dFhJ8R2Mu-3sNu1zmb-Vzwn3pEejDl52S7UWxMSs9Pw7PpSU0h1n1KhAv3Vj3iqBzz6gK0H7DgC4F2jt9Rf58Pv6KWeYgbiOwXpKy2dyFV87185IMwAQxSLIgQamllhDaNv4xfT2"/>
-<div class="absolute bottom-4 left-4 text-white flex space-x-4">
-<span class="material-icons-outlined">west</span>
+  <div class="relative h-64 lg:h-80 rounded overflow-hidden shadow-md">
+    <img alt="{{ $rt->type_name }}" class="w-full h-full object-cover" src="{{ $rt->thumbnail_url ?? 'https://via.placeholder.com/1200x800?text=Room' }}"/>
+    <div class="absolute bottom-4 left-4 text-white flex space-x-4">
+      <span class="material-icons-outlined">west</span>
+    </div>
+    <div class="absolute bottom-4 right-4 text-white flex space-x-4">
+      <span class="material-icons-outlined">east</span>
+    </div>
+  </div>
+  <div class="flex flex-col justify-center">
+    <h2 class="font-display text-3xl text-primary mb-4 italic">{{ $rt->type_name }}</h2>
+    <div class="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-600 dark:text-gray-400 mb-6 font-light">
+      <div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">person</span> {{ $rt->max_occupancy ?? '—' }} người lớn</div>
+      <div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">square_foot</span> — m²</div>
+      <div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bedroom_parent</span> — phòng ngủ</div>
+      <div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bed</span> — giường</div>
+    </div>
+    <div class="flex justify-between items-end border-t border-dashed border-gray-300 dark:border-gray-700 pt-6">
+      <div>
+        <a href="{{ request()->fullUrlWithQuery(['room_type' => $rt->id]) }}" class="inline-block border border-gray-400 text-gray-500 text-xs px-4 py-2 uppercase tracking-wide rounded hover:bg-gray-100 {{ (isset($selected) && $selected && $selected->id == $rt->id) ? 'ring-2 ring-primary/40' : '' }}">Chọn</a>
+      </div>
+      <div class="text-right">
+        <div class="font-display text-2xl text-primary mb-1">{{ number_format($rt->base_price ?? 0,0,',','.') }} <span class="text-sm font-sans">đ</span> <span class="text-xs text-gray-400 font-sans italic">(1 đêm)</span></div>
+        <div class="text-xs text-gray-500 mb-2">Còn {{ $rt->total_rooms ?? 0 }} phòng</div>
+                    @php
+                      $confirmParams = array_filter([
+                        'check_in' => request('check_in'),
+                        'check_out' => request('check_out'),
+                        'nights' => request('nights'),
+                        'rooms' => request('rooms'),
+                        'total' => request('total'),
+                        'room_type' => $rt->id,
+                        'adults' => request('adults') ?? $displayAdults,
+                        'children' => request('children') ?? $displayChildren,
+                      ]);
+                      $confirmUrl = url('/confirm') . (count($confirmParams) ? ('?' . http_build_query($confirmParams)) : '');
+                    @endphp
+        <a href="{{ $confirmUrl }}" class="bg-brand-brown text-white text-xs px-6 py-2 uppercase tracking-wide rounded">Đặt ngay</a>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="absolute bottom-4 right-4 text-white flex space-x-4">
-<span class="material-icons-outlined">east</span>
-</div>
-</div>
-<div class="flex flex-col justify-center">
-<h2 class="font-display text-3xl text-primary mb-4 italic">Deluxe room</h2>
-<div class="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-600 dark:text-gray-400 mb-6 font-light">
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">person</span> 02 người lớn</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">square_foot</span> 40 m²</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bedroom_parent</span> 01 phòng ngủ</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bed</span> 01 giường</div>
-</div>
-<div class="flex justify-between items-end border-t border-dashed border-gray-300 dark:border-gray-700 pt-6">
-<div>
-<button class="border border-gray-400 text-gray-500 text-xs px-4 py-2 uppercase tracking-wide rounded hover:bg-gray-100">Chọn</button>
-</div>
-<div class="text-right">
-<div class="font-display text-2xl text-primary mb-1">5.000.000 <span class="text-sm font-sans">đ</span> <span class="text-xs text-gray-400 font-sans italic">(1 đêm)</span></div>
-<div class="text-xs text-gray-500 mb-2">Còn 02 phòng</div>
-<button class="bg-brand-brown text-white text-xs px-6 py-2 uppercase tracking-wide rounded">Đặt ngay</button>
-</div>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-<div class="relative h-64 lg:h-80 rounded overflow-hidden shadow-md">
-<img alt="Family Room Interior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQVloOEUJ02qQHvgpnZ4dyMHft7LaPk8FI4rroxJwdq7Di_d0n2tOHzxhffRKojvFo9eLnB5_C9CqMvZLxdWDhFtIzq_q8CvsvnWc9WwF66bgpwBS1j0COj_CUCMp19vnWxd0anVxRHNS6_YXdwWfM03y8BiMnNx5ko9LBjA6WDanuFwBkqXEM9fdOYmcbWTxNv7mWYdXCetyHY6yoxfGUNAakjbjWbdfk0K-X6nD7dBS-x053sqw3Q5rNn3aAih-cw74E2SZv"/>
-</div>
-<div class="flex flex-col justify-center">
-<h2 class="font-display text-3xl text-primary mb-4 italic">Family room</h2>
-<div class="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-600 dark:text-gray-400 mb-6 font-light">
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">groups</span> 04 người lớn</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">square_foot</span> 65 m²</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bedroom_parent</span> 02 phòng ngủ</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bed</span> 02 giường</div>
-</div>
-<div class="flex justify-between items-end border-t border-dashed border-gray-300 dark:border-gray-700 pt-6">
-<div>
-<button class="border border-gray-400 text-gray-500 text-xs px-4 py-2 uppercase tracking-wide rounded hover:bg-gray-100">Chọn</button>
-</div>
-<div class="text-right">
-<div class="font-display text-2xl text-primary mb-1">8.000.000 <span class="text-sm font-sans">đ</span> <span class="text-xs text-gray-400 font-sans italic">(1 đêm)</span></div>
-<div class="text-xs text-gray-500 mb-2">Còn 01 phòng</div>
-<button class="bg-brand-brown text-white text-xs px-6 py-2 uppercase tracking-wide rounded">Đặt ngay</button>
-</div>
-</div>
-</div>
-</div>
+@endforeach
 </div>
 <div class="mt-32 pt-16 border-t border-divider-light dark:border-divider-dark">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
@@ -425,7 +456,7 @@
     }catch(err){/* ignore */}
   });
 
-  // Prefill from query params (from Booking search): check_in, check_out, nights, rooms, total
+  // Prefill from query params (from Booking search): check_in, check_out, nights, rooms, total, adults, children
   (function(){
     const params = new URLSearchParams(window.location.search);
     const checkIn = params.get('check_in');
@@ -433,6 +464,8 @@
     const nights = params.get('nights');
     const rooms = params.get('rooms');
     const total = params.get('total');
+    let adults = params.get('adults') || '{{ $displayAdults }}';
+    let children = params.get('children') || '{{ $displayChildren }}';
 
     if(checkIn && checkOut){
       // header
@@ -453,6 +486,12 @@
       if(mDates) mDates.textContent = `${checkIn} - ${checkOut}`;
       if(mTotal && total) mTotal.textContent = `${Number(total).toLocaleString('vi-VN')} ₫`;
 
+      // update header adults/children
+      const hdrAdults = document.getElementById('hdr-adults');
+      const hdrChildren = document.getElementById('hdr-children');
+      if(hdrAdults) hdrAdults.textContent = adults;
+      if(hdrChildren) hdrChildren.textContent = children;
+
       // open modal to confirm selection
       openModal();
     }
@@ -467,9 +506,36 @@
         if(nights) qs.set('nights', nights);
         if(rooms) qs.set('rooms', rooms);
         if(total) qs.set('total', total);
+        if(adults) qs.set('adults', adults);
+        if(children) qs.set('children', children);
         window.location.href = '/confirm?' + qs.toString();
       });
     }
+
+    // wire header +/- buttons to update params for links
+    const incAdults = document.getElementById('inc-adults');
+    const decAdults = document.getElementById('dec-adults');
+    const incChildren = document.getElementById('inc-children');
+    const decChildren = document.getElementById('dec-children');
+    function updateGuestDisplay(a,c){
+      const hdrA = document.getElementById('hdr-adults');
+      const hdrC = document.getElementById('hdr-children');
+      if(hdrA) hdrA.textContent = a;
+      if(hdrC) hdrC.textContent = c;
+      // update all 'Đặt ngay' links on page to include adults/children
+      document.querySelectorAll('a[href*="/confirm"]').forEach(aEl => {
+        try{
+          const url = new URL(aEl.href, window.location.origin);
+          url.searchParams.set('adults', a);
+          url.searchParams.set('children', c);
+          aEl.href = url.toString();
+        }catch(e){}
+      });
+    }
+    if(incAdults) incAdults.addEventListener('click', ()=>{ adults = String(Number(adults||'0')+1); updateGuestDisplay(adults, children); });
+    if(decAdults) decAdults.addEventListener('click', ()=>{ adults = String(Math.max(0, Number(adults||'0')-1)); updateGuestDisplay(adults, children); });
+    if(incChildren) incChildren.addEventListener('click', ()=>{ children = String(Number(children||'0')+1); updateGuestDisplay(adults, children); });
+    if(decChildren) decChildren.addEventListener('click', ()=>{ children = String(Math.max(0, Number(children||'0')-1)); updateGuestDisplay(adults, children); });
   })();
 </script>
 

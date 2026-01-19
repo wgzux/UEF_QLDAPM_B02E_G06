@@ -90,7 +90,13 @@
   try { $ciDt = $ciRaw ? \Carbon\Carbon::parse($ciRaw) : \Carbon\Carbon::now(); } catch (\Exception $e){ $ciDt = \Carbon\Carbon::now(); }
   try { $coDt = $coRaw ? \Carbon\Carbon::parse($coRaw) : \Carbon\Carbon::now()->addDay(); } catch (\Exception $e){ $coDt = \Carbon\Carbon::now()->addDay(); }
   $rooms = request('rooms') ?? 1;
-  $nights = request('nights') ?? $ciDt->diffInDays($coDt) ?: 1;
+  $rawNights = request('nights');
+  if(!is_null($rawNights)){
+    $nights = (int) round((float) $rawNights);
+    if($nights < 1) $nights = 1;
+  } else {
+    $nights = (int) max(1, $ciDt->diffInDays($coDt));
+  }
   $adults = request('adults') ?? 2;
   $children = request('children') ?? 0;
   $totalRaw = request('total') ?? null;
@@ -104,15 +110,15 @@
 <span class="text-black dark:text-white">{{ $children }} Trẻ em</span>
 </div>
 <div class="mb-4">
-<span class="text-lg font-medium">27/09/2025 - 06/10/2025</span>
+<span class="text-lg font-medium">{{ $ciDt->format('d/m/Y') }} - {{ $coDt->format('d/m/Y') }}</span>
 </div>
 <div class="flex justify-between items-center text-primary dark:text-primary mb-2">
 <span>Nhận phòng</span>
-<span>27/09/2025</span>
+<span>{{ $ciDt->format('d/m/Y') }}</span>
 </div>
 <div class="flex justify-between items-center text-primary dark:text-primary mb-6">
 <span>Trả phòng</span>
-<span>06/10/2025</span>
+<span>{{ $coDt->format('d/m/Y') }}</span>
 </div>
 <button class="border border-textHeading dark:border-primary text-textHeading dark:text-primary px-4 py-2 text-xs uppercase tracking-wider hover:bg-textHeading hover:text-white dark:hover:bg-primary transition-colors">
                 Thay đổi kế hoạch

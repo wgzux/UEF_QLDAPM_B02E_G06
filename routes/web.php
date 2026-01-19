@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\AvailabilityController;
 
 Route::get('/', function () {
     return view('pages.HomeDesktop');
@@ -35,20 +36,40 @@ Route::get('/addcart', function () {
 Route::get('/checkout', function () {
     return view('pages.CheckOut');
 });
-Route::get('/payment', function () {
-    return view('pages.Payment');
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\RoomController as AdminRoomController;
+use Illuminate\Http\Request;
+use App\Models\RoomType;
+
+Route::get('/payment', [PaymentController::class, 'index']);
+Route::post('/payment', [PaymentController::class, 'store']);
+Route::get('/bookingconfirm', function () {
+    return view('pages.BookingConfirm');
 });
 Route::get('/confirm', function () {
     return view('pages.Confirm');
 });
-Route::get('/bookingdetails', function () {
-    return view('pages.BookingDetails');
+Route::get('/bookingdetails', function (Request $request) {
+    $roomTypes = RoomType::withCount(['rooms as total_rooms' => function ($q) {
+        $q->where('status', 'Active');
+    }])->get();
+
+    $selected = null;
+    if ($request->has('room_type')) {
+        $selected = RoomType::find($request->input('room_type'));
+    }
+
+    return view('pages.BookingDetails', compact('roomTypes', 'selected'));
 });
 Route::get('/booking', function () {
     return view('pages.Booking');
 });
 
 Route::post('/booking', [BookingController::class, 'store']);
+
+// availability check (returns JSON)
+Route::get('/availability', [AvailabilityController::class, 'check']);
+Route::get('/availability/range', [AvailabilityController::class, 'range']);
 
 // Additional routes for other views
 Route::get('/home', function () {
@@ -68,6 +89,16 @@ Route::get('/room-detail', function () {
 });
 Route::get('/gallery', function () {
     return view('pages.gallery');
+});
+
+// Admin routes (protected by simple HTTP Basic using ADMIN_USER/ADMIN_PASSWORD)
+Route::middleware(\App\Http\Middleware\AdminBasicAuth::class)->group(function () {
+    Route::get('/admin/rooms', [AdminRoomController::class, 'index']);
+    Route::get('/admin/rooms/create', [AdminRoomController::class, 'create']);
+    Route::post('/admin/rooms', [AdminRoomController::class, 'store']);
+    Route::get('/admin/rooms/{id}/edit', [AdminRoomController::class, 'edit']);
+    Route::put('/admin/rooms/{id}', [AdminRoomController::class, 'update']);
+    Route::delete('/admin/rooms/{id}', [AdminRoomController::class, 'destroy']);
 });
 
 Route::get('/KhuVillaDesktop', function () {
