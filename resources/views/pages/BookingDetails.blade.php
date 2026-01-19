@@ -124,8 +124,8 @@
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
 <div class="text-xs font-bold tracking-widest uppercase mb-2 md:mb-0">
 <span class="opacity-70 mr-2">Bạn đã lựa chọn:</span>
-<span class="mr-4">2 Phòng</span>
-<span>10 Đêm</span>
+<span class="mr-4" id="sel-rooms">2 Phòng</span>
+<span id="sel-nights">10 Đêm</span>
 </div>
 <div class="flex items-center space-x-6">
 <div class="font-display text-xl font-bold">100.000.000 <span class="text-sm font-sans font-normal align-top">đ</span></div>
@@ -151,9 +151,9 @@
           Bạn đã lựa chọn:
         </h2>
         <div class="text-gray-800 dark:text-gray-200 font-medium">
-          <span class="font-bold">2</span> Phòng  |  <span class="font-bold">10</span> Đêm
+          <span id="modal-rooms" class="font-bold">2</span> Phòng  |  <span id="modal-nights" class="font-bold">10</span> Đêm
         </div>
-        <div class="text-xs text-gray-500 mt-1 italic">27/09/2025 - 06/10/2025</div>
+        <div id="modal-dates" class="text-xs text-gray-500 mt-1 italic">27/09/2025 - 06/10/2025</div>
       </div>
 
       <!-- Nút X -->
@@ -207,11 +207,11 @@
     <div class="bg-gray-50 dark:bg-zinc-900/50 p-6 flex justify-between items-center border-t border-gray-100 dark:border-gray-700">
       <div>
         <span class="text-sm text-gray-500 dark:text-gray-400 mr-2">Tạm tính:</span>
-        <span class="font-display text-2xl font-bold text-gray-800 dark:text-white">
+        <span id="modal-total" class="font-display text-2xl font-bold text-gray-800 dark:text-white">
           100.000.000 <span class="text-base font-sans font-normal">đ</span>
         </span>
       </div>
-      <button class="bg-brand-brown hover:bg-brand-brown-dark text-white text-xs font-bold uppercase px-6 py-3 rounded shadow-lg transition-transform transform hover:-translate-y-0.5">
+      <button id="modal-confirm" class="bg-brand-brown hover:bg-brand-brown-dark text-white text-xs font-bold uppercase px-6 py-3 rounded shadow-lg transition-transform transform hover:-translate-y-0.5">
         Đặt ngay
       </button>
     </div>
@@ -424,6 +424,53 @@
       }
     }catch(err){/* ignore */}
   });
+
+  // Prefill from query params (from Booking search): check_in, check_out, nights, rooms, total
+  (function(){
+    const params = new URLSearchParams(window.location.search);
+    const checkIn = params.get('check_in');
+    const checkOut = params.get('check_out');
+    const nights = params.get('nights');
+    const rooms = params.get('rooms');
+    const total = params.get('total');
+
+    if(checkIn && checkOut){
+      // header
+      const selRooms = document.getElementById('sel-rooms');
+      const selNights = document.getElementById('sel-nights');
+      const selTotal = document.getElementById('sel-total');
+      if(selRooms && rooms) selRooms.textContent = `${rooms} Phòng`;
+      if(selNights && nights) selNights.textContent = `${nights} Đêm`;
+      if(selTotal && total) selTotal.textContent = `${Number(total).toLocaleString('vi-VN')} ₫`;
+
+      // modal
+      const mRooms = document.getElementById('modal-rooms');
+      const mNights = document.getElementById('modal-nights');
+      const mDates = document.getElementById('modal-dates');
+      const mTotal = document.getElementById('modal-total');
+      if(mRooms && rooms) mRooms.textContent = rooms;
+      if(mNights && nights) mNights.textContent = nights;
+      if(mDates) mDates.textContent = `${checkIn} - ${checkOut}`;
+      if(mTotal && total) mTotal.textContent = `${Number(total).toLocaleString('vi-VN')} ₫`;
+
+      // open modal to confirm selection
+      openModal();
+    }
+
+    // Wire confirm button to carry params to /confirm
+    const confirmBtn = document.getElementById('modal-confirm');
+    if(confirmBtn){
+      confirmBtn.addEventListener('click', ()=>{
+        const qs = new URLSearchParams();
+        if(checkIn) qs.set('check_in', checkIn);
+        if(checkOut) qs.set('check_out', checkOut);
+        if(nights) qs.set('nights', nights);
+        if(rooms) qs.set('rooms', rooms);
+        if(total) qs.set('total', total);
+        window.location.href = '/confirm?' + qs.toString();
+      });
+    }
+  })();
 </script>
 
 

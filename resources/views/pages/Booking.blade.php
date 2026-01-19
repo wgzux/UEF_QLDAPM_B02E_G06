@@ -31,7 +31,7 @@
 			<div class="flex items-center gap-12 w-full lg:w-auto justify-center">
 				<div class="text-center">
 					<span class="block font-bold uppercase tracking-wider text-sm mb-2">PHÒNG</span>
-					<span class="font-display text-4xl text-gray-800 dark:text-white">1</span>
+					<span id="rooms-count" class="font-display text-4xl text-gray-800 dark:text-white">1</span>
 				</div>
 				<div class="text-center">
 					<span class="block font-bold uppercase tracking-wider text-sm mb-2">NGƯỜI LỚN</span>
@@ -213,7 +213,9 @@
 					bsNights.textContent = calc.nights;
 					bsTotal.textContent = (calc.total>0? calc.total.toLocaleString('vi-VN')+' ₫' : '—');
 					summary.classList.remove('hidden');
-					bsLink.href = `/bookingdetails?check_in=${checkIn}&check_out=${checkOut}&nights=${calc.nights}`;
+					const roomsEl = document.getElementById('rooms-count');
+					const rooms = roomsEl ? parseInt(roomsEl.textContent.trim(),10) || 1 : 1;
+					bsLink.href = `/bookingdetails?check_in=${checkIn}&check_out=${checkOut}&nights=${calc.nights}&rooms=${rooms}&total=${calc.total}`;
 				} else { bsNights.textContent='0'; bsTotal.textContent='0 ₫'; bsLink.href='/bookingdetails'; }
 			});
 		});
@@ -226,7 +228,9 @@
 			searchBtn.addEventListener('click', ()=>{
 				if(checkIn && checkOut){
 					const calc = calculateTotal();
-					window.location.href = `/bookingdetails?check_in=${checkIn}&check_out=${checkOut}&nights=${calc.nights}`;
+					const roomsEl = document.getElementById('rooms-count');
+					const rooms = roomsEl ? parseInt(roomsEl.textContent.trim(),10) || 1 : 1;
+					window.location.href = `/bookingdetails?check_in=${checkIn}&check_out=${checkOut}&nights=${calc.nights}&rooms=${rooms}&total=${calc.total}`;
 				}else{
 					// if dates not fully selected, show the summary panel to prompt selection
 					summary.classList.remove('hidden');

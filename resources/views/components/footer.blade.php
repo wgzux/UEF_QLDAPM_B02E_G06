@@ -9,40 +9,46 @@
             {{-- Event Card 1 --}}
             <div class="bg-transparent event-card">
                 <div class="mb-4 overflow-hidden rounded-lg relative aspect-[4/5] bg-black">
-                    <img alt="Event Poster 1" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-500 event-card-overlay" src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=2070&auto=format&fit=crop"/>
+                    <a href="/fragnews" class="block w-full h-full">
+                        <img alt="Event Poster 1" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-500 event-card-overlay" src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=2070&auto=format&fit=crop"/>
+                    </a>
                     <div class="absolute top-4 left-4 bg-white text-primary text-[10px] font-bold px-2 py-1 rounded">HOT</div>
                 </div>
                 <span class="text-[10px] uppercase tracking-widest text-gray-200 block mb-1">Sự kiện</span>
                 <h3 class="font-display text-xl mb-3">Live music mỗi cuối tuần</h3>
-                <button class="footer-btn border border-white/40 text-[10px] px-4 py-1.5 rounded uppercase">
+                <a href="/fragnews" class="footer-btn inline-flex items-center border border-white/40 text-[10px] px-4 py-1.5 rounded uppercase">
                     Tìm hiểu <i class="fas fa-arrow-right ml-1"></i>
-                </button>
+                </a>
             </div>
             
             {{-- Event Card 2 --}}
             <div class="bg-transparent event-card">
                 <div class="mb-4 overflow-hidden rounded-lg relative aspect-[4/5] bg-black">
-                    <img alt="Event Poster 2" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-500 event-card-overlay" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070&auto=format&fit=crop"/>
+                    <a href="/services" class="block w-full h-full">
+                        <img alt="Event Poster 2" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-500 event-card-overlay" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070&auto=format&fit=crop"/>
+                    </a>
                     <div class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded">-30%</div>
                 </div>
                 <span class="text-[10px] uppercase tracking-widest text-gray-200 block mb-1">Ưu đãi</span>
                 <h3 class="font-display text-xl mb-3">Mùa hè rực rỡ</h3>
-                <button class="footer-btn border border-white/40 text-[10px] px-4 py-1.5 rounded uppercase">
+                <a href="/services" class="footer-btn inline-flex items-center border border-white/40 text-[10px] px-4 py-1.5 rounded uppercase">
                     Tìm hiểu <i class="fas fa-arrow-right ml-1"></i>
-                </button>
+                </a>
             </div>
             
             {{-- Event Card 3 --}}
             <div class="bg-transparent event-card">
                 <div class="mb-4 overflow-hidden rounded-lg relative aspect-[4/5] bg-black">
-                    <img alt="Event Poster 3" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-500 event-card-overlay" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop"/>
+                    <a href="/KhuVillaDesktop" class="block w-full h-full">
+                        <img alt="Event Poster 3" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-500 event-card-overlay" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop"/>
+                    </a>
                     <div class="absolute bottom-4 right-4 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded">MỚI</div>
                 </div>
                 <span class="text-[10px] uppercase tracking-widest text-gray-200 block mb-1">Tin tức</span>
                 <h3 class="font-display text-xl mb-3">Khai trương khu Villa mới</h3>
-                <button class="footer-btn border border-white/40 text-[10px] px-4 py-1.5 rounded uppercase">
+                <a href="/KhuVillaDesktop" class="footer-btn inline-flex items-center border border-white/40 text-[10px] px-4 py-1.5 rounded uppercase">
                     Tìm hiểu <i class="fas fa-arrow-right ml-1"></i>
-                </button>
+                </a>
             </div>
         </div>
         
@@ -73,9 +79,9 @@
             <div>
                 <h4 class="font-display text-lg mb-6 uppercase tracking-widest">Trang Chủ</h4>
                 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-                    <li><a class="footer-link" href="{{ route('contact') }}">Về chúng tôi</a></li>
+                    <li><a class="footer-link" href="/about">Về chúng tôi</a></li>
                     <li><a class="footer-link" href="/fragnews">Sự kiện âm nhạc</a></li>
-                    <li><a class="footer-link" href="/fragnews">Gallery hình ảnh & Video</a></li>
+                    <li><a class="footer-link" href="/gallery">Gallery hình ảnh & Video</a></li>
                     <li><a class="footer-link" href="/fragnews">Tin tức</a></li>
                     <li><a class="footer-link" href="/fragnews">FAQ</a></li>
                 </ul>
@@ -85,21 +91,21 @@
             <div>
                 <h4 class="font-display text-lg mb-6 uppercase tracking-widest">Hạng Phòng</h4>
                 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-                    <li><a class="footer-link" href="{{ route('contact') }}">Khu Wooden House</a></li>
-                    <li><a class="footer-link" href="{{ route('contact') }}">Forest Room</a></li>
-                    <li><a class="footer-link" href="{{ route('contact') }}">Deluxe Room</a></li>
-                    <li><a class="footer-link" href="{{ route('contact') }}">Family Room</a></li>
+                    <li><a class="footer-link" href="/KhuWoodenHouseDesktop">Khu Wooden House</a></li>
+                    <li><a class="footer-link" href="/KhuWoodenHouseDesktop">Forest Room</a></li>
+                    <li><a class="footer-link" href="/DuluxeRoomDesktop">Deluxe Room</a></li>
+                    <li><a class="footer-link" href="/FamilyRoomDesktop">Family Room</a></li>
                 </ul>
             </div>
             
             {{-- Hạng Phòng Links Column 2 --}}
             <div class="md:mt-12">
                 <ul class="space-y-3 opacity-80 text-xs uppercase tracking-wider">
-                    <li><a class="footer-link" href="{{ route('contact') }}">Khu Rose House</a></li>
-                    <li><a class="footer-link" href="{{ route('contact') }}">Pink Rose House</a></li>
-                    <li><a class="footer-link" href="{{ route('contact') }}">White Rose House</a></li>
-                    <li><a class="footer-link" href="{{ route('contact') }}">Red Rose House</a></li>
-                    <li><a class="footer-link" href="{{ route('contact') }}">The Wandering Rose Villa</a></li>
+                    <li><a class="footer-link" href="/KhuRoseHouseDesktop">Khu Rose House</a></li>
+                    <li><a class="footer-link" href="/KhuRoseHouseDesktop">Pink Rose House</a></li>
+                    <li><a class="footer-link" href="/KhuRoseHouseDesktop">White Rose House</a></li>
+                    <li><a class="footer-link" href="/RedRoseHouseDesktop">Red Rose House</a></li>
+                    <li><a class="footer-link" href="/KhuVillaDesktop">The Wandering Rose Villa</a></li>
                 </ul>
             </div>
             
