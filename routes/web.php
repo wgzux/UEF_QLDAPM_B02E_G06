@@ -40,10 +40,10 @@ Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/booking', [BookingController::class, 'create'])->name('booking.create');
 Route::post('/booking/select-rooms', [BookingController::class, 'selectRooms'])->name('booking.select-rooms'); // Step 2
 Route::post('/booking/confirm-details', [BookingController::class, 'confirmDetails'])->name('booking.confirm-details'); // Step 3
-Route::post('/booking', [BookingController::class, 'store'])->name('booking.store'); // Finalize
+Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store'); // Finalize
+Route::get('/booking/{id}/payment', [BookingController::class, 'payment'])->name('booking.payment');
+Route::post('/booking/{id}/payment', [BookingController::class, 'processPayment'])->name('booking.process-payment');
 Route::get('/booking/{id}/confirm', [BookingController::class, 'confirm'])->name('booking.confirm'); // Success Page
-Route::get('/booking/{id}/checkout', [BookingController::class, 'checkout'])->name('booking.checkout');
-Route::post('/booking/{id}/payment', [BookingController::class, 'payment'])->name('booking.payment');
 
 // Contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');

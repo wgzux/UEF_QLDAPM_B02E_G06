@@ -32,6 +32,7 @@ class Booking extends Model
         'total_price',
         'status',
         'payment_status',
+        'code',
     ];
 
     /**
@@ -116,5 +117,11 @@ class Booking extends Model
     public function scopeStatus($query, $status)
     {
         return $query->where('status', $status);
+    }
+    public function roomTypes(): BelongsToMany
+    {
+        return $this->belongsToMany(RoomType::class, 'booking_room_types')
+            ->withPivot('quantity', 'price_per_night', 'subtotal')
+            ->withTimestamps();
     }
 }

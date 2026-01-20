@@ -113,6 +113,9 @@ class BookingController extends Controller
     /**
      * Final Step: Store Booking
      */
+    /**
+     * Final Step: Store Booking
+     */
     public function store(Request $request)
     {
         DB::beginTransaction();
@@ -124,45 +127,55 @@ class BookingController extends Controller
             $nights = $checkIn->diffInDays($checkOut);
             
             // Validation
-            if ($nights <= 0) throw new \Exception("Invalid dates");
+            if ($nights <= 0) throw new \Exception("Ngày đặt không hợp lệ");
 
             $totalPrice = 0;
             $bookingRoomTypes = [];
 
             // Interpret the 'rooms' array from BookingDetails form
-            // Assuming form sends rooms[id] = quantity
+            // rooms[id] = quantity
             if ($request->rooms) {
                 foreach ($request->rooms as $roomId => $quantity) {
                     if ($quantity > 0) {
                         $roomType = RoomType::find($roomId);
-                        $subtotal = $roomType->base_price * $nights * $quantity;
-                        $totalPrice += $subtotal;
-                        
-                        $bookingRoomTypes[] = [
-                            'room_type_id' => $roomType->id,
-                            'quantity' => $quantity,
-                            'price_per_night' => $roomType->base_price,
-                            'subtotal' => $subtotal,
-                        ];
+                        if ($roomType) {
+                            $subtotal = $roomType->base_price * $nights * $quantity;
+                            $totalPrice += $subtotal;
+                            
+                            $bookingRoomTypes[] = [
+                                'room_type_id' => $roomType->id,
+                                'quantity' => $quantity,
+                                'price_per_night' => $roomType->base_price,
+                                'subtotal' => $subtotal,
+                            ];
+                        }
                     }
                 }
             }
 
-            if ($totalPrice == 0) throw new \Exception("No rooms selected");
+            if ($totalPrice == 0) throw new \Exception("Vui lòng chọn phòng");
             
+            // Generate Booking Code
+            $bookingCode = '#OL' . strtoupper(substr(uniqid(), -8));
+
             // Create booking
+            // Note: room_id is nullable now, so we skip it or set null
             $booking = Booking::create([
                 'customer_name' => $request->name,
                 'customer_email' => $request->email,
                 'customer_phone' => $request->phone,
-                // 'customer_address' => $request->address, // Add if field exists in form
-                'check_in_date' => $checkIn,
-                'check_out_date' => $checkOut,
-                'number_of_adults' => $request->adults,
-                'number_of_children' => $request->children ?? 0,
-                'total_price' => $totalPrice,
+                'check_in' => $checkIn,
+                'check_out' => $checkOut,
+                'adults' => $request->adults,
+                'children' => $request->children ?? 0,
+                'special_requests' => $request->special_requests,
+                'room_price' => $totalPrice,
+                'service_price' => 0,
+                'total_price' => $totalPrice, // Add Taxes if needed
                 'status' => 'pending',
-                'booking_code' => 'BK' . strtoupper(uniqid()),
+                'payment_status' => 'unpaid',
+                'code' => $bookingCode,
+                'room_id' => null
             ]);
             
             // Save room details
@@ -174,12 +187,13 @@ class BookingController extends Controller
                 ]));
             }
             
+            // Save specific guest details if needed (from request->guests)
+            // Implementation skipped as per user scope focusing on Payment Page for now
+            
             DB::commit();
             
-            // Redirect to success/confirm page
-            return redirect()
-                ->route('booking.confirm', $booking->id)
-                ->with('success', 'Đặt phòng thành công!');
+            // Redirect to Payment Page
+            return redirect()->route('booking.payment', $booking->id);
                 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -188,26 +202,50 @@ class BookingController extends Controller
                 ->with('error', 'Có lỗi xảy ra: ' . $e->getMessage());
         }
     }
+
+    public function payment($id)
+    {
+        $booking = Booking::with('roomTypes')->findOrFail($id);
+        
+        // Count total rooms
+        $totalRooms = 0;
+        foreach ($booking->roomTypes as $rt) {
+             // Access pivot quantity
+             $totalRooms += $rt->pivot->quantity;
+        }
+        
+        // Generate QR Code URL
+        $bankId = 'MB';
+        $accountNo = '0944085920';
+        $accountName = 'PHAM QUANG VU';
+        $amount = intval($booking->total_price);
+        $content = $booking->code . ' ' . $booking->customer_phone;
+        
+        $qrUrl = "https://img.vietqr.io/image/{$bankId}-{$accountNo}-compact.png?amount={$amount}&addInfo={$content}&accountName=" . urlencode($accountName);
+
+        return view('pages.payment', compact('booking', 'qrUrl', 'totalRooms'));
+    }
+
+    public function processPayment($id)
+    {
+        $booking = Booking::findOrFail($id);
+        // Update status to indicate payment confirmation is requested
+        $booking->update([
+            'payment_status' => 'paid', // Or 'verification_pending'
+            'status' => 'confirmed'
+        ]);
+        
+        return redirect()->route('booking.confirm', $booking->id);
+    }
     
-    /**
-     * Show success page
-     */
     public function confirm($id)
     {
-        $booking = Booking::findOrFail($id);
-        return view('pages.bookingconfirm', compact('booking'));
-    }
-
-    public function checkout($id)
-    {
-        // Legacy or unused?
-        $booking = Booking::findOrFail($id);
-        return view('pages.CheckOut', compact('booking'));
-    }
-
-    public function payment(Request $request, $id)
-    {
-         // Keep existing payment logic or placeholder
-         return redirect()->route('home'); 
+        $booking = Booking::with('roomTypes')->findOrFail($id);
+        $totalRooms = 0;
+        foreach ($booking->roomTypes as $rt) {
+             $totalRooms += $rt->pivot->quantity;
+        }
+        
+        return view('pages.bookingconfirm', compact('booking', 'totalRooms'));
     }
 }

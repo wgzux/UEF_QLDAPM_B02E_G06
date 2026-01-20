@@ -2,75 +2,169 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Booking Confirmation - The Wandering Rose</title>
-
-    <!-- Tailwind CDN -->
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Xác Nhận Thành Công - The Wandering Rose</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-
-    <!-- Tailwind config -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
     <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#AD7D56",
-                        secondary: "#C69C6D",
-                        "background-light": "#FFFCF7",
-                        "background-dark": "#121212",
-                        "surface-dark": "#1E1E1E",
-                        "brown-dark": "#7a563a",
-                    },
-                    fontFamily: {
-                        display: ["Playfair Display", "serif"],
-                        body: ["Manrope", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "4px",
-                    },
-                },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#8B6B4E", 
+              secondary: "#D4C5B0", 
             },
-        };
+            fontFamily: {
+              display: ["'Playfair Display'", "serif"],
+              body: ["'Lato'", "sans-serif"],
+            }
+          },
+        },
+      };
     </script>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
-
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+    </style>
 </head>
-
-<body class="font-body text-gray-700 dark:text-gray-300 antialiased bg-background-light dark:bg-background-dark transition-colors duration-300">
-
-<section class="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-12 lg:py-20">
-    <div class="max-w-3xl space-y-8 animate-fade-in-up">
-        <h1 class="font-display text-4xl md:text-6xl text-secondary font-normal">
-            Gửi tin nhắn thành công
-        </h1>
-        <p class="text-gray-500 dark:text-gray-400 font-light text-lg">
-            Chúng tôi sẽ chủ động liên hệ lại trong thời gian ngắn nhất !
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <button class="px-8 py-3 bg-primary hover:bg-[#966b48] text-white text-sm font-semibold tracking-wider uppercase shadow-md rounded transition-all">
-                Trở lại trang trước
-            </button>
-            <a href="/" class="px-8 py-3 border border-gray-300 hover:border-primary text-gray-500 hover:text-primary text-sm font-semibold tracking-wider uppercase rounded flex items-center gap-2 group transition-all">
-                Về trang chủ
-                <span class="material-icons text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+<body class="bg-[#FDFBF7] text-gray-700 font-body antialiased">
+    
+    {{-- Header --}}
+    <header class="py-6 border-b border-gray-100 bg-[#FDFBF7]">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
+            <a href="{{ route('home') }}" class="text-xs uppercase tracking-widest text-[#8B6B4E] hover:text-[#6d543e] flex items-center">
+                <span class="material-icons-outlined text-sm mr-1">west</span> TRỞ VỀ
             </a>
+            
+            <div class="text-center">
+                <h1 class="font-display text-2xl text-[#8B6B4E]">THE WANDERING ROSE</h1>
+                <span class="font-display italic text-[#C5A065] text-sm">... Ba Vì ...</span>
+            </div>
+            
+            <div class="flex items-center gap-2 border px-2 py-1 rounded border-gray-200 bg-white">
+                <span class="text-xs text-gray-500">VND</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" class="w-4 h-3 rounded-sm shadow-sm" alt="VN">
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-10">
+        
+        <div class="text-center mb-12">
+            <h2 class="font-display text-5xl text-[#8B6B4E] mb-6">Xác nhận</h2>
+            
+            <div class="text-gray-600">
+                <p>Đang tiến hành kiểm tra thông tin bạn sẽ nhận được thông báo qua mail và tin nhắn trong <span class="font-bold flex-inline items-center gap-1"><span class="material-icons-outlined text-sm align-text-bottom">schedule</span> 24:00:00</span></p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 bg-white p-8 rounded-xl shadow-sm">
+            
+            {{-- Left: Customer Info --}}
+            <div>
+                <h3 class="font-display text-3xl text-[#D4C5B0] text-center mb-8">Thông tin khách hàng</h3>
+                
+                <div class="space-y-4">
+                    <div class="space-y-1">
+                        <label class="text-xs text-gray-500">Họ và tên *</label>
+                        <input type="text" value="{{ $booking->customer_name }}" readonly class="w-full border-gray-200 rounded text-sm bg-gray-50 text-gray-600 cursor-not-allowed">
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <label class="text-xs text-gray-500">Số điện thoại *</label>
+                        <div class="flex items-center">
+                             <div class="flex items-center border border-r-0 border-gray-200 rounded-l px-3 py-2 bg-gray-100">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" class="w-4 h-3 mr-2" alt="VN">
+                                <span class="text-xs text-gray-500">▼</span>
+                            </div>
+                            <input type="text" value="{{ $booking->customer_phone }}" readonly class="w-full border-gray-200 rounded-r text-sm bg-gray-50 text-gray-600 cursor-not-allowed">
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <label class="text-xs text-gray-500">Email *</label>
+                        <input type="text" value="{{ $booking->customer_email }}" readonly class="w-full border-gray-200 rounded text-sm bg-gray-50 text-gray-600 cursor-not-allowed">
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                         <div class="space-y-1">
+                            <label class="text-xs text-gray-500">ID/Passport *</label>
+                            <input type="text" readonly class="w-full border-gray-200 rounded text-sm bg-gray-50 cursor-not-allowed" placeholder="Nhập số định danh cá nhân">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs text-gray-500">Giới tính theo ID/Passport *</label>
+                            <div class="w-full border border-gray-200 rounded text-sm bg-gray-50 px-3 py-2 text-gray-600">Nam</div>
+                        </div>
+                    </div>
+                    
+                     <div class="space-y-1">
+                        <label class="text-xs text-gray-500">Ngày sinh *</label>
+                        <input type="text" readonly class="w-full border-gray-200 rounded text-sm bg-gray-50 cursor-not-allowed" placeholder="Nhập số định danh cá nhân">
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <label class="text-xs text-gray-500">Quốc tịch *</label>
+                        <div class="w-full border border-gray-200 rounded text-sm bg-gray-50 px-3 py-2 text-gray-600">Việt Nam</div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Right: Booking Info --}}
+            <div>
+                 <h3 class="font-display text-3xl text-[#D4C5B0] text-center mb-8">Thông tin đặt phòng</h3>
+                 
+                 <div class="flex items-baseline gap-4 mb-2 text-gray-600 font-bold">
+                     <span class="text-xl">{{ $totalRooms }} PHÒNG</span>
+                     <span class="text-xl">{{ $booking->total_nights }} ĐÊM</span>
+                 </div>
+                 <div class="text-sm text-gray-500 mb-6 font-medium">
+                     {{ $booking->check_in->format('d/m/Y') }} - {{ $booking->check_out->format('d/m/Y') }}
+                 </div>
+                 
+                 <div class="flex justify-between text-sm mb-2">
+                     <span class="font-bold">Nhận phòng</span>
+                     <span>{{ $booking->check_in->format('d/m/Y') }}</span>
+                 </div>
+                 <div class="flex justify-between text-sm mb-6 pb-6 border-b border-gray-200">
+                     <span class="font-bold">Trả phòng</span>
+                     <span>{{ $booking->check_out->format('d/m/Y') }}</span>
+                 </div>
+                 
+                 <div class="space-y-4 mb-6">
+                     @foreach($booking->roomTypes as $room)
+                    <div class="flex justify-between text-sm items-start">
+                        <span class="font-bold text-[#8B6B4E] text-base">{{ $room->name }}</span>
+                        <div class="text-xs text-gray-500 flex gap-2">
+                            <span class="flex items-center"><i class="material-icons-outlined text-sm mr-1">people_outline</i> 00 người lớn</span>
+                            <span class="flex items-center">00 trẻ em</span>
+                            <span class="flex items-center">00 em bé</span>
+                        </div>
+                    </div>
+                    @endforeach
+                 </div>
+                 
+                 <div class="mb-6">
+                     <label class="text-xs text-gray-500 block mb-1">Yêu cầu bổ sung (nếu có)</label>
+                     <div class="w-full border border-gray-200 rounded p-3 text-sm bg-gray-50 text-gray-500 italic">
+                         {{ $booking->special_requests ?? 'Không có' }}
+                     </div>
+                 </div>
+                 
+                 <div class="pt-6 border-t border-gray-200 space-y-4">
+                     <div class="flex justify-between items-center font-bold text-gray-800">
+                         <span>Mã đặt phòng</span>
+                         <span class="text-gray-500">{{ $booking->code }}</span>
+                     </div>
+                     <div class="flex justify-between items-center text-xl font-bold">
+                         <span>Tổng thanh toán</span>
+                         <span class="text-[#8B6B4E]">{{ number_format($booking->total_price) }} đ</span>
+                     </div>
+                     <p class="text-[10px] text-gray-400 text-right">(Bao gồm thuế GTGT 10% và phí dịch vụ 5%)</p>
+                 </div>
+            </div>
+            
         </div>
     </div>
-</section>
-
-<!-- PHẦN TIN TỨC + FOOTER -->
-<?php /* Giữ nguyên layout như bạn gửi, không ảnh hưởng PHP */ ?>
 
 </body>
 </html>
