@@ -48,11 +48,12 @@ class BookingController extends Controller
         $nights = $checkIn->diffInDays($checkOut);
         $adults = $request->adults;
         $children = $request->children ?? 0;
+        $roomQty = $request->rooms ?? 1;
 
         // Fetch all rooms (In a real app, check availability here)
         $rooms = RoomType::all();
 
-        return view('pages.Addcart', compact('checkIn', 'checkOut', 'nights', 'adults', 'children', 'rooms'));
+        return view('pages.Addcart', compact('checkIn', 'checkOut', 'nights', 'adults', 'children', 'roomQty', 'rooms'));
     }
 
     /**
@@ -92,6 +93,11 @@ class BookingController extends Controller
             return back()->with('error', 'Vui lòng chọn ít nhất 1 phòng.');
         }
 
+        $totalRooms = 0;
+        foreach ($selectedRooms as $item) {
+            $totalRooms += $item['quantity'];
+        }
+
         return view('pages.BookingDetails', [
             'checkIn' => $checkIn,
             'checkOut' => $checkOut,
@@ -99,7 +105,8 @@ class BookingController extends Controller
             'adults' => $request->adults,
             'children' => $request->children,
             'selectedRooms' => $selectedRooms,
-            'grandTotal' => $grandTotal
+            'grandTotal' => $grandTotal,
+            'totalRooms' => $totalRooms
         ]);
     }
 

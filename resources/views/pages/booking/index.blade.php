@@ -81,6 +81,7 @@
             checkIn: null,
             checkOut: null,
             nights: 0,
+            rooms: 1, // Default room count
             adults: 2,
             children: 0,
             selectedRooms: {}, 

@@ -81,6 +81,10 @@
 
               <div class="flex items-center space-x-10 md:border-l md:border-r border-gray-300 dark:border-gray-600 px-8">
                 <div class="text-center">
+                  <p class="text-xs uppercase font-bold tracking-widest mb-1">PHÒNG</p>
+                  <span class="font-display text-3xl">{{ $roomQty }}</span>
+                </div>
+                <div class="text-center">
                   <p class="text-xs uppercase font-bold tracking-widest mb-1">NGƯỜI LỚN</p>
                   <span class="font-display text-3xl">{{ $adults }}</span>
                 </div>
@@ -98,8 +102,8 @@
           </div>
         </header>
 
-        <!-- Sticky Summary Bar -->
-        <div class="bg-[#8B6B4E] dark:bg-[#5D4037] text-white py-3 sticky top-[138px] z-30 shadow-md">
+        <!-- Sticky Summary Bar (Initially Hidden) -->
+        <div id="sticky-summary" class="bg-[#8B6B4E] dark:bg-[#5D4037] text-white py-3 sticky top-[138px] z-30 shadow-md transform translate-y-full opacity-0 transition-all duration-300 fixed bottom-0 left-0 right-0 hidden">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
             <div class="text-sm font-light tracking-wide mb-2 sm:mb-0">
               <span class="opacity-80 uppercase">BẠN ĐÃ LỰA CHỌN:</span>
@@ -109,11 +113,41 @@
             </div>
             <div class="flex items-center space-x-4">
               <span class="font-display text-xl font-bold" id="grand-total-display">0 ₫</span>
-              <button type="submit" class="bg-[#D4C5B0] text-[#5D4037] hover:bg-white text-xs font-bold px-4 py-2 rounded uppercase tracking-widest transition-colors">
+              <button type="button" onclick="openConfirmationModal()" class="bg-[#D4C5B0] text-[#5D4037] hover:bg-white text-xs font-bold px-4 py-2 rounded uppercase tracking-widest transition-colors">
                 XÁC NHẬN
               </button>
             </div>
           </div>
+        </div>
+
+        {{-- Confirmation Modal --}}
+        <div id="confirmation-modal" class="fixed inset-0 z-50 flex items-center justify-center invisible opacity-0 transition-all duration-300">
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeConfirmationModal()"></div>
+            <div class="relative bg-white dark:bg-[#1F1C18] w-full max-w-2xl rounded-lg shadow-2xl p-6 m-4 transform scale-95 transition-all duration-300" id="modal-content">
+                <div class="flex justify-between items-center mb-6 border-b border-gray-100 dark:border-gray-800 pb-4">
+                    <div>
+                        <h3 class="text-lg font-display text-[#8B6B4E]">BẠN ĐÃ LỰA CHỌN: <span id="modal-total-rooms" class="font-bold text-gray-800 dark:text-gray-200">0 PHÒNG</span> <span class="text-gray-400 mx-2">|</span> {{ $nights }} ĐÊM</h3>
+                        <p class="text-sm text-gray-500 mt-1">{{ $checkIn->format('d/m/Y') }} - {{ $checkOut->format('d/m/Y') }}</p>
+                    </div>
+                    <button type="button" onclick="closeConfirmationModal()" class="text-gray-400 hover:text-gray-600">
+                        <span class="material-icons-outlined">close</span>
+                    </button>
+                </div>
+                
+                <div id="modal-items-list" class="space-y-4 max-h-[60vh] overflow-y-auto mb-6 custom-scrollbar">
+                    {{-- Items injected by JS --}}
+                </div>
+                
+                <div class="flex items-center justify-between border-t border-gray-100 dark:border-gray-800 pt-6">
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">TẠM TÍNH</p>
+                        <p class="font-display text-2xl font-bold text-[#8B6B4E]" id="modal-grand-total">0 ₫</p>
+                    </div>
+                    <button type="submit" class="bg-[#C19D60] hover:bg-[#a88b68] text-white px-8 py-3 rounded text-sm font-bold uppercase tracking-widest shadow-lg transform hover:-translate-y-0.5 transition-all flex items-center">
+                        ĐẶT NGAY <span class="material-icons-outlined ml-2">check_circle</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative">
@@ -176,7 +210,7 @@
                         <div class="flex items-center justify-between">
                             <!-- Quantity Selector -->
                           <div class="flex items-center border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800">
-                            <button type="button" onclick="updateQty({{ $room->id }}, -1, {{ $room->base_price * $nights }})" class="px-3 py-1.5 text-gray-500 hover:text-[#8B6B4E] transition-colors">-</button>
+                            <button type="button" onclick="updateQty({{ $room->id }}, -1, {{ $room->base_price * $nights }}, '{{ addslashes($room->name) }}')" class="px-3 py-1.5 text-gray-500 hover:text-[#8B6B4E] transition-colors">-</button>
                             <input
                               class="w-10 text-center text-sm bg-transparent border-none p-0 text-gray-700 dark:text-gray-300 focus:ring-0"
                               type="text"
@@ -185,7 +219,7 @@
                               value="0"
                               readonly
                             />
-                            <button type="button" onclick="updateQty({{ $room->id }}, 1, {{ $room->base_price * $nights }})" class="px-3 py-1.5 text-gray-500 hover:text-[#8B6B4E] transition-colors">+</button>
+                            <button type="button" onclick="updateQty({{ $room->id }}, 1, {{ $room->base_price * $nights }}, '{{ addslashes($room->name) }}')" class="px-3 py-1.5 text-gray-500 hover:text-[#8B6B4E] transition-colors">+</button>
                           </div>
 
                           <div class="flex space-x-2">
@@ -205,32 +239,37 @@
     <script>
         let totalCount = 0;
         let totalPrice = 0;
-        
-        function updateQty(id, delta, priceTotal) {
+        const cart = {}; // {id: {qty, price, name}}
+
+        // Format Currency
+        const fmtMoney = (amount) => new Intl.NumberFormat('vi-VN').format(amount) + ' ₫';
+
+        function updateQty(id, delta, priceTotal, name) {
             const input = document.getElementById('room-qty-' + id);
             const subtotalEl = document.getElementById('room-subtotal-' + id);
+            
+            // Init cart item if needed
+            if (!cart[id]) cart[id] = { qty: 0, price: priceTotal, name: name };
+            
             let currentVal = parseInt(input.value) || 0;
             let newVal = currentVal + delta;
             
             if (newVal < 0) newVal = 0;
-            if (newVal > 5) newVal = 5; // Max limit per room type
+            if (newVal > 5) newVal = 5; // Max limit
             
-            // Difference in value
             let diff = newVal - currentVal;
             
             if (diff !== 0) {
+                // Update State
+                cart[id].qty = newVal;
                 totalCount += diff;
                 totalPrice += (diff * priceTotal);
                 
+                // Update DOM
                 input.value = newVal;
                 
-                // Update elements
-                document.getElementById('total-rooms-count').innerText = totalCount + " PHÒNG";
-                document.getElementById('grand-total-display').innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) + " ₫";
-                
-                // Update subtotal text
-                subtotalEl.innerText = new Intl.NumberFormat('vi-VN').format(newVal * priceTotal) + " ₫";
-                
+                // Update Subtotal on Card
+                subtotalEl.innerText = fmtMoney(newVal * priceTotal);
                 if (newVal > 0) {
                     subtotalEl.classList.add('text-[#8B6B4E]', 'font-bold');
                     subtotalEl.classList.remove('text-gray-400');
@@ -238,6 +277,99 @@
                     subtotalEl.classList.remove('text-[#8B6B4E]', 'font-bold');
                     subtotalEl.classList.add('text-gray-400');
                 }
+                
+                // Update Sticky Bar
+                updateStickyBar();
+                
+                // If Modal is open, refresh it
+                if (!document.getElementById('confirmation-modal').classList.contains('invisible')) {
+                    renderModalItems();
+                }
+            }
+        }
+
+        function updateStickyBar() {
+            const bar = document.getElementById('sticky-summary');
+            document.getElementById('total-rooms-count').innerText = totalCount + " PHÒNG";
+            document.getElementById('grand-total-display').innerText = fmtMoney(totalPrice);
+            
+            if (totalCount > 0) {
+                bar.classList.remove('hidden', 'translate-y-full', 'opacity-0');
+            } else {
+                bar.classList.add('translate-y-full', 'opacity-0');
+                setTimeout(() => {
+                     if (totalCount === 0) bar.classList.add('hidden'); // Delay for transition
+                }, 300);
+            }
+        }
+
+        function openConfirmationModal() {
+            if (totalCount === 0) return;
+            
+            renderModalItems();
+            
+            const modal = document.getElementById('confirmation-modal');
+            const content = document.getElementById('modal-content');
+            
+            modal.classList.remove('invisible', 'opacity-0');
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+            
+            document.getElementById('modal-total-rooms').innerText = totalCount + " PHÒNG";
+            document.getElementById('modal-grand-total').innerText = fmtMoney(totalPrice);
+        }
+
+        function closeConfirmationModal() {
+            const modal = document.getElementById('confirmation-modal');
+            const content = document.getElementById('modal-content');
+            
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            modal.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('invisible');
+            }, 300);
+        }
+        
+        function renderModalItems() {
+            const list = document.getElementById('modal-items-list');
+            list.innerHTML = '';
+            
+            Object.keys(cart).forEach(id => {
+                const item = cart[id];
+                if (item.qty > 0) {
+                    const html = `
+                        <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded border border-gray-100 dark:border-gray-700 flex justify-between items-center">
+                            <div>
+                                <p class="font-display text-[#8B6B4E] dark:text-[#D4C5B0] text-lg">${item.name}</p>
+                                <div class="flex items-center mt-2 border border-gray-300 rounded bg-white w-fit">
+                                    <button type="button" onclick="updateQty(${id}, -1, ${item.price}, '${item.name}')" class="px-2 py-1 text-gray-500 hover:text-[#8B6B4E]">-</button>
+                                    <span class="w-8 text-center text-sm font-bold">${item.qty}</span>
+                                    <button type="button" onclick="updateQty(${id}, 1, ${item.price}, '${item.name}')" class="px-2 py-1 text-gray-500 hover:text-[#8B6B4E]">+</button>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-bold text-gray-700 dark:text-gray-300 text-lg">${fmtMoney(item.qty * item.price)}</p>
+                                <button type="button" onclick="removeItem(${id}, ${item.price}, '${item.name}')" class="text-gray-400 hover:text-red-500 mt-1" title="Xóa">
+                                    <span class="material-icons-outlined">delete_outline</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    list.innerHTML += html;
+                }
+            });
+            
+            // Sync totals in modal
+            document.getElementById('modal-total-rooms').innerText = totalCount + " PHÒNG";
+            document.getElementById('modal-grand-total').innerText = fmtMoney(totalPrice);
+        }
+        
+        function removeItem(id, price, name) {
+            const item = cart[id];
+            if (item && item.qty > 0) {
+                updateQty(id, -item.qty, price, name);
             }
         }
     </script>

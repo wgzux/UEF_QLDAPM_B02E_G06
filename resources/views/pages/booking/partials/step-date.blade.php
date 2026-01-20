@@ -35,39 +35,71 @@
             
             {{-- Right: Guest Counter + Search --}}
             <div class="flex items-center gap-6">
-                {{-- Guest Display --}}
-                <div class="flex items-center gap-8">
-                    {{-- Rooms Selector (Optional, logic usually depends on room selection later, but providing filter) --}}
-                    {{-- <div class="text-center group cursor-pointer relative">
-                        <div class="text-xs uppercase tracking-wider text-gray-600 mb-1">PHÒNG</div>
-                        <div class="text-4xl font-display text-gray-800" id="rooms-display">1</div>
-                        <!-- Simple visual cue that it can be changed if we wanted to impl logic -->
-                    </div> --}} 
-                    
-                    {{-- Adults with +/- --}}
-                    <div class="text-center">
-                        <div class="text-xs uppercase tracking-wider text-gray-600 mb-1">NGƯỜI LỚN</div>
-                        <div class="flex items-center gap-2 select-none">
-                            <button onclick="changeAdults(-1)" class="text-gray-400 hover:text-[#C19D60] text-xl px-1 hover:bg-gray-100 rounded">-</button>
-                            <span class="text-4xl font-display text-gray-800 w-8 text-center" id="adults-display">2</span>
-                            <button onclick="changeAdults(1)" class="text-gray-400 hover:text-[#C19D60] text-xl px-1 hover:bg-gray-100 rounded">+</button>
+                {{-- Guest Display & Popover --}}
+                <div class="relative group z-50">
+                    {{-- Trigger --}}
+                    <div class="flex items-center gap-8 cursor-pointer py-4">
+                        <div class="text-center">
+                            <div class="text-xs uppercase tracking-wider text-gray-600 mb-1">PHÒNG</div>
+                            <div class="text-4xl font-display text-gray-800" id="display-rooms">1</div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="text-xs uppercase tracking-wider text-gray-600 mb-1">NGƯỜI LỚN</div>
+                            <div class="text-4xl font-display text-gray-800" id="display-adults">2</div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="text-xs uppercase tracking-wider text-gray-600 mb-1">TRẺ EM</div>
+                            <div class="text-4xl font-display text-gray-800" id="display-children">0</div>
+                        </div>
+                        
+                        <div class="text-gray-400">
+                            <svg class="w-6 h-6 transform group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
                         </div>
                     </div>
-                    
-                    {{-- Children with +/- --}}
-                    <div class="text-center">
-                        <div class="text-xs uppercase tracking-wider text-gray-600 mb-1">TRẺ EM</div>
-                        <div class="flex items-center gap-2 select-none">
-                            <button onclick="changeChildren(-1)" class="text-gray-400 hover:text-[#C19D60] text-xl px-1 hover:bg-gray-100 rounded">-</button>
-                            <span class="text-4xl font-display text-gray-800 w-8 text-center" id="children-display">0</span>
-                            <button onclick="changeChildren(1)" class="text-gray-400 hover:text-[#C19D60] text-xl px-1 hover:bg-gray-100 rounded">+</button>
+
+                    {{-- Popover --}}
+                    <div class="absolute top-full right-0 mt-2 bg-white shadow-xl rounded-lg border border-gray-100 p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[320px]">
+                        {{-- Room Counter --}}
+                        <div class="mb-4">
+                            <label class="block text-sm text-gray-600 mb-2">Phòng</label>
+                            <div class="flex items-center justify-between border border-gray-300 rounded">
+                                <button type="button" onclick="changeRooms(-1)" class="px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-[#C19D60] transition">-</button>
+                                <span class="font-medium text-gray-800 w-12 text-center" id="input-rooms">01</span>
+                                <button type="button" onclick="changeRooms(1)" class="px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-[#C19D60] transition">+</button>
+                            </div>
                         </div>
+
+                        {{-- Adult Counter --}}
+                        <div class="mb-4">
+                            <label class="block text-sm text-gray-600 mb-2">Người lớn</label>
+                            <div class="flex items-center justify-between border border-gray-300 rounded">
+                                <button type="button" onclick="changeAdults(-1)" class="px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-[#C19D60] transition">-</button>
+                                <span class="font-medium text-gray-800 w-12 text-center" id="input-adults">02</span>
+                                <button type="button" onclick="changeAdults(1)" class="px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-[#C19D60] transition">+</button>
+                            </div>
+                        </div>
+
+                        {{-- Children Counter --}}
+                        <div class="mb-2">
+                            <label class="block text-sm text-gray-600 mb-2">Trẻ em *</label>
+                            <div class="flex items-center justify-between border border-gray-300 rounded">
+                                <button type="button" onclick="changeChildren(-1)" class="px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-[#C19D60] transition">-</button>
+                                <span class="font-medium text-gray-800 w-12 text-center" id="input-children">00</span>
+                                <button type="button" onclick="changeChildren(1)" class="px-4 py-2 text-gray-500 hover:bg-gray-50 hover:text-[#C19D60] transition">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="text-xs text-[#C19D60] italic mt-3">* Trẻ em dưới 6 tuổi</div>
                     </div>
                 </div>
                 
                 {{-- Dropdown & Search Button --}}
                 <div class="flex flex-col gap-3">
-                    <button class="text-gray-500 hover:text-gray-700">
+                    <button type="button" class="text-gray-500 hover:text-gray-700">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                         </svg>
@@ -77,6 +109,7 @@
                         @csrf
                         <input type="hidden" name="check_in" id="form-check-in">
                         <input type="hidden" name="check_out" id="form-check-out">
+                        <input type="hidden" name="rooms" id="form-rooms" value="1">
                         <input type="hidden" name="adults" id="form-adults" value="2">
                         <input type="hidden" name="children" id="form-children" value="0">
                         
@@ -96,8 +129,10 @@
     </div>
     
     <script>
+        const MAX_ROOMS_PER_BOOKING = 10; // Reasonable default limit
+
         function submitDateSearch() {
-            const checkIn = document.getElementById('check-in-input').value; // from JS updating hidden input in partial
+            const checkIn = document.getElementById('check-in-input').value; 
             const checkOut = document.getElementById('check-out-input').value;
             
             if(!checkIn || !checkOut) {
@@ -107,12 +142,37 @@
             
             document.getElementById('form-check-in').value = checkIn;
             document.getElementById('form-check-out').value = checkOut;
-            document.getElementById('form-adults').value = bookingData.adults; // Ensure bookingData is accessible or sync variable
+            document.getElementById('form-rooms').value = bookingData.rooms;
+            document.getElementById('form-adults').value = bookingData.adults; 
             document.getElementById('form-children').value = bookingData.children;
             
             document.getElementById('dateSearchForm').submit();
         }
+
+        // Updated JS logic for Room Counter with limits
+        function changeRooms(delta) {
+             // Use defined limit
+            bookingData.rooms = Math.max(1, Math.min(MAX_ROOMS_PER_BOOKING, bookingData.rooms + delta));
+            // Update Display
+            document.getElementById('display-rooms').textContent = bookingData.rooms;
+            // Update Input in Popover
+            document.getElementById('input-rooms').textContent = String(bookingData.rooms).padStart(2, '0');
+        }
+
+        function changeAdults(delta) {
+            bookingData.adults = Math.max(1, Math.min(20, bookingData.adults + delta));
+            document.getElementById('display-adults').textContent = bookingData.adults;
+            document.getElementById('input-adults').textContent = String(bookingData.adults).padStart(2, '0');
+            // updateSummary() call removed as it might be undefined/unused or handled here
+        }
+
+        function changeChildren(delta) {
+            bookingData.children = Math.max(0, Math.min(10, bookingData.children + delta));
+            document.getElementById('display-children').textContent = bookingData.children;
+            document.getElementById('input-children').textContent = String(bookingData.children).padStart(2, '0');
+        }
     </script>
+
         </div>
     </div>
     
@@ -387,101 +447,6 @@ function formatPrice(price) {
     return price.toLocaleString('vi-VN') + ' ₫';
 }
 
-function changeAdults(delta) {
-    bookingData.adults = Math.max(1, Math.min(20, bookingData.adults + delta));
-    document.getElementById('adults-display').textContent = bookingData.adults;
-    updateSummary();
-}
-
-function changeChildren(delta) {
-    bookingData.children = Math.max(0, Math.min(10, bookingData.children + delta));
-    document.getElementById('children-display').textContent = bookingData.children;
-    updateSummary();
-}
-
-function searchAvailableRooms() {
-    if (!selectedCheckIn || !selectedCheckOut) {
-        alert('Vui lòng chọn ngày nhận và trả phòng');
-        return;
-    }
-    
-    const nights = Math.round((selectedCheckOut - selectedCheckIn) / (1000 * 60 * 60 * 24));
-    
-    bookingData.checkIn = selectedCheckIn.toISOString().split('T')[0];
-    bookingData.checkOut = selectedCheckOut.toISOString().split('T')[0];
-    bookingData.nights = nights;
-    
-    // Populate available rooms (existing logic from original file)
-    const roomsList = document.getElementById('available-rooms-list');
-    roomsList.innerHTML = '';
-    
-    roomTypesData.forEach(room => {
-        const roomHtml = `
-            <div class="room-card-booking bg-white rounded-lg shadow-md p-6" id="room-card-${room.id}">
-                <div class="flex gap-6">
-                    <img src="${room.image_url || 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400'}" 
-                         alt="${room.name}" 
-                         class="w-48 h-32 object-cover rounded">
-                    <div class="flex-1">
-                        <h3 class="font-display text-xl text-primary mb-2">${room.name}</h3>
-                        <p class="text-sm text-gray-600 mb-2">${room.description || 'Phòng sang trọng, tiện nghi hiện đại'}</p>
-                        <div class="flex items-center space-x-4 text-sm text-gray-600 mb-4">
-                            <span><i class="material-icons text-xs">people</i> ${room.max_capacity} người</span>
-                            <span><i class="material-icons text-xs">bed</i> King bed</span>
-                            <span><i class="material-icons text-xs">window</i> ${room.size || 30}m²</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <span class="text-2xl font-bold text-primary">${formatPrice(room.price_per_night)}</span>
-                                <span class="text-sm text-gray-600">/đêm</span>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <button onclick="changeRoomQty(${room.id}, -1)" class="w-8 h-8 border rounded flex items-center justify-center hover:bg-gray-100">
-                                    <span class="material-icons text-sm">remove</span>
-                                </button>
-                                <span id="room-qty-${room.id}" class="w-8 text-center font-semibold">0</span>
-                                <button onclick="changeRoomQty(${room.id}, 1)" class="w-8 h-8 border rounded flex items-center justify-center hover:bg-gray-100">
-                                    <span class="material-icons text-sm">add</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        roomsList.innerHTML += roomHtml;
-    });
-    
-    // Auto-select room if coming from room detail page
-    const preSelectedRoomId = sessionStorage.getItem('preSelectedRoomId');
-    if(preSelectedRoomId) {
-        setTimeout(() => {
-            changeRoomQty(parseInt(preSelectedRoomId), 1);
-            sessionStorage.removeItem('preSelectedRoomId');
-        }, 300);
-    }
-    
-    updateSummary();
-    goToStep(2);
-}
-
-function changeRoomQty(roomId, delta) {
-    if(!bookingData.selectedRooms[roomId]) {
-        bookingData.selectedRooms[roomId] = 0;
-    }
-    
-    bookingData.selectedRooms[roomId] = Math.max(0, Math.min(5, bookingData.selectedRooms[roomId] + delta));
-    
-    document.getElementById(`room-qty-${roomId}`).textContent = bookingData.selectedRooms[roomId];
-    
-    const card = document.getElementById(`room-card-${roomId}`);
-    if(bookingData.selectedRooms[roomId] > 0) {
-        card.classList.add('selected');
-    } else {
-        card.classList.remove('selected');
-    }
-    
-    updateSummary();
-}
+// End of Booking Step 1 Logic
 </script>
 @endpush
