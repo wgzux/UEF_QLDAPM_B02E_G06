@@ -91,9 +91,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="{{ route('tours') }}">
-                            Tour
-                            <span class="nav-link-underline"></span>
+                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="{{ route('experiences') }}">
+                            Trải Nghiệm & Tour
+                            <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-300"></span>
                         </a>
                     </li>
                     <li>

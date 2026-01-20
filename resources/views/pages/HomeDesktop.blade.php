@@ -1,3 +1,4 @@
+{{-- Home Desktop Page - REFACTORED --}}
 @extends('layouts.app')
 
 @section('title', 'The Wandering Rose Villa Ba Vì')
@@ -96,57 +97,44 @@
         </div>
         
         <div class="room-scroll-container">
-            <div class="room-card">
-                <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop');"></div>
-                <div class="room-info">
-                    <h3 class="heading-font text-primary">The Wandering Rose Villa</h3>
-                    <div class="room-specs">
-                        <span><i class="fa-solid fa-user"></i> 16 người lớn</span>
-                        <span><i class="fa-solid fa-ruler-combined"></i> 100m²</span>
-                        <span><i class="fa-solid fa-bed"></i> 8 đệm</span>
+            @forelse($roomTypes ?? [] as $roomType)
+                <div class="room-card">
+                    <div class="room-img" style="background-image: url('{{ $roomType->image ?? 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop' }}');"></div>
+                    <div class="room-info">
+                        <h3 class="heading-font text-primary">{{ $roomType->name }}</h3>
+                        <div class="room-specs">
+                            <span><i class="fa-solid fa-user"></i> {{ $roomType->max_capacity }} người</span>
+                            <span><i class="fa-solid fa-bed"></i> Multiple rooms</span>
+                        </div>
+                        <a href="{{ route('rooms.index') }}" class="btn btn-primary btn-block">XEM CHI TIẾT</a>
                     </div>
-                    <a href="/rooms" class="btn btn-primary btn-block">XEM CHI TIẾT</a>
                 </div>
-            </div>
-
-            <div class="room-card">
-                <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=2070&auto=format&fit=crop');"></div>
-                <div class="room-info">
-                    <h3 class="heading-font text-primary">Forest Room</h3>
-                    <div class="room-specs">
-                        <span><i class="fa-solid fa-user"></i> 2 người lớn</span>
-                        <span><i class="fa-solid fa-ruler-combined"></i> 18m²</span>
-                        <span><i class="fa-solid fa-bed"></i> 1 giường</span>
+            @empty
+                <div class="room-card">
+                    <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop');"></div>
+                    <div class="room-info">
+                        <h3 class="heading-font text-primary">The Wandering Rose Villa</h3>
+                        <div class="room-specs">
+                            <span><i class="fa-solid fa-user"></i> 16 người lớn</span>
+                            <span><i class="fa-solid fa-ruler-combined"></i> 100m²</span>
+                            <span><i class="fa-solid fa-bed"></i> 8 đệm</span>
+                        </div>
+                        <a href="/rooms" class="btn btn-primary btn-block">XEM CHI TIẾT</a>
                     </div>
-                    <a href="/rooms" class="btn btn-outline-primary btn-block">XEM CHI TIẾT</a>
                 </div>
-            </div>
-
-             <div class="room-card">
-                <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop');"></div>
-                <div class="room-info">
-                    <h3 class="heading-font text-primary">Deluxe Room</h3>
-                    <div class="room-specs">
-                        <span><i class="fa-solid fa-user"></i> 4 người lớn</span>
-                        <span><i class="fa-solid fa-ruler-combined"></i> 25m²</span>
-                        <span><i class="fa-solid fa-bed"></i> 2 giường</span>
+                <div class="room-card">
+                    <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=2070&auto=format&fit=crop');"></div>
+                    <div class="room-info">
+                        <h3 class="heading-font text-primary">Forest Room</h3>
+                        <div class="room-specs">
+                            <span><i class="fa-solid fa-user"></i> 2 người lớn</span>
+                            <span><i class="fa-solid fa-ruler-combined"></i> 18m²</span>
+                            <span><i class="fa-solid fa-bed"></i> 1 giường</span>
+                        </div>
+                        <a href="/rooms" class="btn btn-outline-primary btn-block">XEM CHI TIẾT</a>
                     </div>
-                    <a href="/rooms" class="btn btn-outline-primary btn-block">XEM CHI TIẾT</a>
                 </div>
-            </div>
-
-             <div class="room-card">
-                <div class="room-img" style="background-image: url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1965&auto=format&fit=crop');"></div>
-                <div class="room-info">
-                    <h3 class="heading-font text-primary">Pink Rose House</h3>
-                    <div class="room-specs">
-                        <span><i class="fa-solid fa-user"></i> 2 người lớn</span>
-                        <span><i class="fa-solid fa-ruler-combined"></i> 24m²</span>
-                        <span><i class="fa-solid fa-bed"></i> 1 giường</span>
-                    </div>
-                    <a href="/rooms" class="btn btn-outline-primary btn-block">XEM CHI TIẾT</a>
-                </div>
-            </div>
+            @endforelse
         </div>
     </section>
 
@@ -158,18 +146,18 @@
             <div class="zone-card">
                 <div class="zone-img" style="background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop');"></div>
                 <h3 class="heading-font text-white">KHU ROSE HOUSE</h3>
-                <a href="{{ route('contact') }}" class="btn btn-outline-light">TÌM HIỂU THÊM</a>
+                <a href="{{ route('rooms.index') }}" class="btn btn-outline-light">TÌM HIỂU THÊM</a>
             </div>
             <div class="zone-card">
                 <div class="zone-img" style="background-image: url('https://images.unsplash.com/photo-1449156493391-d2cfa28e468b?q=80&w=2074&auto=format&fit=crop');"></div>
                 <h3 class="heading-font text-white">KHU WOODEN HOUSE</h3>
                 <p class="text-white zone-desc">Chốn dừng chân lý tưởng cho những ai kiếm tìm sự ấm áp, bình yên và nhịp sống chậm rãi.</p>
-                <a href="{{ route('contact') }}" class="btn btn-outline-light">TÌM HIỂU THÊM</a>
+                <a href="{{ route('rooms.index') }}" class="btn btn-outline-light">TÌM HIỂU THÊM</a>
             </div>
             <div class="zone-card">
                 <div class="zone-img" style="background-image: url('https://images.unsplash.com/photo-1600596542815-e328d4de4bf7?q=80&w=2070&auto=format&fit=crop');"></div>
                 <h3 class="heading-font text-white">KHU VILLA</h3>
-                <a href="{{ route('contact') }}" class="btn btn-outline-light">TÌM HIỂU THÊM</a>
+                <a href="{{ route('rooms.index') }}" class="btn btn-outline-light">TÌM HIỂU THÊM</a>
             </div>
         </div>
     </section>

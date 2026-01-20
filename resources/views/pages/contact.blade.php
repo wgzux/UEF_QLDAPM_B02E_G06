@@ -56,14 +56,32 @@
 
   <div class="bg-white/50 dark:bg-white/5 p-4">
     <h2 class="text-5xl mb-12 serif text-accent-brown leading-tight">Form liên hệ<br/>nhanh</h2>
-    <form action="#" class="space-y-6">
+    
+    @if(session('success'))
+      <div class="mb-6 p-4 bg-green-100 text-green-700 rounded">{{ session('success') }}</div>
+    @endif
+    @if(session('error'))
+      <div class="mb-6 p-4 bg-red-100 text-red-700 rounded">{{ session('error') }}</div>
+    @endif
+    @if($errors->any())
+      <div class="mb-6 p-4 bg-red-100 text-red-700 rounded">
+        <ul class="list-disc pl-5">
+          @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+    
+    <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
+      @csrf
       <div class="space-y-2">
         <label class="text-xs uppercase tracking-widest text-gray-500">Họ và tên *</label>
-        <input class="w-full border-gray-300 dark:border-gray-700 bg-transparent py-3 focus:ring-0 focus:border-primary transition-all" placeholder="Nhập họ và tên" type="text"/>
+        <input class="w-full border-gray-300 dark:border-gray-700 bg-transparent py-3 focus:ring-0 focus:border-primary transition-all" placeholder="Nhập họ và tên" type="text" name="name" value="{{ old('name') }}" required/>
       </div>
       <div class="space-y-2">
         <label class="text-xs uppercase tracking-widest text-gray-500">Email *</label>
-        <input class="w-full border-gray-300 dark:border-gray-700 bg-transparent py-3 focus:ring-0 focus:border-primary transition-all" placeholder="Nhập địa chỉ email" type="email"/>
+        <input class="w-full border-gray-300 dark:border-gray-700 bg-transparent py-3 focus:ring-0 focus:border-primary transition-all" placeholder="Nhập địa chỉ email" type="email" name="email" value="{{ old('email') }}" required/>
       </div>
       <div class="space-y-2">
         <label class="text-xs uppercase tracking-widest text-gray-500">Số điện thoại *</label>
@@ -72,12 +90,12 @@
             <span class="text-sm">🇻🇳</span>
             <span class="material-icons text-xs ml-1">keyboard_arrow_down</span>
           </div>
-          <input class="w-full border-none bg-transparent py-3 focus:ring-0" placeholder="Nhập số điện thoại" type="tel"/>
+          <input class="w-full border-none bg-transparent py-3 focus:ring-0" placeholder="Nhập số điện thoại" type="tel" name="phone" value="{{ old('phone') }}" required/>
         </div>
       </div>
       <div class="space-y-2">
         <label class="text-xs uppercase tracking-widest text-gray-500">Tin nhắn *</label>
-        <textarea class="w-full border-gray-300 dark:border-gray-700 bg-transparent py-3 focus:ring-0 focus:border-primary transition-all" placeholder="Nhập tin nhắn" rows="4"></textarea>
+        <textarea class="w-full border-gray-300 dark:border-gray-700 bg-transparent py-3 focus:ring-0 focus:border-primary transition-all" placeholder="Nhập tin nhắn" rows="4" name="message" required>{{ old('message') }}</textarea>
       </div>
       <button class="bg-primary text-white px-8 py-4 uppercase text-xs tracking-[0.2em] font-medium hover:bg-accent-brown transition-colors" type="submit">Gửi tin nhắn đặt lịch</button>
     </form>

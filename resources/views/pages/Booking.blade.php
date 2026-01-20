@@ -1,243 +1,255 @@
 @extends('layouts.app')
 
-@section('title', 'Booking - The Wandering Rose')
+@section('title', 'Đặt Phòng - The Wandering Rose')
 
 @section('content')
-<section class="mt-8 px-4 md:px-12 lg:px-24 mb-16">
-	<div class="max-w-6xl mx-auto">
-		<div class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
-			<div class="flex items-center gap-6 w-full lg:w-auto justify-center lg:justify-start">
-				<div class="text-right">
-					<div class="flex items-center justify-end gap-2 mb-1">
-						<span class="font-bold uppercase tracking-wider text-sm">NGÀY</span>
-						<span class="bg-primary text-white text-[10px] px-2 py-0.5 rounded-full font-medium">10 Đêm</span>
-					</div>
-					<div class="flex items-baseline gap-2">
-						<span class="font-display text-4xl lg:text-5xl text-gray-800 dark:text-white">27</span>
-						<div class="flex flex-col text-xs text-gray-500 dark:text-gray-400 text-left leading-tight">
-							<span>Tháng 9</span>
-							<span>2025</span>
-						</div>
-					</div>
+
+{{-- Display Validation Errors --}}
+@if($errors->any())
+<div class="max-w-4xl mx-auto px-4 mt-8">
+	<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+		<strong class="font-bold">Có lỗi xảy ra!</strong>
+		<ul class="mt-2 list-disc list-inside">
+			@foreach($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+</div>
+@endif
+
+{{-- Display Success Message --}}
+@if(session('success'))
+<div class="max-w-4xl mx-auto px-4 mt-8">
+	<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+		<strong class="font-bold">Thành công!</strong>
+		<span class="block sm:inline">{{ session('success') }}</span>
+	</div>
+</div>
+@endif
+
+{{-- Booking Form --}}
+<section class="max-w-4xl mx-auto px-4 md:px-8 py-12">
+	<h1 class="font-display text-4xl md:text-5xl text-center text-primary mb-8">Đặt Phòng</h1>
+	<p class="text-center text-gray-600 mb-12">Điền thông tin để đặt phòng tại The Wandering Rose Villa</p>
+
+	<form action="{{ route('booking.store') }}" method="POST" class="bg-white shadow-lg rounded-lg p-6 md:p-8 space-y-6">
+		@csrf
+
+		{{-- Customer Information --}}
+		<div class="border-b pb-6">
+			<h2 class="text-2xl font-display text-primary mb-4">Thông tin khách hàng</h2>
+			
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Họ và tên *</label>
+					<input 
+						type="text" 
+						name="customer_name" 
+						value="{{ old('customer_name') }}"
+						class="w-full border border-gray-300 rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+						placeholder="Nguyễn Văn A"
+						required
+					>
 				</div>
-				<div class="flex items-baseline gap-2">
-					<span class="font-display text-4xl lg:text-5xl text-gray-800 dark:text-white">6</span>
-					<div class="flex flex-col text-xs text-gray-500 dark:text-gray-400 text-left leading-tight">
-						<span>Tháng 10</span>
-						<span>2025</span>
-					</div>
+
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+					<input 
+						type="email" 
+						name="customer_email" 
+						value="{{ old('customer_email') }}"
+						class="w-full border border-gray-300 rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+						placeholder="email@example.com"
+						required
+					>
 				</div>
-			</div>
-			<div class="flex items-center gap-12 w-full lg:w-auto justify-center">
-				<div class="text-center">
-					<span class="block font-bold uppercase tracking-wider text-sm mb-2">PHÒNG</span>
-					<span id="rooms-count" class="font-display text-4xl text-gray-800 dark:text-white">1</span>
+
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Số điện thoại *</label>
+					<input 
+						type="tel" 
+						name="customer_phone" 
+						value="{{ old('customer_phone') }}"
+						class="w-full border border-gray-300 rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+						placeholder="0123456789"
+						required
+					>
 				</div>
-				<div class="text-center">
-					<span class="block font-bold uppercase tracking-wider text-sm mb-2">NGƯỜI LỚN</span>
-					<span class="font-display text-4xl text-gray-800 dark:text-white">2</span>
+
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Địa chỉ</label>
+					<input 
+						type="text" 
+						name="customer_address" 
+						value="{{ old('customer_address') }}"
+						class="w-full border border-gray-300 rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+						placeholder="Hà Nội"
+					>
 				</div>
-				<div class="text-center">
-					<div class="flex items-center gap-2 mb-2 justify-center">
-						<span class="block font-bold uppercase tracking-wider text-sm">TRẺ EM</span>
-						<button class="text-gray-400 hover:text-primary">
-							<span class="material-icons">expand_more</span>
-						</button>
-					</div>
-					<span class="font-display text-4xl text-gray-800 dark:text-white">0</span>
-				</div>
-			</div>
-			<div class="w-full lg:w-auto flex justify-center lg:justify-end">
-				<button id="booking-search" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded shadow-lg hover:shadow-xl transition-all flex items-center gap-2 text-sm font-medium tracking-wide uppercase">
-					TÌM KIẾM
-					<span class="material-icons text-sm">search</span>
-				</button>
 			</div>
 		</div>
-	</div>
+
+		{{-- Booking Details --}}
+		<div class="border-b pb-6">
+			<h2 class="text-2xl font-display text-primary mb-4">Chi tiết đặt phòng</h2>
+			
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Ngày check-in *</label>
+					<input 
+						type="date" 
+						name="check_in_date" 
+						value="{{ old('check_in_date') }}"
+						min="{{ date('Y-m-d') }}"
+						class="w-full border border-gray-300 rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+						required
+					>
+				</div>
+
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Ngày check-out *</label>
+					<input 
+						type="date" 
+						name="check_out_date" 
+						value="{{ old('check_out_date') }}"
+						min="{{ date('Y-m-d', strtotime('+1 day')) }}"
+						class="w-full border border-gray-300 rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+						required
+					>
+				</div>
+
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Số người lớn *</label>
+					<input 
+						type="number" 
+						name="number_of_adults" 
+						value="{{ old('number_of_adults', 2) }}"
+						min="1"
+						max="20"
+						class="w-full border border-gray-300 rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+						required
+					>
+				</div>
+
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">Số trẻ em</label>
+					<input 
+						type="number" 
+						name="number_of_children" 
+						value="{{ old('number_of_children', 0) }}"
+						min="0"
+						max="10"
+						class="w-full border border-gray-300 rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+					>
+				</div>
+
+				<div class="md:col-span-2">
+					<label class="block text-sm font-medium text-gray-700 mb-2">Loại phòng *</label>
+					<select 
+						name="room_type_id" 
+						class="w-full border border-gray-300 rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+						required
+					>
+						<option value="">-- Chọn loại phòng --</option>
+						@forelse($roomTypes ?? [] as $roomType)
+							<option value="{{ $roomType->id }}" {{ old('room_type_id') == $roomType->id ? 'selected' : '' }}>
+								{{ $roomType->name }} 
+								@if($roomType->price_per_night)
+									- {{ number_format($roomType->price_per_night, 0, ',', '.') }}đ/đêm
+								@endif
+								(Tối đa {{ $roomType->max_capacity }} người)
+							</option>
+						@empty
+							<option value="">Chưa có phòng trống</option>
+						@endforelse
+					</select>
+				</div>
+			</div>
+		</div>
+
+		{{-- Services (Optional) --}}
+		@if(!empty($services) && count($services) > 0)
+		<div class="border-b pb-6">
+			<h2 class="text-2xl font-display text-primary mb-4">Dịch vụ thêm (tùy chọn)</h2>
+			<div class="space-y-2">
+				@foreach($services as $service)
+					<label class="flex items-center space-x-3 cursor-pointer">
+						<input 
+							type="checkbox" 
+							name="services[]" 
+							value="{{ $service->id }}"
+							{{ in_array($service->id, old('services', [])) ? 'checked' : '' }}
+							class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+						>
+						<span class="text-gray-700">
+							{{ $service->name }}
+							@if($service->price)
+								- {{ number_format($service->price, 0, ',', '.') }}đ
+							@endif
+						</span>
+					</label>
+				@endforeach
+			</div>
+		</div>
+		@endif
+
+		{{-- Special Requests --}}
+		<div class="pb-6">
+			<h2 class="text-2xl font-display text-primary mb-4">Yêu cầu đặc biệt</h2>
+			<textarea 
+				name="special_requests"
+				rows="4"
+				class="w-full border border-gray-300 rounded px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+				placeholder="Nhập yêu cầu đặc biệt của bạn (nếu có)"
+			>{{ old('special_requests') }}</textarea>
+		</div>
+
+		{{-- Submit Button --}}
+		<div class="flex justify-end space-x-4">
+			<a href="{{ route('rooms.index') }}" class="bg-gray-200 text-gray-700 px-8 py-3 rounded hover:bg-gray-300 transition">
+				Hủy
+			</a>
+			<button 
+				type="submit"
+				class="bg-primary text-white px-8 py-3 rounded hover:bg-primary-dark transition font-medium"
+			>
+				Đặt Phòng Ngay
+			</button>
+		</div>
+	</form>
 </section>
 
-<section class="max-w-7xl mx-auto px-4 md:px-12 lg:px-24 mb-24">
-	<div id="booking-summary" class="hidden fixed right-6 bottom-6 bg-white shadow-xl rounded-lg p-4 w-80 dark:bg-gray-800 z-50">
-		<h4 class="text-sm font-semibold mb-2">Tóm tắt đặt phòng</h4>
-		<div class="text-sm text-gray-600 dark:text-gray-300 mb-2">
-			<div>Check-in: <span id="bs-checkin">—</span></div>
-			<div>Check-out: <span id="bs-checkout">—</span></div>
-			<div>Số đêm: <span id="bs-nights">0</span></div>
-			<div>Tổng giá: <span id="bs-total">0 ₫</span></div>
-		</div>
-		<div class="flex gap-2">
-			<a id="bs-book-link" href="/bookingdetails" class="flex-1 text-center bg-primary text-white px-3 py-2 rounded disabled:opacity-50">Đặt ngay</a>
-			<button id="bs-clear" class="px-3 py-2 border rounded">Xóa</button>
-		</div>
-	</div>
-</section>
-
-<section class="px-4 md:px-12 lg:px-24 pb-24 relative">
-	<div class="max-w-7xl mx-auto relative">
-		<button class="absolute left-[-20px] lg:left-[-60px] top-[250px] lg:top-[50%] transform -translate-y-1/2 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-primary-dark transition-colors z-10">
-			<span class="material-icons">arrow_back</span>
-		</button>
-		<button class="absolute right-[-20px] lg:right-[-60px] top-[750px] lg:top-[50%] transform -translate-y-1/2 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md hover:bg-primary-dark transition-colors z-10">
-			<span class="material-icons">arrow_forward</span>
-		</button>
-
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-			<div class="month" data-month="9" data-year="2025">
-				<h3 class="font-display text-3xl font-bold text-primary text-center mb-8">Tháng 9 2025</h3>
-				<div class="grid grid-cols-7 mb-4">
-					<div class="text-center font-bold text-sm">T2</div>
-					<div class="text-center font-bold text-sm">T3</div>
-					<div class="text-center font-bold text-sm">T4</div>
-					<div class="text-center font-bold text-sm">T5</div>
-					<div class="text-center font-bold text-sm">T6</div>
-					<div class="text-center font-bold text-sm">T7</div>
-					<div class="text-center font-bold text-sm">CN</div>
-				</div>
-				<div class="grid grid-cols-7 gap-2">
-					<div class="aspect-square flex flex-col justify-center items-center border border-gray-100 dark:border-gray-800 rounded bg-white dark:bg-surface-dark opacity-40">
-						<span class="text-xl font-light text-gray-300 dark:text-gray-600">1</span>
-					</div>
-					<!-- ... other days ... -->
-					<div class="aspect-square flex flex-col justify-center items-center border border-primary/40 dark:border-primary/60 rounded bg-primary-light dark:bg-primary/20 cursor-pointer relative">
-						<span class="text-2xl font-light text-gray-900 dark:text-white">27</span>
-						<span class="text-[9px] text-primary-dark dark:text-primary-light mt-1">5.000.000 ₫</span>
-					</div>
-					<div class="aspect-square flex flex-col justify-center items-center border border-primary/40 dark:border-primary/60 rounded bg-primary-light dark:bg-primary/20 cursor-pointer relative">
-						<span class="text-2xl font-light text-gray-900 dark:text-white">28</span>
-						<span class="text-[9px] text-primary-dark dark:text-primary-light mt-1">5.000.000 ₫</span>
-					</div>
-				</div>
+{{-- Booking Information --}}
+<section class="bg-gray-50 py-12">
+	<div class="max-w-4xl mx-auto px-4 md:px-8">
+		<h3 class="text-2xl font-display text-primary mb-6 text-center">Chính sách đặt phòng</h3>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+			<div class="bg-white p-6 rounded shadow">
+				<h4 class="font-semibold text-lg mb-2">⏰ Giờ nhận/trả phòng</h4>
+				<p class="text-gray-600 text-sm">Check-in: 14:00</p>
+				<p class="text-gray-600 text-sm">Check-out: 12:00</p>
 			</div>
 
-			<div class="month" data-month="10" data-year="2025">
-				<h3 class="font-display text-3xl font-bold text-primary text-center mb-8">Tháng 10 2025</h3>
-				<div class="grid grid-cols-7 mb-4">
-					<div class="text-center font-bold text-sm">T2</div>
-					<div class="text-center font-bold text-sm">T3</div>
-					<div class="text-center font-bold text-sm">T4</div>
-					<div class="text-center font-bold text-sm">T5</div>
-					<div class="text-center font-bold text-sm">T6</div>
-					<div class="text-center font-bold text-sm">T7</div>
-					<div class="text-center font-bold text-sm">CN</div>
-				</div>
-				<div class="grid grid-cols-7 gap-2">
-					<div class="aspect-square"></div>
-					<div class="aspect-square"></div>
-					<div class="aspect-square flex flex-col justify-center items-center border border-primary/40 dark:border-primary/60 rounded bg-primary-light dark:bg-primary/20 cursor-pointer relative">
-						<span class="text-2xl font-light text-gray-900 dark:text-white">1</span>
-						<span class="text-[9px] text-primary-dark dark:text-primary-light mt-1">5.000.000 ₫</span>
-					</div>
-				</div>
+			<div class="bg-white p-6 rounded shadow">
+				<h4 class="font-semibold text-lg mb-2">💳 Thanh toán</h4>
+				<p class="text-gray-600 text-sm">Đặt cọc 30% khi đặt phòng</p>
+				<p class="text-gray-600 text-sm">Thanh toán phần còn lại khi check-in</p>
+			</div>
+
+			<div class="bg-white p-6 rounded shadow">
+				<h4 class="font-semibold text-lg mb-2">🔄 Hủy phòng</h4>
+				<p class="text-gray-600 text-sm">Miễn phí hủy trước 7 ngày</p>
+				<p class="text-gray-600 text-sm">Phí hủy 50% trong vòng 7 ngày</p>
+			</div>
+
+			<div class="bg-white p-6 rounded shadow">
+				<h4 class="font-semibold text-lg mb-2">📞 Liên hệ</h4>
+				<p class="text-gray-600 text-sm">Hotline: 092 981 6699</p>
+				<p class="text-gray-600 text-sm">Email: booking@thewanderingrosebavi.com</p>
 			</div>
 		</div>
 	</div>
 </section>
 
 @endsection
-
-@push('scripts')
-<script>
-	(function(){
-		const months = document.querySelectorAll('.month');
-		const dateCells = [];
-		months.forEach(monthEl => {
-			const m = parseInt(monthEl.dataset.month,10) - 1;
-			const y = parseInt(monthEl.dataset.year,10);
-			monthEl.querySelectorAll('.aspect-square').forEach(cell => {
-				const daySpan = cell.querySelector('span');
-				if(!daySpan) return;
-				const dayText = daySpan.textContent.trim();
-				const day = parseInt(dayText,10);
-				if(isNaN(day)) return;
-				const date = new Date(Date.UTC(y,m,day));
-				cell.dataset.dateIso = date.toISOString().slice(0,10);
-				if(cell.classList.contains('cursor-pointer')) dateCells.push(cell);
-			});
-		});
-
-		let checkIn = null, checkOut = null;
-		const summary = document.getElementById('booking-summary');
-		const bsCheckin = document.getElementById('bs-checkin');
-		const bsCheckout = document.getElementById('bs-checkout');
-		const bsNights = document.getElementById('bs-nights');
-		const bsTotal = document.getElementById('bs-total');
-		const bsLink = document.getElementById('bs-book-link');
-		const bsClear = document.getElementById('bs-clear');
-
-		function toggleSelection(){
-			dateCells.forEach(c=>c.classList.remove('bg-primary','text-white'));
-			if(checkIn){
-				const start = new Date(checkIn);
-				const end = checkOut ? new Date(checkOut) : start;
-				dateCells.forEach(c=>{
-					const d = new Date(c.dataset.dateIso);
-					if(d>=start && d<=end){ c.classList.add('bg-primary','text-white'); }
-				});
-			}
-		}
-
-		function calculateTotal(){
-			if(!checkIn || !checkOut) return 0;
-			const s = new Date(checkIn);
-			const e = new Date(checkOut);
-			const nights = Math.round((e - s)/(1000*60*60*24));
-			let total = 0;
-			dateCells.forEach(c=>{
-				const d = new Date(c.dataset.dateIso);
-				if(d>=s && d<e){
-					const priceSpan = c.querySelector('span.text-[9px]');
-					if(priceSpan){
-						const pText = priceSpan.textContent.replace(/[^0-9]/g,'');
-						const p = parseInt(pText||0,10);
-						total += p;
-					}
-				}
-			});
-			return { nights, total };
-		}
-
-		dateCells.forEach(cell=>{
-			cell.addEventListener('click', ()=>{
-				const iso = cell.dataset.dateIso;
-				if(!checkIn || (checkIn && checkOut)){ checkIn = iso; checkOut = null; }
-				else { if(new Date(iso) <= new Date(checkIn)){ checkOut = iso; } else { checkOut = iso; } }
-				if(checkIn && checkOut && new Date(checkOut) <= new Date(checkIn)){
-					const next = new Date(checkIn); next.setDate(next.getDate()+1); checkOut = next.toISOString().slice(0,10);
-				}
-				toggleSelection();
-				bsCheckin.textContent = checkIn || '—';
-				bsCheckout.textContent = checkOut || '—';
-				if(checkIn && checkOut){
-					const calc = calculateTotal();
-					bsNights.textContent = calc.nights;
-					bsTotal.textContent = (calc.total>0? calc.total.toLocaleString('vi-VN')+' ₫' : '—');
-					summary.classList.remove('hidden');
-					const roomsEl = document.getElementById('rooms-count');
-					const rooms = roomsEl ? parseInt(roomsEl.textContent.trim(),10) || 1 : 1;
-					bsLink.href = `/bookingdetails?check_in=${checkIn}&check_out=${checkOut}&nights=${calc.nights}&rooms=${rooms}&total=${calc.total}`;
-				} else { bsNights.textContent='0'; bsTotal.textContent='0 ₫'; bsLink.href='/bookingdetails'; }
-			});
-		});
-
-		if(bsClear) bsClear.addEventListener('click', ()=>{ checkIn=null; checkOut=null; toggleSelection(); summary.classList.add('hidden'); bsCheckin.textContent='—'; bsCheckout.textContent='—'; bsNights.textContent='0'; bsTotal.textContent='0 ₫'; bsLink.href='/bookingdetails'; });
-
-		// Search button: navigate to booking details with selected dates
-		const searchBtn = document.getElementById('booking-search');
-		if(searchBtn){
-			searchBtn.addEventListener('click', ()=>{
-				if(checkIn && checkOut){
-					const calc = calculateTotal();
-					const roomsEl = document.getElementById('rooms-count');
-					const rooms = roomsEl ? parseInt(roomsEl.textContent.trim(),10) || 1 : 1;
-					window.location.href = `/bookingdetails?check_in=${checkIn}&check_out=${checkOut}&nights=${calc.nights}&rooms=${rooms}&total=${calc.total}`;
-				}else{
-					// if dates not fully selected, show the summary panel to prompt selection
-					summary.classList.remove('hidden');
-				}
-			});
-		}
-	})();
-</script>
-@endpush
-

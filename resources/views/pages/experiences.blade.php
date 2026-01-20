@@ -1,44 +1,43 @@
 @extends('layouts.app')
 
-@section('title', 'Dịch Vụ Sự Kiện - The Wandering Rose')
+@section('title', 'Trải Nghiệm & Tours - The Wandering Rose')
 
 @section('content')
 
 {{-- Hero Section --}}
 <section class="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop" 
-         alt="Dịch vụ sự kiện" 
+    <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=2073&auto=format&fit=crop" 
+         alt="Trải nghiệm & Tours" 
          class="absolute inset-0 w-full h-full object-cover">
     <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
     <div class="relative z-10 text-center text-white px-4">
-        <h1 class="font-display text-7xl md:text-8xl font-light mb-12">Dịch vụ sự kiện</h1>
+        <h1 class="font-display text-7xl md:text-8xl font-light mb-12">Trải nghiệm & Tours</h1>
         <nav class="flex justify-center gap-8 md:gap-12 text-xs md:text-sm uppercase tracking-[0.2em] flex-wrap">
-            <a href="#sinh-nhat" class="hover:text-[#C19D60] transition-colors">Tổ chức sinh nhật</a>
-            <a href="#teambuilding" class="hover:text-[#C19D60] transition-colors">Teambuilding</a>
-            <a href="#hop-coquan" class="hover:text-[#C19D60] transition-colors">Họp cơ quan</a>
-            <a href="#ky-niem" class="hover:text-[#C19D60] transition-colors">Lễ kỷ niệm</a>
-            <a href="#dai-lich" class="hover:text-[#C19D60] transition-colors">Đại lịch sự kiện</a>
+            <a href="#tour-bavi" class="hover:text-[#C19D60] transition-colors">Tour Vườn Quốc Gia Ba Vì</a>
+            <a href="#tour-ao-vua" class="hover:text-[#C19D60] transition-colors">Tour Ao Vua</a>
+            <a href="#khoang-xanh" class="hover:text-[#C19D60] transition-colors">Khoang Xanh - Suối Tiên</a>
+            <a href="#ban-dia" class="hover:text-[#C19D60] transition-colors">Trải nghiệm bản địa</a>
         </nav>
     </div>
 </section>
 
-{{-- Tổ chức sinh nhật --}}
-<section id="sinh-nhat" class="py-20 px-6 bg-white">
+{{-- Tour Vườn Quốc Gia Ba Vì --}}
+<section id="tour-bavi" class="py-20 px-6 bg-white">
     <div class="max-w-6xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="relative overflow-hidden rounded shadow-xl">
-                <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&h=600&fit=crop" 
-                     alt="Tổ chức sinh nhật" 
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop" 
+                     alt="Vườn Quốc Gia Ba Vì" 
                      class="w-full h-[500px] object-cover">
             </div>
             
             <div class="space-y-6">
-                <h2 class="font-display text-5xl text-[#C19D60]">Tổ chức sinh nhật</h2>
+                <h2 class="font-display text-5xl text-[#C19D60]">Tour khám phá<br>Vườn Quốc gia Ba Vì</h2>
                 <p class="text-gray-600 leading-relaxed">
-                    Tổ chức tiệc sinh nhật tại The Wandering Rose mang đến không gian sang trọng và ấm cúng, phù hợp cho mọi độ tuổi. Chúng tôi cung cấp đầy đủ dịch vụ trang trí, âm thanh, ánh sáng và catering theo yêu cầu.
+                    Trải nghiệm thiên nhiên hùng vĩ với thảm thực vật đa dạng tại Vườn Quốc Gia Ba Vì. Khám phá các phế tích thời Pháp cổ kính, rừng thông mộng mơ và những cung đường trekking tuyệt đẹp dẫn lối đến các đỉnh núi cao.
                 </p>
                 <div class="flex gap-4 flex-wrap">
-                    <a href="{{ route('services.sinh-nhat') }}" 
+                    <a href="{{ route('experiences.tour-bavi') }}" 
                        class="bg-[#C19D60] text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-[#a88b68] transition">
                         XEM CHI TIẾT
                     </a>
@@ -52,17 +51,17 @@
     </div>
 </section>
 
-{{-- Teambuilding --}}
-<section id="teambuilding" class="py-20 px-6 bg-[#FDFBF7]">
+{{-- Tour Ao Vua --}}
+<section id="tour-ao-vua" class="py-20 px-6 bg-[#FDFBF7]">
     <div class="max-w-6xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 lg:order-1">
-                <h2 class="font-display text-5xl text-[#C19D60]">Teambuilding</h2>
+                <h2 class="font-display text-5xl text-[#C19D60]">Tour Ao Vua</h2>
                 <p class="text-gray-600 leading-relaxed">
-                    Tổ chức hoạt động teambuilding tại khu nghỉ dưỡng với không gian xanh mát, nhiều hoạt động ngoài trời hấp dẫn. Chương trình được thiết kế linh hoạt phù hợp với nhu cầu của từng doanh nghiệp.
+                    Khu du lịch Ao Vua nằm dưới chân núi Tản Viên huyền thoại, nơi gắn liền với truyền thuyết Sơn Tinh - Thủy Tinh. Tại đây, bạn có thể tham gia các trò chơi cảm giác mạnh, tắm thác suối tự nhiên và tận hưởng bầu không khí mát mẻ.
                 </p>
                 <div class="flex gap-4 flex-wrap">
-                    <a href="{{ route('services.teambuilding') }}" 
+                    <a href="{{ route('experiences.ao-vua') }}" 
                        class="bg-[#C19D60] text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-[#a88b68] transition">
                         XEM CHI TIẾT
                     </a>
@@ -74,31 +73,31 @@
             </div>
             
             <div class="relative overflow-hidden rounded shadow-xl lg:order-2">
-                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop" 
-                     alt="Teambuilding" 
+                <img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&h=600&fit=crop" 
+                     alt="Tour Ao Vua" 
                      class="w-full h-[500px] object-cover">
             </div>
         </div>
     </div>
 </section>
 
-{{-- Họp cơ quan --}}
-<section id="hop-coquan" class="py-20 px-6 bg-white">
+{{-- Khoang Xanh - Suối Tiên --}}
+<section id="khoang-xanh" class="py-20 px-6 bg-white">
     <div class="max-w-6xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="relative overflow-hidden rounded shadow-xl">
-                <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&h=600&fit=crop" 
-                     alt="Họp cơ quan" 
+                <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=800&h=600&fit=crop" 
+                     alt="Khoang Xanh - Suối Tiên" 
                      class="w-full h-[500px] object-cover">
             </div>
             
             <div class="space-y-6">
-                <h2 class="font-display text-5xl text-[#C19D60]">Họp cơ quan</h2>
+                <h2 class="font-display text-5xl text-[#C19D60]">Khoang Xanh –<br>Suối Tiên</h2>
                 <p class="text-gray-600 leading-relaxed">
-                    Tổ chức hội nghị, hội thảo chuyên nghiệp tại không gian yên tĩnh, thoáng mát. Phòng họp được trang bị đầy đủ thiết bị hiện đại, phù hợp cho các cuộc họp từ 10-50 người.
+                    Được thiên nhiên ưu ái ban tặng những dòng suối xanh mát và thác nước hùng vĩ, Khoang Xanh - Suối Tiên là điểm đến không thể bỏ qua. Hãy đắm mình vào làn nước mát rượi, lắng nghe tiếng chim hót và cảm nhận sự thư thái tuyệt đối.
                 </p>
                 <div class="flex gap-4 flex-wrap">
-                    <a href="{{ route('contact') }}" 
+                    <a href="{{ route('experiences.khoang-xanh') }}" 
                        class="bg-[#C19D60] text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-[#a88b68] transition">
                         XEM CHI TIẾT
                     </a>
@@ -112,17 +111,17 @@
     </div>
 </section>
 
-{{-- Lễ kỷ niệm --}}
-<section id="ky-niem" class="py-20 px-6 bg-[#FDFBF7]">
+{{-- Trải nghiệm bản địa --}}
+<section id="ban-dia" class="py-20 px-6 bg-[#FDFBF7]">
     <div class="max-w-6xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 lg:order-1">
-                <h2 class="font-display text-5xl text-[#C19D60]">Lễ kỷ niệm</h2>
+                <h2 class="font-display text-5xl text-[#C19D60]">Các trải nghiệm<br>bản địa</h2>
                 <p class="text-gray-600 leading-relaxed">
-                    Tổ chức các buổi lễ kỷ niệm đáng nhớ trong không gian sang trọng và lãng mạn. Phù hợp cho tiệc cưới nhỏ, lễ kỷ niệm ngày cưới, hay các sự kiện gia đình quan trọng.
+                    Đi sâu vào đời sống địa phương với các hoạt động giao lưu văn hóa, thưởng thức ẩm thực đặc sản vùng miền và tìm hiểu về các làng nghề truyền thống. Một hành trình chạm đến linh hồn của vùng đất Ba Vì.
                 </p>
                 <div class="flex gap-4 flex-wrap">
-                    <a href="{{ route('services.ky-niem') }}" 
+                    <a href="{{ route('experiences.ban-dia') }}" 
                        class="bg-[#C19D60] text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-[#a88b68] transition">
                         XEM CHI TIẾT
                     </a>
@@ -134,39 +133,9 @@
             </div>
             
             <div class="relative overflow-hidden rounded shadow-xl lg:order-2">
-                <img src="https://images.unsplash.com/photo-1519167758481-83f29da8c2a6?w=800&h=600&fit=crop" 
-                     alt="Lễ kỷ niệm" 
+                <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800&h=600&fit=crop" 
+                     alt="Trải nghiệm bản địa" 
                      class="w-full h-[500px] object-cover">
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- Đại lịch sự kiện --}}
-<section id="dai-lich" class="py-20 px-6 bg-white">
-    <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="relative overflow-hidden rounded shadow-xl">
-                <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&h=600&fit=crop" 
-                     alt="Đại lịch sự kiện" 
-                     class="w-full h-[500px] object-cover">
-            </div>
-            
-            <div class="space-y-6">
-                <h2 class="font-display text-5xl text-[#C19D60]">Đại lịch sự kiện</h2>
-                <p class="text-gray-600 leading-relaxed">
-                    Kết hợp giữa du lịch và tổ chức sự kiện với các chương trình tour tham quan Ba Vì, trải nghiệm văn hóa bản địa và các hoạt động outdoor thú vị. Hoàn hảo cho các chuyến du lịch team building hay gia đình.
-                </p>
-                <div class="flex gap-4 flex-wrap">
-                    <a href="{{ route('contact') }}" 
-                       class="bg-[#C19D60] text-white px-8 py-3 text-xs uppercase tracking-widest hover:bg-[#a88b68] transition">
-                        XEM CHI TIẾT
-                    </a>
-                    <a href="{{ route('contact') }}" 
-                       class="border-2 border-[#C19D60] text-[#C19D60] px-8 py-3 text-xs uppercase tracking-widest hover:bg-[#C19D60] hover:text-white transition">
-                        ĐẶT LỊCH →
-                    </a>
-                </div>
             </div>
         </div>
     </div>

@@ -1,197 +1,331 @@
 <!DOCTYPE html>
-@extends('layouts.app')
-
-@section('title', 'Trải nghiệm & Tours - The Wandering Rose')
-
-@push('styles')
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trải nghiệm &amp; Tours - The Wandering Rose</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#A67B5B",
+                        "background-light": "#FFFBF7",
+                        "background-dark": "#1A1A1A",
+                    },
+                    fontFamily: {
+                        display: ["Cormorant Garamond", "serif"],
+                        body: ["Montserrat", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "4px",
+                    },
+                },
+            },
+        };
+    </script>
 <style>
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #f1f1f1; }
-    ::-webkit-scrollbar-thumb { background: #a67c52; }
-    .elegant-title { font-family: 'Playfair Display', serif; }
-</style>
-@endpush
-
-@section('content')
-
-<section class="relative w-full h-[80vh] min-h-[600px] overflow-hidden">
-    <img alt="Hiking in the forest" class="absolute inset-0 w-full h-full object-cover brightness-75" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXWyJtMsZVrQW_Dc4VM37QyvBs0_UrqeLQQgw7Sc-DqmngtSZsHrkqlHLc2UUZrPozhk24sDjgVdlT78rPdr5_xXInr5RfXF1OWEUd3H7XrtQ_1hQ22wY69c6rD_UlFnxJ77H3Jz4DTESmsEPDPBJIqCOj0nb9aWgR2VyZRlndL-DqQMUTBuX8i3vpEsH-z80lY_7M59w8jIFb11CbsUlDkozt7hGuyDG68P-KpYY0PV9kv2jSXLQycTh7RYab9lc6H8GsiVF0bUZX"/>
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="absolute inset-0 flex flex-col items-center justify-end pb-20">
-        <h1 class="text-5xl md:text-7xl text-white elegant-title mb-12 text-center drop-shadow-lg tracking-wide">Trải nghiệm &amp; Tours</h1>
-        <nav class="hidden md:flex flex-wrap justify-center gap-8 text-white/90 text-sm tracking-widest uppercase font-medium border-t border-white/30 pt-8 w-11/12 max-w-6xl">
-            <a class="hover:text-white hover:underline decoration-1 underline-offset-4 transition-all" href="#">Tour Vườn Quốc gia Ba Vì</a>
-            <a class="hover:text-white hover:underline decoration-1 underline-offset-4 transition-all" href="#">Tour Ao Vua</a>
-            <a class="hover:text-white hover:underline decoration-1 underline-offset-4 transition-all" href="#">Khoang Xanh - Suối Tiên</a>
-            <a class="hover:text-white hover:underline decoration-1 underline-offset-4 transition-all" href="#">Trải nghiệm Bản địa</a>
-        </nav>
-    </div>
+        body { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, h4, .font-display { font-family: 'Cormorant Garamond', serif; }
+        .hero-overlay { background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)); }
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 transition-colors duration-300">
+<div class="bg-stone-900 text-white text-[10px] uppercase tracking-widest py-3 px-10 flex justify-between items-center">
+<div>ĐẶT LỊCH VỚI GIÁ TỐT NHẤT</div>
+<div class="flex gap-4 items-center">
+<div class="flex flex-col">
+<span class="text-[8px] opacity-60">CHECK-IN</span>
+<input class="bg-transparent border-b border-white/30 text-[10px] focus:ring-0 focus:border-white p-0" type="date"/>
+</div>
+<div class="flex flex-col">
+<span class="text-[8px] opacity-60">CHECK-OUT</span>
+<input class="bg-transparent border-b border-white/30 text-[10px] focus:ring-0 focus:border-white p-0" type="date"/>
+</div>
+<button class="border border-white/50 px-4 py-2 hover:bg-white hover:text-black transition-colors">BUTTON TEXT</button>
+</div>
+</div>
+<header class="bg-stone-900/95 dark:bg-stone-950 border-b border-white/10 sticky top-0 z-50">
+<div class="container mx-auto px-6 py-6 text-white text-center">
+<div class="flex justify-between items-center mb-6">
+<div class="w-10"></div> 
+<div class="flex flex-col items-center">
+<span class="text-xs tracking-widest uppercase opacity-70">EST. 2023</span>
+<h2 class="text-3xl font-display tracking-widest">THE WANDERING ROSE</h2>
+<span class="text-sm italic font-display">Villa &amp; Resort</span>
+</div>
+<div class="text-xs flex items-center gap-2">
+<span class="material-icons-outlined text-sm">phone</span>
+                    092 981 6699
+                </div>
+</div>
+<nav class="flex justify-center gap-10 text-xs tracking-widest uppercase">
+<a class="nav-link" href="#">TRANG CHỦ</a>
+<a class="nav-link" href="#">VỀ CHÚNG TÔI</a>
+<a class="nav-link" href="#">HẠNG PHÒNG</a>
+<a class="nav-link" href="#">DỊCH VỤ SỰ KIỆN</a>
+<a class="nav-link text-primary font-semibold" href="#">TRẢI NGHIỆM &amp; TOUR</a>
+<a class="nav-link" href="#">LIÊN HỆ</a>
+</nav>
+</div>
+</header>
+<section class="relative h-[600px] flex items-center justify-center text-white text-center">
+<img alt="Hiking through lush green forest" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXD8BMSVMMSreqcZhji1fMYSR_0QcOnpgOWf_7pnwJTYBIGC5rV2kUgeOKo4OoaMmZ46kerh9i6M73MDP1UjTzq0RJCutJUEb8LgpxrkbXl5ZhdbHfQRuzZkLRt-NJDsyGF_yinry5Cq4Cy8q8SqaedPpOgH_tK794q58BdLZh6ifVAEjC_z8z_pQMfpGPh1nwTLkMrR2hTKtwYeKPZCUSPBKmi1r9ic531CV45Xp2bzvCqfoNeUuEhMEEk1yVYyveA7ffstrUjns_"/>
+<div class="absolute inset-0 hero-overlay"></div>
+<div class="relative z-10 space-y-8">
+<h1 class="text-6xl md:text-8xl font-display italic">Trải nghiệm &amp; Tours</h1>
+<div class="flex flex-wrap justify-center gap-8 text-xs tracking-widest uppercase border-t border-white/30 pt-8 mx-auto max-w-4xl">
+<a class="hover:text-primary transition-colors" href="#tour1">TOUR VƯỜN QUỐC GIA BA VÌ</a>
+<a class="hover:text-primary transition-colors" href="#tour2">TOUR AO VUA</a>
+<a class="hover:text-primary transition-colors" href="#tour3">KHOANG XANH - SUỐI TIÊN</a>
+<a class="hover:text-primary transition-colors" href="#tour4">TRẢI NGHIỆM BẢN ĐỊA</a>
+</div>
+</div>
 </section>
-
-<main class="w-full">
-    <section class="container mx-auto px-4 py-20 max-w-6xl">
-        <div class="text-center mb-16">
-            <h2 class="text-5xl md:text-6xl text-primary/40 elegant-title absolute left-1/2 -translate-x-1/2 -mt-16 opacity-20 pointer-events-none whitespace-nowrap hidden lg:block">Tour khám phá</h2>
-            <h2 class="text-4xl md:text-5xl text-[#b0815d] dark:text-[#d4a57c] elegant-title mb-6 relative z-10">Vườn Quốc gia Ba Vì</h2>
-            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto italic text-lg font-light font-display">
-                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 mb-24 items-center">
-            <div class="relative group">
-                <div class="relative h-[400px] md:h-[500px] w-full overflow-hidden rounded-sm shadow-xl">
-                    <img alt="Ao Vua Waterfall" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlaIQrOPIqfzon2BTfcyTzEqHjYfTjQJ-khUdj2Bdy_EpHjdVhDodXSipJsWoy4i-GQiGb7jA5vQeVySR-RJRfzSO6Qc5ZeefqO-oBVN3DD115JSQmMphvjPjR3sWMgJx1ldGYwends2fivc7AqDxGo4fbebTje-6ruTekFqN7j45cLIjOpjBxdzKuA1PvyvmMmrqNDQDwczD3xznE3xtnNLsYAQtMfl01fCD13VkWc158TvkgMx53PG4n3IslddrvKtaaehMkFlFq"/>
-                    <div class="absolute bottom-10 left-0 right-0 text-center">
-                        <h3 class="text-3xl md:text-4xl text-white/90 elegant-title drop-shadow-md">Khoang Xanh</h3>
-                        <h3 class="text-3xl md:text-4xl text-[#e8cba5] elegant-title drop-shadow-md mt-1">Suối Tiên</h3>
-                    </div>
-                </div>
-                <p class="mt-6 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+<main class="py-24 container mx-auto px-6 max-w-6xl space-y-32">
+<section class="flex flex-col md:flex-row items-center gap-16" id="tour1">
+<div class="md:w-1/2 space-y-6">
+<h2 class="text-5xl font-display text-primary leading-tight">Tour khám phá <br/> Vườn Quốc gia Ba Vì</h2>
+<p class="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+                    Trải nghiệm thiên nhiên hùng vĩ với thảm thực vật đa dạng tại Vườn Quốc Gia Ba Vì. Khám phá các phế tích thời Pháp cổ kính, rừng thông mộng mơ và những cung đường trekking tuyệt đẹp dẫn lối đến các đỉnh núi cao. Đây là hành trình lý tưởng cho những ai yêu thích không khí trong lành và vẻ đẹp hoang sơ.
                 </p>
-            </div>
-
-            <div class="flex flex-col gap-8 md:mt-24">
-                <div class="relative h-[300px] w-full overflow-hidden rounded-sm shadow-xl">
-                    <img alt="Ba Vi landscape" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtiqxyP3x8G1XmpV-i4-m2oqRKSuhibJWSbIkSrKojqZOarMV53GZijKTD-hbWmWYNmdEZFI3N_lSu4Vh242c_qB0hfogvNzZJ7f_ArpZfGlemTtdIdz_sZ2TdYZ_g6ex9q5inl7wM7NXphLKZLz2VmHqsTgCKum7oy2d1VLfGmr4BDUsKifvo8lNLRr1hojwW0QdIEtSrA_Q-iuW12xcXMnvM0ja0qgn-dONIDXtWl668V-TdjM46gfGVPjLRG5j2pRfb-rk470MO"/>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <h3 class="text-4xl text-white/90 elegant-title drop-shadow-lg opacity-80">Tour Ao Vua</h3>
-                    </div>
-                </div>
-                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum.
+<div class="flex gap-4 pt-4">
+<button class="bg-primary hover:bg-opacity-90 text-white px-8 py-3 text-xs tracking-widest uppercase transition-all">XEM CHI TIẾT</button>
+<button class="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 text-xs tracking-widest uppercase transition-all">ĐẶT LỊCH →</button>
+</div>
+</div>
+<div class="md:w-1/2">
+<img alt="Beautiful forest mountain landscape" class="w-full h-[450px] object-cover rounded-sm shadow-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZbaupxhenXK91qWh0Y7I_5JbLEsg0kFCuAyY2sCdHwnZEtGvi7QrV8HC_f1IezstWx2Rp0BHh5IkVwt0yPjWUzMledPWD8s3MEvYlnV6kFLmhJjjxdgHwxTzH1T8gtMuS0ayqydgPCVq8lbYWVHf2CW6RLfH0wUzYJn-921_OXAzacrRFT26jW4J_mr0zZr0o4fnXIiNyz730bmjGbYaFdqi9ArW1al-HKYkjk_p_XDWprYRAL6TD3TqDIc7u62y9AAJwiriTm97B"/>
+</div>
+</section>
+<section class="flex flex-col md:flex-row-reverse items-center gap-16" id="tour2">
+<div class="md:w-1/2 space-y-6">
+<h2 class="text-5xl font-display text-primary leading-tight">Tour Ao Vua</h2>
+<p class="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+                    Khu du lịch Ao Vua nằm dưới chân núi Tản Viên huyền thoại, nơi gắn liền với truyền thuyết Sơn Tinh - Thủy Tinh. Tại đây, bạn có thể tham gia các trò chơi cảm giác mạnh, tắm thác suối tự nhiên và tận hưởng bầu không khí mát mẻ, trong lành của vùng núi Ba Vì. Một địa điểm tuyệt vời cho kỳ nghỉ gia đình.
                 </p>
-                <div class="relative h-[350px] w-full overflow-hidden rounded-sm shadow-xl mt-4">
-                    <img alt="Local waterfall experience" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvkpDpHofxTSUUwcE8HSqJcCOCYooHl6iP5f5bi3eo-mNV2kewBjb4SeAMiTF_uMSwmhhm7J0AMjB-QNtlQLPwlFTj14jw3Q7-cEiCyXDZVPQKoVY4LZMmqKHZDqIXjRRG0vSccSZzk_jRGjYSBcv6LL8XfYokoVKyYa22ho83H6EuSRn6jnuqs4jWhG7UREu7rrB-QidIQ0rXe6cuPV3t-53RsZn2Q6tq9kluxJgtgcMz0l5gexXBxDSbBXNVcR2kcPWlxBlql6SY"/>
-                    <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/20">
-                        <h3 class="text-3xl text-white/90 elegant-title drop-shadow-lg text-center leading-tight">Các trải nghiệm<br/><span class="text-[#e8cba5]">bản địa</span></h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-20">
-            <div class="space-y-4">
-                <div class="h-[600px] overflow-hidden rounded-sm shadow-lg">
-                    <img alt="Hiking trail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv-dorG3vwcYq7Hb9kXykrCLs_6-qESC_CHxa1oXXfcfytcAlc3Dkyq7-T9lLPHzYpTsDbUUvjrCyO6I6NMXqiVVjKn8Jp-S4CBOL_fvMrcdc5QdVODW84ZTUciv0rrD3zaMqCvFBd6YkrJAi4LMUBeTIwluFbnOjCt1vA5crub0L9HdtyXXT8rcQxH8mhIJL2igu2bG0qQRMNX-0FptmnIrTQKSlAz3wbwSYDrzrq0DOGm8XHxHVijBh58_RxOivdQj7OWtNbtWM3"/>
-                </div>
-            </div>
-
-            <div class="space-y-4 flex flex-col justify-center">
-                <p class="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-6">
-                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+<div class="flex gap-4 pt-4">
+<button class="bg-primary hover:bg-opacity-90 text-white px-8 py-3 text-xs tracking-widest uppercase transition-all">XEM CHI TIẾT</button>
+<button class="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 text-xs tracking-widest uppercase transition-all">ĐẶT LỊCH →</button>
+</div>
+</div>
+<div class="md:w-1/2">
+<img alt="Waterfall landscape" class="w-full h-[450px] object-cover rounded-sm shadow-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI8wZGUizkb6dj_Xq-5tH-DRt8zhj7inABxA3dv0tij8jo94DO4QlpOJXM-Zztf6vPydx_y6weZgOIgffb5GClXfP4PTKgpyyIRBqnttc3EMfWyGtgzzu_Ux2A5RUjnJd1XzhJXCXrjhqsDfLSVeKX26mrDiXQwcFzLaxvrdlbLU6BdcypCSzoqwmT06VieCHYzspaSTJOnulQG984Cgetw0fqH9QnN5xUsDMAkJ81ltWjwz7fYftkDJkq5QUYOQbaF-7IEVzpZxaA"/>
+</div>
+</section>
+<section class="flex flex-col md:flex-row items-center gap-16" id="tour3">
+<div class="md:w-1/2 space-y-6">
+<h2 class="text-5xl font-display text-primary leading-tight">Khoang Xanh – <br/> Suối Tiên</h2>
+<p class="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+                    Được thiên nhiên ưu ái ban tặng những dòng suối xanh mát và thác nước hùng vĩ, Khoang Xanh - Suối Tiên là điểm đến không thể bỏ qua. Hãy đắm mình vào làn nước mát rượi, lắng nghe tiếng chim hót và cảm nhận sự thư thái tuyệt đối giữa núi rừng đại ngàn.
                 </p>
-                <div class="h-[400px] overflow-hidden rounded-sm shadow-lg mb-8">
-                    <img alt="Nature stream" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYtNg3YCHL0EfEdzQoJ1cnkaTDh7PGGU00pj7DN-174JMy3Havs5Qph44fefCR6uwGShDSjIZ8Ohtc9OMezGkwS6hjZUH_5zBQinii_ykfjdVKWNUwHQVa6yfyrztRNCOTzXBKcs7YASDtfE1hoZ2V3h-OQvf1oep9KtVk3GX7Mh3xV0n9FB94592WjLzdosJQGG2M-C1hETpxoOzWYth0XZE9B7pbkZB-6RpwySA1HF2XzhbVMYQcr0xSpidZzc_XEc7BA8q-2oq0"/>
-                </div>
-                <ul class="space-y-2 text-sm text-gray-500 dark:text-gray-400 list-disc pl-5 font-light">
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Donec lacinia sem eget justo bibendum malesuada.</li>
-                    <li>Etiam imperdiet odio eget nisl laoreet aliquam.</li>
-                    <li>Nunc pulvinar ante at lobortis gravida.</li>
-                    <li>Quisque hendrerit velit nec diam lacinia fermentum.</li>
-                    <li>Donec pretium augue sed tempus rhoncus.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="flex flex-col items-center justify-center max-w-3xl mx-auto pt-10 border-t border-gray-200 dark:border-gray-700">
-            <div class="flex gap-4 mb-8">
-                <a href="/tours" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 text-sm uppercase tracking-wide transition-colors inline-flex items-center">Xem chi tiết</a>
-                <a href="/booking" class="border border-primary text-primary hover:bg-primary hover:text-white px-6 py-2 text-sm uppercase tracking-wide transition-colors inline-flex items-center">Đặt lịch →</a>
-            </div>
-
-            <h2 class="text-5xl md:text-6xl text-[#b0815d] dark:text-[#d4a57c] elegant-title mb-12">Đặt tour</h2>
-
-            <form class="w-full space-y-5">
-                <div>
-                    <label class="block text-xs uppercase text-gray-500 dark:text-gray-400 mb-1">Họ và tên *</label>
-                    <input class="w-full border-b border-gray-300 dark:border-gray-600 bg-transparent py-2 focus:outline-none focus:border-primary placeholder-gray-300 dark:placeholder-gray-600 text-sm" placeholder="Nhập họ và tên" type="text"/>
-                </div>
-                <div>
-                    <label class="block text-xs uppercase text-gray-500 dark:text-gray-400 mb-1">Email *</label>
-                    <input class="w-full border-b border-gray-300 dark:border-gray-600 bg-transparent py-2 focus:outline-none focus:border-primary placeholder-gray-300 dark:placeholder-gray-600 text-sm" placeholder="Nhập địa chỉ email" type="email"/>
-                </div>
-                <div>
-                    <label class="block text-xs uppercase text-gray-500 dark:text-gray-400 mb-1">Số điện thoại *</label>
-                    <div class="flex items-center border-b border-gray-300 dark:border-gray-600 py-2">
-                        <div class="flex items-center gap-1 pr-2 border-r border-gray-300 dark:border-gray-600 mr-2">
-                            <img alt="Vietnam Flag" class="w-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZrBjFdiJoFtwN5whrFXsLWyj7gJ5oMoliaGVe2ouwWEnWME_S7K1yvY56EghJHMZvjh7n4HyZ1I_FD-XwbSf18k4_jgAvHmNboqvryj30TWVGaJaYVJBMvJ6JTT_1AoxtxgbyBbmd5LTQA_p1sxBhb_5MNjF-H_gpXZUOw3C6HuQL2B0pnDMH6-hzeY66AdvTEzmTEwkyP0pdqxluhHc7HP6Yc8Gz5z33kpt2R7zSf4N1nZuzXextpOv0-x-jN8t5eEn_icrTMMwP"/>
-                            <span class="material-symbols-outlined text-sm text-gray-400">expand_more</span>
-                        </div>
-                        <input class="flex-1 bg-transparent focus:outline-none placeholder-gray-300 dark:placeholder-gray-600 text-sm" placeholder="Nhập số điện thoại" type="tel"/>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs uppercase text-gray-500 dark:text-gray-400 mb-1">Chọn dịch vụ *</label>
-                    <div class="relative">
-                        <select class="w-full border-b border-gray-300 dark:border-gray-600 bg-transparent py-2 appearance-none focus:outline-none focus;border-primary text-gray-500 dark:text-gray-400 text-sm">
-                            <option>Chọn</option>
-                            <option>Tour Vườn Quốc gia</option>
-                            <option>Tour Ao Vua</option>
-                        </select>
-                        <span class="material-symbols-outlined absolute right-0 top-2 text-gray-400 pointer-events-none">expand_more</span>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs uppercase text-gray-500 dark:text-gray-400 mb-1">Tin nhắn (nếu có)</label>
-                    <textarea class="w-full border border-gray-300 dark:border-gray-600 bg-transparent p-2 focus:outline-none focus;border-primary placeholder-gray-300 dark:placeholder-gray-600 text-sm resize-none" placeholder="Nhập tin nhắn" rows="4"></textarea>
-                </div>
-                <button class="bg-primary hover:bg-primary-dark text-white px-8 py-3 text-sm uppercase tracking-wide mt-6 transition-colors w-full sm:w-auto" type="button">Gửi tin nhắn đặt lịch</button>
-            </form>
-        </div>
-
-    </section>
-
-    <section class="bg-[#b0815d] dark:bg-[#3d2b1f] text-white py-20 px-4 mt-20 relative overflow-hidden">
-        <div class="container mx-auto max-w-7xl relative z-10">
-            <h2 class="text-4xl md:text-5xl elegant-title text-center mb-16 text-[#e8cba5]">Tin tức và sự kiện</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div class="group cursor-pointer">
-                    <div class="overflow-hidden mb-4 relative h-[400px]">
-                        <img alt="Music Concert" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXRSB8HhF-g7ykk4Z73ii-580t_rKQv9HiqVtPSoN2s5MDE3GZCRx-A_JuC6NpZ3UpYNiA0Gd_IqRi0zlUnsPC9PaZ-1HGycVPp4OI9erfQf3qaHJ5yv_Rbm6VD8k-5Guk2aGkIkMB4cLQ1gD3Zs4GR_GJC7_kSyGV0OiiO4Jgr346i02X6U0OmVOVN5fvScIlIFI3Bx3OwmIAp1TYx2KZFpGcLDkzpskc16PbOKqR1hKMpoOAMzL5DHRb8SF13wZkIZ6ZzAiu_pTq"/>
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all"></div>
-                    </div>
-                    <p class="text-xs uppercase tracking-wider opacity-80 mb-1">Sự kiện âm nhạc</p>
-                    <h3 class="text-2xl elegant-title mb-4">Tên tin tức</h3>
-                    <a class="inline-flex items-center gap-2 text-xs uppercase border border-white/40 px-4 py-2 hover:bg-white hover:text-[#b0815d] transition-colors" href="#">
-                        Tìm hiểu <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </a>
-                </div>
-                <div class="group cursor-pointer">
-                    <div class="overflow-hidden mb-4 relative h-[400px]">
-                        <img alt="Concert Music" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyk946FPEIsoWbtsDwiIm98Rymfe_eyA-isEVwhvSXer7-uzaZQPV-0WM9BVSCXDgH-rRf5XorXTTEfiMeHgZxSL2wGLhZlr2VxBgq1lCzkxWSNd_hJ_R8wvMKhtJA5r_UcbfKcYjyfJ2xor9sbSlUx-Hkwr1WOVOfXhPWoABaC-ehRTVLMWAWcM4EYVQzm5w43FNaMkIrW0Eqrlz3lsh8a76rN8D2rvPQGozVmT6N7vWEyF9909kZsCbmT5eWPHqlHGlV0UQNXIYH"/>
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all"></div>
-                    </div>
-                    <p class="text-xs uppercase tracking-wider opacity-80 mb-1">Tên loại tin tức</p>
-                    <h3 class="text-2xl elegant-title mb-4">Tên tin tức</h3>
-                    <a class="inline-flex items-center gap-2 text-xs uppercase border border-white/40 px-4 py-2 hover:bg-white hover;text-[#b0815d] transition-colors" href="#">
-                        Tìm hiểu <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </a>
-                </div>
-                <div class="group cursor-pointer hidden md:block">
-                    <div class="overflow-hidden mb-4 relative h-[400px]">
-                        <img alt="Pop Music Concert" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDA7jpUsYpGDFBo_Yz0U3jn3K7qthVy5ly5GlfVdb7gvhXSj_AEz0lGwH9Qz2FsxRh9GkcM0PuHMKWlUW_FYeHvfVgop6bVGLVLVgJE_iyLfNLe-KCeeGmSs22w_J2GNB41OrQBQu23pQ97oTqUxsadKtKFbiibT65vCvrP8BheCWsp6xwz5B1HbQyQ6agAAdoadm54wXaJ6h-0E6flZYNf4PHhDbOtW7SRtBxRBLPt5Ssu7LPzPKN9MofIYHwFfQ1i1Mj07BAobMC"/>
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all"></div>
-                    </div>
-                    <p class="text-xs uppercase tracking-wider opacity-80 mb-1">Tên loại tin tức</p>
-                    <h3 class="text-2xl elegant-title mb-4">Tên tin tức</h3>
-                    <a class="inline-flex items-center gap-2 text-xs uppercase border border-white/40 px-4 py-2 hover:bg-white hover;text-[#b0815d] transition-colors" href="#">
-                        Tìm hiểu <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </a>
-                </div>
-            </div>
-            <div class="flex justify-center gap-4">
-                <button class="w-10 h-10 rounded-full bg-white text-[#b0815d] flex items-center justify-center hover:bg-gray-100 transition-colors">
-                    <span class="material-symbols-outlined">arrow_back</span>
-                </button>
-                <button class="w-10 h-10 rounded-full bg-white text-[#b0815d] flex items-center justify-center hover:bg-gray-100 transition-colors">
-                    <span class="material-symbols-outlined">arrow_forward</span>
-                </button>
-            </div>
-        </div>
-    </section>
+<div class="flex gap-4 pt-4">
+<button class="bg-primary hover:bg-opacity-90 text-white px-8 py-3 text-xs tracking-widest uppercase transition-all">XEM CHI TIẾT</button>
+<button class="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 text-xs tracking-widest uppercase transition-all">ĐẶT LỊCH →</button>
+</div>
+</div>
+<div class="md:w-1/2">
+<img alt="Rocky stream and forest" class="w-full h-[450px] object-cover rounded-sm shadow-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlR5L8ZCzYB51DZER3OFnxCvCUFenmPzY-0mlZ_vaHAas6cVIigTtg5HjXPENC7hESpdhpBQZL-2QNn-QELcxIoI48JJVxFpohvkpJ-bvcvm4MNggqozlMfRfJp-pNAxhDVREsjBM5N9qYxurcP_yx_LKa1S7B9D-91KapmeVFBOAfe7NL0lUNJ3lmTjIrWH8ylMJm9GBvHf0K2YdLWfM5TKdCiGq6Htgkq6MgG6Fd0L_rTmYE8v8f9xEd5q29DhSj42W2BQhsVcIi"/>
+</div>
+</section>
+<section class="flex flex-col md:flex-row-reverse items-center gap-16" id="tour4">
+<div class="md:w-1/2 space-y-6">
+<h2 class="text-5xl font-display text-primary leading-tight">Các trải nghiệm <br/> bản địa</h2>
+<p class="text-gray-600 dark:text-gray-400 leading-relaxed font-light">
+                    Đi sâu vào đời sống địa phương với các hoạt động giao lưu văn hóa, thưởng thức ẩm thực đặc sản vùng miền và tìm hiểu về các làng nghề truyền thống. Một hành trình chạm đến linh hồn của vùng đất Ba Vì qua những nụ cười và câu chuyện của người dân bản xứ.
+                </p>
+<div class="flex gap-4 pt-4">
+<button class="bg-primary hover:bg-opacity-90 text-white px-8 py-3 text-xs tracking-widest uppercase transition-all">XEM CHI TIẾT</button>
+<button class="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 text-xs tracking-widest uppercase transition-all">ĐẶT LỊCH →</button>
+</div>
+</div>
+<div class="md:w-1/2">
+<img alt="Hiker in the woods" class="w-full h-[450px] object-cover rounded-sm shadow-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz-jQJ-Gn5wQNe8zqdMi1c9pr1wLmfEMVD-ACNXobPFRaeOthlBuAtj0VNS-m-LFEAaaw5WjyouqlPXYLWVpWsdNNzZ3ikpDNXf3N2_swZOfNtN7wzNTBG2ZA6BSgeMMQEZDTZgGFe4ySTV_3PeNaErc_EV--2EFIQpmcs2i1uAp20AB8dMsr5Z8IxOswCm7hLTyI7Zn62T4vsRON95EgOwwDiBL6u_Ga4m2FkuxG5OxFE9_GRtZt6wpP6acwUrV1yrC2hxkBq6e8J"/>
+</div>
+</section>
 </main>
+<section class="bg-[#F8F3EE] dark:bg-stone-900 py-24">
+<div class="container mx-auto px-6 max-w-6xl flex flex-col md:flex-row gap-20">
+<div class="md:w-1/2">
+<img alt="Resort landscape with pool" class="w-full aspect-[4/5] object-cover rounded-sm mb-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYm9kMzRritq2aLQJet3EtKVjWTYJgljqarGCpF2_hBpyObg3ADovMZR4OcMj4C9E8o8iFqM_rgzsP4zHGzFlSQdm1YT0L0n7_EyYVjIyB4hm1DVVEPyFx1Xyxyq5vEYxcjCpH8KIcQ1LuWIklSFiiU6aEwIJhtryQpGBknb7WtrNvJHibInyMgGfpIz59edcBTnzGaZF1Ol9GZfNU7VMcCQMp9XHbV3kE5HSG7OkSP4cAlQFfqoPYxkRExDBq50kzSkMjMRG2R-x3"/>
+<ul class="space-y-3 text-sm text-primary italic font-light">
+<li>• Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+<li>• Donec lacinia sem eget justo bibendum malesuada.</li>
+<li>• Etiam imperdiet odio eget nisl laoreet aliquam.</li>
+<li>• Nunc pulvinar ante at lobortis gravida.</li>
+<li>• Quisque hendrerit velit nec diam lacinia fermentum.</li>
+<li>• Donec pretium augue sed tempus rhoncus.</li>
+</ul>
+</div>
+<div class="md:w-1/2">
+<h2 class="text-6xl font-display text-primary mb-12">Đặt tour</h2>
+<form class="space-y-6">
+<div class="space-y-1">
+<label class="text-[10px] uppercase tracking-widest text-gray-500">Họ và tên *</label>
+<input class="w-full border-gray-300 dark:border-stone-700 dark:bg-stone-800 focus:ring-primary focus:border-primary px-4 py-3 rounded-none" placeholder="Nhập họ và tên" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] uppercase tracking-widest text-gray-500">Email *</label>
+<input class="w-full border-gray-300 dark:border-stone-700 dark:bg-stone-800 focus:ring-primary focus:border-primary px-4 py-3 rounded-none" placeholder="Nhập địa chỉ email" type="email"/>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] uppercase tracking-widest text-gray-500">Số điện thoại *</label>
+<div class="flex border border-gray-300 dark:border-stone-700">
+<div class="flex items-center px-4 bg-gray-50 dark:bg-stone-700 border-r border-gray-300 dark:border-stone-600 gap-2">
+<span class="text-xs">🇻🇳</span>
+<span class="material-icons-outlined text-xs">expand_more</span>
+</div>
+<input class="w-full border-none dark:bg-stone-800 focus:ring-0 px-4 py-3" placeholder="Nhập số điện thoại" type="tel"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] uppercase tracking-widest text-gray-500">Chọn dịch vụ *</label>
+<select class="w-full border-gray-300 dark:border-stone-700 dark:bg-stone-800 focus:ring-primary focus:border-primary px-4 py-3 rounded-none appearance-none">
+<option>Chọn</option>
+<option>Tour Vườn Quốc Gia Ba Vì</option>
+<option>Tour Ao Vua</option>
+<option>Khoang Xanh - Suối Tiên</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] uppercase tracking-widest text-gray-500">Tin nhắn (nếu có)</label>
+<textarea class="w-full border-gray-300 dark:border-stone-700 dark:bg-stone-800 focus:ring-primary focus:border-primary px-4 py-3 rounded-none" placeholder="Nhập tin nhắn" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary hover:bg-opacity-90 text-white py-4 text-xs tracking-widest uppercase transition-all mt-4">GỬI TIN NHẮN ĐẶT LỊCH</button>
+</form>
+</div>
+</div>
+</section>
+<section class="bg-primary py-24 text-white overflow-hidden">
+<div class="container mx-auto px-6 max-w-6xl">
+<h2 class="text-6xl font-display text-center mb-16">Tin tức và sự kiện</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden aspect-[3/4] mb-6">
+<img alt="Concert Event" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDteO7av1J42Rogr-2ib8BlJqscwJ1IkmPlVFY4YFWLwECW0Atpm17_071dhZlH3x7Kgk4YV-kKCJX5iIefwWhoqQBEUT85kYHF3JsHfZCH_Ww0whY59ORviv1PGHk9tkQAW8kAA5B9sqvDVqJYaLshnBuxHrge8qqWal9v17jeGOu0MSK47-aGsJ1saukd2fydHsBlhYuiquGSmsE1g3t-EzNusZiD2GCKX7xdiAkIytXmoCdaVu4lrdgwgY0Wfy0Gue9ag294n8lE"/>
+</div>
+<span class="text-[10px] uppercase tracking-widest opacity-70">SỰ KIỆN ÂM NHẠC</span>
+<h3 class="text-3xl font-display my-2">Tên tin tức</h3>
+<button class="flex items-center gap-2 text-[10px] uppercase tracking-widest border border-white/30 px-4 py-2 hover:bg-white hover:text-primary transition-colors">TÌM HIỂU <span class="text-xs">→</span></button>
+</div>
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden aspect-[3/4] mb-6">
+<img alt="Music Concert" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUKxXWByCgeMVPx1_oNHnsINK6iv_1z0Aew4cdxJzWQu_Q1Z8t3hADJr2cwRakJNapvYpWK2pJPAHoSAvfxCMyfdpqRxJJs6ifDRk5eqOTsZseY0NvLWzgLjC7mhTDKzx01HY_YZHcr-TuXF04iF5b9ZUcJczxod5SdEU35HfC_0bD3H98BPqaVCjU_WiUQnP_97dFAq4bxbM88objSCxj6e1qDXnbiZy6zoo-LDkufLFW36PDFZhS2-PXXU0375T_Mwski6_Wk10s"/>
+</div>
+<span class="text-[10px] uppercase tracking-widest opacity-70">TÊN LOẠI TIN TỨC</span>
+<h3 class="text-3xl font-display my-2">Tên tin tức</h3>
+<button class="flex items-center gap-2 text-[10px] uppercase tracking-widest border border-white/30 px-4 py-2 hover:bg-white hover:text-primary transition-colors">TÌM HIỂU <span class="text-xs">→</span></button>
+</div>
+<div class="group cursor-pointer">
+<div class="relative overflow-hidden aspect-[3/4] mb-6">
+<img alt="Pop Music Event" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqhbuBOaVdBhSz1Y5FEDt9Ugd4p45uvKF__z541FnpZgKPgrVee3kgQNEdFtGVX_BnYsleLrNofqGofZq9JpJcx3HIh44PK05IdHvQBcAq1KqNFmxUPJIH-FwIdS_Q5VtqovwTA62Er6bI0GEokP5Xfcawv4ifi47PUgGDtYrno2fQuj9XuSDzGQViYP948AGHVilm4le5enXBIDcwOXUyhSphDrDS_4jJKJEgJveeWrHWRa8jOF98WYLNklcUWB81xHvaMqrnvExx"/>
+</div>
+<span class="text-[10px] uppercase tracking-widest opacity-70">TÊN LOẠI TIN TỨC</span>
+<h3 class="text-3xl font-display my-2">Tên tin tức</h3>
+<button class="flex items-center gap-2 text-[10px] uppercase tracking-widest border border-white/30 px-4 py-2 hover:bg-white hover:text-primary transition-colors">TÌM HIỂU <span class="text-xs">→</span></button>
+</div>
+</div>
+<div class="flex justify-center gap-4 mt-16">
+<button class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-primary transition-all">
+<span class="material-icons-outlined">west</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-primary transition-all">
+<span class="material-icons-outlined">east</span>
+</button>
+</div>
+</div>
+</section>
+<footer class="bg-stone-900 text-white pt-24 pb-12">
+<div class="container mx-auto px-6 max-w-6xl">
+<div class="text-center mb-20">
+<div class="flex flex-col items-center">
+<span class="text-[10px] tracking-widest uppercase opacity-60">EST. 2023</span>
+<h2 class="text-4xl font-display tracking-widest">THE WANDERING ROSE</h2>
+<span class="text-sm italic font-display">Villa &amp; Resort</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div>
+<h4 class="text-2xl font-display mb-6 uppercase tracking-widest">TRANG CHỦ</h4>
+<ul class="space-y-3 text-xs opacity-70 tracking-wide uppercase font-light">
+<li><a class="hover:text-primary transition-colors" href="#">VỀ CHÚNG TÔI</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">SỰ KIỆN ÂM NHẠC</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">GALLERY HÌNH ẢNH &amp; VIDEO</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">TIN TỨC</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h4 class="text-2xl font-display mb-6 uppercase tracking-widest">HẠNG PHÒNG</h4>
+<div class="grid grid-cols-1 gap-3 text-xs opacity-70 tracking-wide uppercase font-light">
+<a class="hover:text-primary" href="#">KHU WOODEN HOUSE</a>
+<a class="hover:text-primary" href="#">FOREST ROOM</a>
+<a class="hover:text-primary" href="#">DELUXE ROOM</a>
+<a class="hover:text-primary" href="#">FAMILY ROOM</a>
+<a class="hover:text-primary" href="#">KHU ROSE HOUSE</a>
+<a class="hover:text-primary" href="#">PINK ROSE HOUSE</a>
+<a class="hover:text-primary" href="#">WHITE ROSE HOUSE</a>
+<a class="hover:text-primary" href="#">RED ROSE HOUSE</a>
+<a class="hover:text-primary" href="#">THE WANDERING ROSE VILLA</a>
+</div>
+</div>
+<div>
+<h4 class="text-2xl font-display mb-6 uppercase tracking-widest">TRẢI NGHIỆM &amp; TOUR</h4>
+<ul class="space-y-3 text-xs opacity-70 tracking-wide uppercase font-light">
+<li><a class="hover:text-primary transition-colors" href="#">TOUR VƯỜN QUỐC GIA BA VÌ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">TOUR AO VUA</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">KHOANG XANH - SUỐI TIÊN</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">CÁC TRẢI NGHIỆM BẢN ĐỊA</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-2xl font-display mb-6 uppercase tracking-widest">LIÊN HỆ</h4>
+<ul class="space-y-4 text-xs opacity-70 tracking-wide font-light">
+<li class="flex items-center gap-3">
+<span class="material-icons-outlined text-sm">phone</span>
+                            092 981 6699
+                        </li>
+<li class="flex items-center gap-3">
+<span class="material-icons-outlined text-sm">mail</span>
+                            booking@thewanderingrosebavi.com
+                        </li>
+<li class="flex items-center gap-3 leading-relaxed">
+<span class="material-icons-outlined text-sm">location_on</span>
+                            Thôn Mít Mái, Ba Vì, Hà Nội
+                        </li>
+<li class="pt-2">
+<button class="border border-white/30 px-6 py-2 uppercase text-[10px] tracking-widest hover:bg-white hover:text-black transition-all">GỬI LIÊN HỆ →</button>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center text-[10px] opacity-50 uppercase tracking-widest gap-6">
+<p>© Copyright 2025 The Wandering Rose</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Facebook</a>
+<a class="hover:text-white transition-colors" href="#">Youtube</a>
+<a class="hover:text-white transition-colors" href="#">Instagram</a>
+<a class="hover:text-white transition-colors" href="#">Pinterest</a>
+</div>
+</div>
+</div>
+</footer>
 
-@endsection
+</body></html>
