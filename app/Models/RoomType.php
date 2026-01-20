@@ -47,18 +47,31 @@ class RoomType extends Model
     }
 
     /**
-     * Get all bookings for this room type through rooms.
+     * Get all bookings for this room type.
      */
-    public function bookings(): HasManyThrough
+    public function bookings(): BelongsToMany
     {
-        return $this->hasManyThrough(Booking::class, Room::class);
+        return $this->belongsToMany(Booking::class, 'booking_room_types')
+            ->withPivot('quantity', 'price_per_night', 'subtotal')
+            ->withTimestamps();
     }
 
     /**
-     * Get available rooms for this room type.
+     * Scope to get available room types for a date range.
      */
-    public function availableRooms(): HasMany
+    public function scopeAvailable($query, $checkIn, $checkOut)
     {
-        return $this->hasMany(Room::class)->where('status', 'available');
+        return $query->whereRaw("
+            number_of_rooms > (
+                SELECT COALESCE(SUM(booking_room_types.quantity), 0)
+                FROM booking_room_types
+                JOIN bookings ON bookings.id = booking_room_types.booking_id
+                WHERE booking_room_types.room_type_id = room_types.id
+                AND bookings.status IN ('confirmed', 'paid', 'pending')
+                AND (
+                    (bookings.check_in < ? AND bookings.check_out > ?)
+                )
+            )
+        ", [$checkOut, $checkIn]);
     }
 }

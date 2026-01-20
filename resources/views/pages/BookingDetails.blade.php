@@ -305,10 +305,12 @@
                                 <span>Tiền phòng</span>
                                 <span>{{ number_format($grandTotal) }} đ</span>
                             </div>
-                            <div class="flex justify-between">
-                                <span>Phụ phí</span>
-                                <span>0 đ</span>
+                            @if($hasWeekend && $surcharge > 0)
+                            <div class="flex justify-between text-orange-600">
+                                <span>Phụ thu cuối tuần ({{ $weekendNights }} đêm × {{ $surchargePercent }}%)</span>
+                                <span>{{ number_format($surcharge) }} đ</span>
                             </div>
+                            @endif
                             <div class="flex justify-between">
                                 <span>Dịch vụ</span>
                                 <span>0 đ</span>
@@ -321,8 +323,11 @@
                         
                         <div class="flex justify-between items-center mb-2 font-bold text-gray-800">
                             <span>Tổng thanh toán</span>
-                            <span>{{ number_format($grandTotal) }} đ</span>
+                            <span>{{ number_format($finalTotal) }} đ</span>
                         </div>
+                        @if($hasWeekend)
+                        <p class="text-[10px] text-red-500 text-right mb-2">* Giá này áp dụng tăng {{ $surchargePercent }}% khi quý khách đặt Thứ 7 - Chủ nhật</p>
+                        @endif
                         <p class="text-[10px] text-gray-400 text-right mb-6">(Bao gồm thuế GTGT 10% và phí dịch vụ 5%)</p>
                         
                         {{-- Payment Method --}}

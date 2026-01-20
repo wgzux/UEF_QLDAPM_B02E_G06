@@ -97,6 +97,20 @@
                         </a>
                     </li>
                     <li>
+                        <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="{{ route('tracking.index') }}">
+                            Tra Cứu Đơn Hàng
+                            <span class="nav-link-underline"></span>
+                        </a>
+                    </li>
+                    @auth
+                        <li>
+                            <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="{{ route('customer.bookings') }}">
+                                Đơn Hàng Của Tôi
+                                <span class="nav-link-underline"></span>
+                            </a>
+                        </li>
+                    @endauth
+                    <li>
                         <a class="nav-link text-[11px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors relative group" href="{{ route('contact') }}">
                             Liên Hệ
                             <span class="nav-link-underline"></span>

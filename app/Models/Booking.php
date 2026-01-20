@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Booking extends Model
 {
@@ -123,5 +124,10 @@ class Booking extends Model
         return $this->belongsToMany(RoomType::class, 'booking_room_types')
             ->withPivot('quantity', 'price_per_night', 'subtotal')
             ->withTimestamps();
+    }
+
+    public function guests(): HasMany
+    {
+        return $this->hasMany(BookingGuest::class);
     }
 }

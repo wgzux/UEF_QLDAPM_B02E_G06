@@ -6,6 +6,8 @@ use App\Models\Booking;
 use App\Models\RoomType;
 use App\Models\Room;
 use App\Models\Service;
+use App\Models\Setting;
+use App\Models\BookingGuest;
 use App\Http\Requests\StoreBookingRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -46,12 +48,29 @@ class BookingController extends Controller
         $checkIn = Carbon::parse($request->check_in);
         $checkOut = Carbon::parse($request->check_out);
         $nights = $checkIn->diffInDays($checkOut);
-        $adults = $request->adults;
-        $children = $request->children ?? 0;
+        $adults = intval($request->adults);
+        $children = intval($request->children ?? 0);
         $roomQty = $request->rooms ?? 1;
 
-        // Fetch all rooms (In a real app, check availability here)
-        $rooms = RoomType::all();
+        // Fetch all rooms and calculate availability for this date range
+        $allRooms = RoomType::all();
+        $rooms = $allRooms->map(function ($room) use ($checkIn, $checkOut) {
+            // Get overlapping bookings
+            $bookedQty = DB::table('booking_room_types')
+                ->join('bookings', 'bookings.id', '=', 'booking_room_types.booking_id')
+                ->where('booking_room_types.room_type_id', $room->id)
+                ->whereIn('bookings.status', ['confirmed', 'paid', 'pending'])
+                ->where(function ($query) use ($checkIn, $checkOut) {
+                    $query->where('bookings.check_in', '<', $checkOut)
+                          ->where('bookings.check_out', '>', $checkIn);
+                })
+                ->sum('booking_room_types.quantity');
+
+            $room->available_qty = max(0, $room->number_of_rooms - $bookedQty);
+            return $room;
+        })->filter(function ($room) {
+            return $room->available_qty > 0;
+        });
 
         return view('pages.Addcart', compact('checkIn', 'checkOut', 'nights', 'adults', 'children', 'roomQty', 'rooms'));
     }
@@ -98,6 +117,22 @@ class BookingController extends Controller
             $totalRooms += $item['quantity'];
         }
 
+        // Calculate Weekend Surcharge (ONLY for weekend nights)
+        $weekendNights = $this->countWeekendNights($checkIn, $checkOut);
+        $hasWeekend = $weekendNights > 0;
+        $surchargePercent = 0;
+        $surcharge = 0;
+        
+        if ($hasWeekend) {
+            $surchargePercent = floatval(Setting::get('weekend_surcharge_percent', 10));
+            // Calculate price per night
+            $pricePerNight = $grandTotal / $nights;
+            // Apply surcharge ONLY to weekend nights
+            $surcharge = ($pricePerNight * $weekendNights) * ($surchargePercent / 100);
+        }
+        
+        $finalTotal = $grandTotal + $surcharge;
+
         return view('pages.BookingDetails', [
             'checkIn' => $checkIn,
             'checkOut' => $checkOut,
@@ -106,7 +141,12 @@ class BookingController extends Controller
             'children' => $request->children,
             'selectedRooms' => $selectedRooms,
             'grandTotal' => $grandTotal,
-            'totalRooms' => $totalRooms
+            'totalRooms' => $totalRooms,
+            'hasWeekend' => $hasWeekend,
+            'weekendNights' => $weekendNights,
+            'surchargePercent' => $surchargePercent,
+            'surcharge' => $surcharge,
+            'finalTotal' => $finalTotal,
         ]);
     }
 
@@ -118,88 +158,137 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-        
         try {
-            // Re-calculate to prevent tampering
-            $checkIn = Carbon::parse($request->check_in);
-            $checkOut = Carbon::parse($request->check_out);
-            $nights = $checkIn->diffInDays($checkOut);
-            
-            // Validation
-            if ($nights <= 0) throw new \Exception("Ngày đặt không hợp lệ");
-
-            $totalPrice = 0;
-            $bookingRoomTypes = [];
-
-            // Interpret the 'rooms' array from BookingDetails form
-            // rooms[id] = quantity
-            if ($request->rooms) {
-                foreach ($request->rooms as $roomId => $quantity) {
-                    if ($quantity > 0) {
-                        $roomType = RoomType::find($roomId);
-                        if ($roomType) {
-                            $subtotal = $roomType->base_price * $nights * $quantity;
-                            $totalPrice += $subtotal;
-                            
-                            $bookingRoomTypes[] = [
-                                'room_type_id' => $roomType->id,
-                                'quantity' => $quantity,
-                                'price_per_night' => $roomType->base_price,
-                                'subtotal' => $subtotal,
-                            ];
+            return DB::transaction(function () use ($request) {
+                // Re-calculate dates
+                $checkIn = Carbon::parse($request->check_in);
+                $checkOut = Carbon::parse($request->check_out);
+                $nights = $checkIn->diffInDays($checkOut);
+                
+                if ($nights <= 0) throw new \Exception("Ngày đặt không hợp lệ");
+    
+                $totalPrice = 0;
+                $bookingRoomTypes = [];
+                $requestedRooms = $request->rooms ?? [];
+    
+                // 1. Availability Double-Check & Price Calculation
+                foreach ($requestedRooms as $roomId => $quantity) {
+                     $quantity = intval($quantity);
+                     if ($quantity > 0) {
+                         $roomType = RoomType::find($roomId);
+                         if (!$roomType) throw new \Exception("Loại phòng không tồn tại");
+    
+                         // Check Availability
+                         $bookedQty = DB::table('booking_room_types')
+                            ->join('bookings', 'bookings.id', '=', 'booking_room_types.booking_id')
+                            ->where('booking_room_types.room_type_id', $roomId)
+                            ->whereIn('bookings.status', ['confirmed', 'paid', 'pending'])
+                            ->where(function ($query) use ($checkIn, $checkOut) {
+                                $query->where('bookings.check_in', '<', $checkOut)
+                                      ->where('bookings.check_out', '>', $checkIn);
+                            })
+                            ->sum('booking_room_types.quantity');
+    
+                         $available = $roomType->number_of_rooms - $bookedQty;
+                         if ($quantity > $available) {
+                             throw new \Exception("Phòng " . $roomType->name . " đã hết hoặc không đủ số lượng cho ngày " . $checkIn->format('d/m'));
+                         }
+    
+                         // Calculate Price
+                         $subtotal = $roomType->base_price * $nights * $quantity;
+                         $totalPrice += $subtotal;
+                         
+                         $bookingRoomTypes[] = [
+                             'room_type_id' => $roomType->id,
+                             'quantity' => $quantity,
+                             'price_per_night' => $roomType->base_price,
+                             'subtotal' => $subtotal,
+                         ];
+                     }
+                }
+    
+                if ($totalPrice == 0 || empty($bookingRoomTypes)) throw new \Exception("Vui lòng chọn phòng");
+                
+                // Calculate Weekend Surcharge (ONLY for weekend nights)
+                $weekendNights = $this->countWeekendNights($checkIn, $checkOut);
+                $hasWeekend = $weekendNights > 0;
+                $surcharge = 0;
+                
+                if ($hasWeekend) {
+                    $surchargePercent = floatval(Setting::get('weekend_surcharge_percent', 10));
+                    // Calculate price per night
+                    $pricePerNight = $totalPrice / $nights;
+                    // Apply surcharge ONLY to weekend nights
+                    $surcharge = ($pricePerNight * $weekendNights) * ($surchargePercent / 100);
+                }
+                
+                $finalTotal = $totalPrice + $surcharge;
+                
+                // 2. Create Booking
+                $bookingCode = '#OL' . strtoupper(substr(uniqid(), -8));
+                
+                $booking = Booking::create([
+                    'customer_name' => $request->name,
+                    'customer_email' => $request->email,
+                    'customer_phone' => $request->phone,
+                    'check_in' => $checkIn,
+                    'check_out' => $checkOut,
+                    'adults' => $request->adults,
+                    'children' => $request->children ?? 0,
+                    'special_requests' => $request->special_requests,
+                    'room_price' => $totalPrice,
+                    'service_price' => $surcharge, // Store weekend surcharge here
+                    'total_price' => $finalTotal, // Include surcharge
+                    'status' => 'pending',
+                    'payment_status' => 'unpaid',
+                    'code' => $bookingCode,
+                    'room_id' => null
+                ]);
+                
+                // 3. Save Room Types (Pivot)
+                foreach ($bookingRoomTypes as $detail) {
+                    DB::table('booking_room_types')->insert(array_merge($detail, [
+                        'booking_id' => $booking->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]));
+                }
+                
+                // 4. Save Guests (Compliance Data)
+                // Primary Contact
+                $booking->guests()->create([
+                    'booking_id' => $booking->id,
+                    'full_name' => $request->name,
+                    'passport_id' => $request->id_passport ?? null,
+                    'nationality' => $request->nationality ?? null,
+                    'dob' => $request->dob ?? null,
+                    'gender' => $request->gender ?? null,
+                    'is_primary_contact' => true,
+                ]);
+    
+                // Room Guests
+                if ($request->guests) {
+                    foreach ($request->guests as $roomId => $roomGuests) {
+                        foreach ($roomGuests as $guestData) {
+                            if (!empty($guestData['name'])) {
+                                $booking->guests()->create([
+                                    'booking_id' => $booking->id,
+                                    'room_type_id' => $roomId,
+                                    'full_name' => $guestData['name'],
+                                    'is_primary_contact' => false,
+                                ]);
+                            }
                         }
                     }
                 }
-            }
-
-            if ($totalPrice == 0) throw new \Exception("Vui lòng chọn phòng");
-            
-            // Generate Booking Code
-            $bookingCode = '#OL' . strtoupper(substr(uniqid(), -8));
-
-            // Create booking
-            // Note: room_id is nullable now, so we skip it or set null
-            $booking = Booking::create([
-                'customer_name' => $request->name,
-                'customer_email' => $request->email,
-                'customer_phone' => $request->phone,
-                'check_in' => $checkIn,
-                'check_out' => $checkOut,
-                'adults' => $request->adults,
-                'children' => $request->children ?? 0,
-                'special_requests' => $request->special_requests,
-                'room_price' => $totalPrice,
-                'service_price' => 0,
-                'total_price' => $totalPrice, // Add Taxes if needed
-                'status' => 'pending',
-                'payment_status' => 'unpaid',
-                'code' => $bookingCode,
-                'room_id' => null
-            ]);
-            
-            // Save room details
-            foreach ($bookingRoomTypes as $detail) {
-                DB::table('booking_room_types')->insert(array_merge($detail, [
-                    'booking_id' => $booking->id,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]));
-            }
-            
-            // Save specific guest details if needed (from request->guests)
-            // Implementation skipped as per user scope focusing on Payment Page for now
-            
-            DB::commit();
-            
-            // Redirect to Payment Page
-            return redirect()->route('booking.payment', $booking->id);
+                
+                return redirect()->route('booking.payment', $booking->id);
+            });
                 
         } catch (\Exception $e) {
-            DB::rollBack();
             return back()
                 ->withInput()
-                ->with('error', 'Có lỗi xảy ra: ' . $e->getMessage());
+                ->with('error', 'Lỗi đặt phòng: ' . $e->getMessage());
         }
     }
 
@@ -247,5 +336,25 @@ class BookingController extends Controller
         }
         
         return view('pages.bookingconfirm', compact('booking', 'totalRooms'));
+    }
+    
+    /**
+     * Count the number of weekend nights (Saturday/Sunday) in a date range
+     */
+    private function countWeekendNights(Carbon $checkIn, Carbon $checkOut): int
+    {
+        $count = 0;
+        $current = $checkIn->copy();
+        
+        while ($current->lt($checkOut)) {
+            // Check if current night is Friday (5) or Saturday (6)
+            // Friday night = Saturday, Saturday night = Sunday
+            if ($current->dayOfWeek === Carbon::FRIDAY || $current->dayOfWeek === Carbon::SATURDAY) {
+                $count++;
+            }
+            $current->addDay();
+        }
+        
+        return $count;
     }
 }

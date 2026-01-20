@@ -37,6 +37,13 @@
         <input type="hidden" name="children" value="{{ $children }}">
 
         <header class="sticky top-0 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md shadow-sm border-b border-[#D4C5B0] dark:border-gray-800">
+          {{-- Error Alert --}}
+          @if(session('error'))
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+              <strong class="font-bold">Lỗi!</strong>
+              <span class="block sm:inline">{{ session('error') }}</span>
+          </div>
+          @endif
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="{{ route('booking.create') }}" class="flex items-center text-sm uppercase tracking-widest text-[#8B6B4E] hover:text-[#5D4037] dark:text-[#D4C5B0] dark:hover:text-white transition-colors">
               <span class="material-icons-outlined mr-1 text-lg">west</span>
@@ -95,7 +102,7 @@
                 </div>
               </div>
               
-              <button type="submit" class="bg-[#8B6B4E] hover:bg-[#72563d] text-white px-8 py-2 text-xs uppercase tracking-widest rounded shadow-md transition-all">
+              <button type="submit" id="btn-submit" class="bg-[#8B6B4E] hover:bg-[#72563d] text-white px-8 py-2 text-xs uppercase tracking-widest rounded shadow-md transition-all opacity-50 cursor-not-allowed" disabled>
                 TIẾP TỤC <span class="material-icons-outlined text-sm align-middle ml-1">arrow_forward</span>
               </button>
             </div>
@@ -210,7 +217,7 @@
                         <div class="flex items-center justify-between">
                             <!-- Quantity Selector -->
                           <div class="flex items-center border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800">
-                            <button type="button" onclick="updateQty({{ $room->id }}, -1, {{ $room->base_price * $nights }}, '{{ addslashes($room->name) }}')" class="px-3 py-1.5 text-gray-500 hover:text-[#8B6B4E] transition-colors">-</button>
+                            <button type="button" onclick="updateQty({{ $room->id }}, -1, {{ $room->base_price * $nights }}, '{{ addslashes($room->name) }}', {{ $room->available_qty }})" class="px-3 py-1.5 text-gray-500 hover:text-[#8B6B4E] transition-colors">-</button>
                             <input
                               class="w-10 text-center text-sm bg-transparent border-none p-0 text-gray-700 dark:text-gray-300 focus:ring-0"
                               type="text"
@@ -219,11 +226,12 @@
                               value="0"
                               readonly
                             />
-                            <button type="button" onclick="updateQty({{ $room->id }}, 1, {{ $room->base_price * $nights }}, '{{ addslashes($room->name) }}')" class="px-3 py-1.5 text-gray-500 hover:text-[#8B6B4E] transition-colors">+</button>
+                            <button type="button" onclick="updateQty({{ $room->id }}, 1, {{ $room->base_price * $nights }}, '{{ addslashes($room->name) }}', {{ $room->available_qty }})" class="px-3 py-1.5 text-gray-500 hover:text-[#8B6B4E] transition-colors">+</button>
                           </div>
 
                           <div class="flex space-x-2">
                              <span class="text-xs text-gray-400 self-center" id="room-subtotal-{{ $room->id }}">0 ₫</span>
+                             <span class="text-xs text-red-500 self-center hidden" id="room-error-{{ $room->id }}">Chỉ còn {{ $room->available_qty }} phòng</span>
                           </div>
                         </div>
                       </div>
@@ -244,9 +252,10 @@
         // Format Currency
         const fmtMoney = (amount) => new Intl.NumberFormat('vi-VN').format(amount) + ' ₫';
 
-        function updateQty(id, delta, priceTotal, name) {
+        function updateQty(id, delta, priceTotal, name, maxQty) {
             const input = document.getElementById('room-qty-' + id);
             const subtotalEl = document.getElementById('room-subtotal-' + id);
+            const errorEl = document.getElementById('room-error-' + id);
             
             // Init cart item if needed
             if (!cart[id]) cart[id] = { qty: 0, price: priceTotal, name: name };
@@ -255,7 +264,16 @@
             let newVal = currentVal + delta;
             
             if (newVal < 0) newVal = 0;
-            if (newVal > 5) newVal = 5; // Max limit
+            if (newVal > maxQty) {
+                newVal = maxQty;
+                // Show error or flash message?
+                if (errorEl) {
+                    errorEl.classList.remove('hidden');
+                    setTimeout(() => errorEl.classList.add('hidden'), 2000);
+                }
+            } else {
+                if (errorEl) errorEl.classList.add('hidden');
+            }
             
             let diff = newVal - currentVal;
             
@@ -280,6 +298,16 @@
                 
                 // Update Sticky Bar
                 updateStickyBar();
+
+                // TOGGLE SUBMIT BUTTON
+                const btnSubmit = document.getElementById('btn-submit');
+                if (totalCount > 0) {
+                    btnSubmit.classList.remove('opacity-50', 'cursor-not-allowed');
+                    btnSubmit.disabled = false;
+                } else {
+                    btnSubmit.classList.add('opacity-50', 'cursor-not-allowed');
+                    btnSubmit.disabled = true;
+                }
                 
                 // If Modal is open, refresh it
                 if (!document.getElementById('confirmation-modal').classList.contains('invisible')) {
