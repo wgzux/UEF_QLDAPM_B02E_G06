@@ -17,9 +17,12 @@ class CustomerController extends Controller
     {
         $user = Auth::user();
 
-        // Get all bookings for this user (match by email or phone)
+        // Get all bookings for this user
+        // Primary: Match by user_id (for bookings created while logged in)
+        // Fallback: Match by email or phone (for legacy bookings or guest bookings)
         $bookings = Booking::where(function($query) use ($user) {
-            $query->where('customer_email', $user->email);
+            $query->where('user_id', $user->id)
+                  ->orWhere('customer_email', $user->email);
             
             // If user has phone in profile, also match by phone
             if ($user->phone) {
@@ -41,9 +44,11 @@ class CustomerController extends Controller
         $user = Auth::user();
 
         // Find booking and verify it belongs to this user
+        // Check user_id first, then fallback to email/phone
         $booking = Booking::where('id', $id)
             ->where(function($query) use ($user) {
-                $query->where('customer_email', $user->email);
+                $query->where('user_id', $user->id)
+                      ->orWhere('customer_email', $user->email);
                 
                 if ($user->phone) {
                     $query->orWhere('customer_phone', $user->phone);

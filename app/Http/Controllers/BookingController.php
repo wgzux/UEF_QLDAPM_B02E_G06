@@ -228,6 +228,7 @@ class BookingController extends Controller
                 $bookingCode = '#OL' . strtoupper(substr(uniqid(), -8));
                 
                 $booking = Booking::create([
+                    'user_id' => auth()->check() ? auth()->id() : null, // Link to authenticated user
                     'customer_name' => $request->name,
                     'customer_email' => $request->email,
                     'customer_phone' => $request->phone,
