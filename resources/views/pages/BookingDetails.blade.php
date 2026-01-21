@@ -3,411 +3,385 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>The Wandering Rose Ba Vì - Booking Details</title>
-
+  <title>Xác Nhận & Thanh Toán - The Wandering Rose</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
-
-  <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            primary: "#a67c52",
-            "primary-dark": "#8c6642",
-            "brand-brown": "#9e7b5b",
-            "brand-brown-dark": "#7a5e45",
-            "background-light": "#f4f1ed",
-            "background-dark": "#18181b",
-            "surface-light": "#ffffff",
-            "surface-dark": "#27272a",
-            "border-light": "#e5e0d8",
-            "border-dark": "#3f3f46",
-            "divider-light": "#d1c4b6",
-            "divider-dark": "#52525b",
-          },
-          fontFamily: {
-            display: ["'Playfair Display'", "serif"],
-            body: ["'Work Sans'", "sans-serif"],
-          },
-          borderRadius: {
-            DEFAULT: "4px",
+  
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#8B6B4E", 
+              secondary: "#D4C5B0", 
+              "background-light": "#EAE7E2",
+              "background-dark": "#1F1C18", 
+            },
+            fontFamily: {
+              display: ["'Playfair Display'", "serif"],
+              body: ["'Lato'", "sans-serif"],
+            }
           },
         },
-      },
-    };
-  </script>
-
-  <!-- ✅ CSS tách riêng -->
-  <link rel="stylesheet" href="/css/pages/BookingDetails.css">
+      };
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+        
+        .custom-radio:checked + div {
+            border-color: #8B6B4E;
+            background-color: #FDFBF7;
+        }
+        .custom-radio:checked + div .check-icon {
+            opacity: 1;
+        }
+    </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark text-gray-700 dark:text-gray-300 font-body transition-colors duration-300">
+<body class="bg-white text-gray-700 font-body antialiased">
 
-<header class="pt-6 pb-4 px-4 md:px-12 flex justify-between items-center bg-transparent relative z-10">
-  <a class="flex items-center text-xs tracking-widest text-primary hover:opacity-80 transition-opacity uppercase" href="#">
-    <span class="material-icons-outlined text-sm mr-1">arrow_back</span>
-    Trở về
-  </a>
+<form action="{{ route('booking.store') }}" method="POST" id="confirmForm">
+    @csrf
+    <input type="hidden" name="check_in" value="{{ $checkIn->format('Y-m-d') }}">
+    <input type="hidden" name="check_out" value="{{ $checkOut->format('Y-m-d') }}">
+    <input type="hidden" name="adults" value="{{ $adults }}">
+    <input type="hidden" name="children" value="{{ $children }}">
+    
+    @foreach($selectedRooms as $item)
+        <input type="hidden" name="rooms[{{ $item['room']->id }}]" value="{{ $item['quantity'] }}">
+    @endforeach
 
-  <div class="text-center">
-    <div class="text-primary mx-auto mb-1">
-      <svg class="w-6 h-6 mx-auto mb-1 fill-current" viewBox="0 0 24 24">
-        <path d="M12 2C9 2 7 3.5 7 5.5C7 7.5 9 8 12 8C15 8 17 7.5 17 5.5C17 3.5 15 2 12 2ZM12 22C14.5 22 18 18 18 14C18 11 15 9.5 12 9.5C9 9.5 6 11 6 14C6 18 9.5 22 12 22Z" opacity="0.5"></path>
-      </svg>
-    </div>
-    <h1 class="font-display text-2xl md:text-3xl text-primary tracking-wide">THE WANDERING ROSE</h1>
-    <p class="font-display text-lg italic text-primary opacity-80">Ba Vì</p>
-  </div>
+    {{-- Header --}}
+    <header class="py-6 border-b border-gray-100 sticky top-0 bg-white z-40">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
+            <a href="{{ route('booking.select-rooms', ['check_in' => $checkIn->format('Y-m-d'), 'check_out' => $checkOut->format('Y-m-d'), 'adults' => $adults, 'children' => $children]) }}" class="text-xs uppercase tracking-widest text-[#8B6B4E] hover:text-[#6d543e] flex items-center">
+                <span class="material-icons-outlined text-sm mr-1">west</span> TRỞ VỀ
+            </a>
+            
+            <div class="text-center">
+                <h1 class="font-display text-2xl text-[#8B6B4E]">THE WANDERING ROSE</h1>
+                <span class="font-display italic text-[#C5A065] text-sm">... Ba Vì ...</span>
+            </div>
+            
+            <div class="flex items-center gap-2 border px-2 py-1 rounded border-gray-200">
+                <span class="text-xs text-gray-500">VND</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" class="w-4 h-3 rounded-sm shadow-sm" alt="VN">
+            </div>
+        </div>
+    </header>
 
-  <div class="relative">
-    <button class="flex items-center space-x-2 border border-border-light dark:border-border-dark px-3 py-1 rounded bg-white dark:bg-surface-dark text-xs">
-      <span>VND</span>
-      <span class="w-4 h-3 bg-red-600 relative overflow-hidden inline-block shadow-sm">
-        <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-yellow-400 text-[8px]">★</span>
-      </span>
-      <span class="material-icons-outlined text-sm">expand_more</span>
-    </button>
-  </div>
-</header>
-<div class="px-4 md:px-12 py-8 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 items-end relative z-0">
-<div class="md:col-span-4 flex items-center space-x-6">
-<div>
-<span class="block text-xs font-bold uppercase tracking-wider mb-1">Ngày</span>
-<div class="flex items-baseline">
-<span class="font-display text-4xl text-gray-800 dark:text-gray-100">27</span>
-<div class="ml-2 text-xs leading-tight text-gray-500 dark:text-gray-400">
-                        Tháng 9<br/>2025
+    <div class="max-w-7xl mx-auto px-4 md:px-8 py-10">
+        {{-- Title & Timer --}}
+        <div class="text-center mb-10">
+            <h2 class="font-display text-4xl text-[#8B6B4E] mb-4">Xác nhận thông tin</h2>
+            
+            <div class="flex items-center justify-center gap-2 text-sm text-gray-600 mb-2">
+                <span class="material-icons-outlined text-base">schedule</span>
+                <span class="font-bold" id="countdown-timer">10:00</span>
+                <span>để tiến hành thanh toán trong</span>
+            </div>
+            <p class="text-xs text-gray-500">Cảnh báo: nếu bạn rời trang này, lựa chọn sẽ <span class="font-bold text-gray-800">KHÔNG</span> được giữ lại!</p>
+        </div>
+
+        {{-- Booking Info Bar --}}
+        <div class="bg-[#FDFBF7] p-6 rounded-lg mb-10 border border-[#F3EBE3]">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-6 text-sm">
+                    <span class="text-gray-500 text-xs uppercase tracking-wider font-bold">THÔNG TIN ĐẶT PHÒNG</span>
+                    <span class="font-bold">{{ $totalRooms }} PHÒNG</span>
+                    <span class="font-bold">{{ $nights }} ĐÊM</span>
+                    <span class="font-bold">{{ $adults }} NGƯỜI LỚN</span>
+                    <span class="font-bold">{{ $children }} TRẺ EM</span>
+                </div>
+                <div class="flex items-center gap-4 text-sm font-medium text-[#8B6B4E]">
+                    <span>{{ $checkIn->format('d/m/Y') }} - {{ $checkOut->format('d/m/Y') }}</span>
+                    <a href="{{ route('booking.create') }}" class="border border-[#8B6B4E] px-3 py-1 rounded text-xs hover:bg-[#8B6B4E] hover:text-white transition-colors uppercase">Thay đổi kế hoạch</a>
+                </div>
+            </div>
+            
+            <div class="flex justify-between mt-4 text-sm border-t border-[#F3EBE3] pt-4">
+                <div class="flex justify-between w-full md:w-1/2 pr-0 md:pr-12">
+                    <div>
+                        <span class="block text-gray-500 text-xs mb-1 text-[#C19D60]">Nhận phòng</span>
+                        {{-- <span class="font-bold">{{ $checkIn->format('d/m/Y') }}</span> --}}
+                        {{-- Using static dates from image as placeholder or dynamic? using dynamic --}}
+                        <span class="font-medium text-gray-700">{{ $checkIn->format('d/m/Y') }}</span>
                     </div>
-</div>
-</div>
-<div class="bg-brand-brown text-white text-[10px] px-2 py-1 rounded-sm transform -translate-y-2">10 Đêm</div>
-<div>
-<span class="block text-xs font-bold uppercase tracking-wider mb-1 invisible">End</span>
-<div class="flex items-baseline">
-<span class="font-display text-4xl text-gray-800 dark:text-gray-100">6</span>
-<div class="ml-2 text-xs leading-tight text-gray-500 dark:text-gray-400">
-                        Tháng 10<br/>2025
+                    <div>
+                        <span class="block text-gray-500 text-xs mb-1 text-[#C19D60] text-right">Trả phòng</span>
+                        <span class="font-medium text-gray-700">{{ $checkOut->format('d/m/Y') }}</span>
                     </div>
-</div>
-</div>
-</div>
-<div class="md:col-span-6 flex justify-center space-x-12">
-<div class="text-center">
-<span class="block text-xs font-bold uppercase tracking-wider mb-1">Phòng</span>
-<span class="font-display text-4xl text-gray-800 dark:text-gray-100">1</span>
-</div>
-<div class="text-center">
-<span class="block text-xs font-bold uppercase tracking-wider mb-1">Người lớn</span>
-<span class="font-display text-4xl text-gray-800 dark:text-gray-100">2</span>
-</div>
-<div class="text-center group cursor-pointer relative">
-<span class="block text-xs font-bold uppercase tracking-wider mb-1">Trẻ em</span>
-<div class="flex items-center justify-center">
-<span class="font-display text-4xl text-gray-800 dark:text-gray-100">0</span>
-<span class="material-icons-outlined ml-2 text-gray-400 group-hover:text-primary transition-colors">expand_more</span>
-</div>
-</div>
-</div>
-<div class="md:col-span-2 text-right">
-<button class="bg-brand-brown hover:bg-brand-brown-dark text-white text-xs font-bold uppercase px-6 py-3 rounded shadow transition-colors w-full md:w-auto">
-                Tìm kiếm <span class="material-icons-outlined text-xs align-middle ml-1">search</span>
-</button>
-</div>
-</div>
-<div class="bg-brand-brown dark:bg-[#5e4b35] text-white px-4 md:px-12 py-3 sticky top-0 z-40 shadow-md">
-<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-<div class="text-xs font-bold tracking-widest uppercase mb-2 md:mb-0">
-<span class="opacity-70 mr-2">Bạn đã lựa chọn:</span>
-<span class="mr-4">2 Phòng</span>
-<span>10 Đêm</span>
-</div>
-<div class="flex items-center space-x-6">
-<div class="font-display text-xl font-bold">100.000.000 <span class="text-sm font-sans font-normal align-top">đ</span></div>
-<button class="bg-[#dcd0c2] text-brand-brown dark:bg-gray-200 dark:text-gray-800 hover:bg-white text-xs font-bold uppercase px-4 py-2 rounded transition-colors">
-                    Đặt ngay
-                </button>
-</div>
-</div>
-</div>
-<main class="relative px-4 md:px-12 py-12 max-w-7xl mx-auto">
-
-<!-- BOOKING MODAL -->
-<div id="bookingModal" class="relative z-30 mb-20 md:mb-32">
-  <!-- Backdrop: click ra ngoài để đóng -->
-  <div id="modalBackdrop" class="fixed inset-0 z-20 bg-black/20"></div>
-
-  <!-- Modal box -->
-  <div class="relative z-30 bg-surface-light dark:bg-surface-dark shadow-2xl max-w-2xl mx-auto rounded-lg overflow-hidden border border-gray-100 dark:border-gray-700 animate-fade-in-up">
-    <div class="flex justify-between items-start p-6 border-b border-gray-100 dark:border-gray-700">
-      <div>
-        <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-1">
-          Bạn đã lựa chọn:
-        </h2>
-        <div class="text-gray-800 dark:text-gray-200 font-medium">
-          <span class="font-bold">2</span> Phòng  |  <span class="font-bold">10</span> Đêm
+                </div>
+            </div>
         </div>
-        <div class="text-xs text-gray-500 mt-1 italic">27/09/2025 - 06/10/2025</div>
-      </div>
 
-      <!-- Nút X -->
-      <button id="btnCloseModal" type="button" class="text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors">
-        <span class="material-icons-outlined">close</span>
-      </button>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            
+            {{-- COLUMN LEFT --}}
+            <div class="space-y-12">
+                {{-- Room Details --}}
+                <section>
+                    <h3 class="font-display text-2xl text-[#8B6B4E] mb-6 text-center lg:text-left">Phòng đã chọn</h3>
+                    
+                    <div class="space-y-6">
+                        @foreach($selectedRooms as $index => $item)
+                        @for($i = 0; $i < $item['quantity']; $i++)
+                        <div class="border border-gray-100 rounded-lg p-6 shadow-sm">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="font-display text-lg text-[#8B6B4E]">{{ $item['room']->name }} {{ $item['quantity'] > 1 ? '#' . ($i + 1) : '' }}</h4>
+                                <div class="flex items-center gap-3 text-xs text-gray-500">
+                                    <span class="material-icons-outlined text-sm">people</span>
+                                    <span>02 người lớn</span>
+                                    <span>00 trẻ em (< 6 tuổi)</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">Họ và tên *</label>
+                                    <input type="text" name="guests[{{ $item['room']->id }}][{{ $i }}][name]" class="w-full text-sm border-gray-200 rounded focus:ring-[#8B6B4E] focus:border-[#8B6B4E]" placeholder="Nhập họ và tên">
+                                </div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <label class="block text-xs text-center text-gray-500 mb-1">Người lớn</label>
+                                        <div class="flex items-center justify-between border border-gray-200 rounded px-2 py-1">
+                                            <button type="button" class="text-gray-400 text-xs hover:text-[#8B6B4E]">-</button>
+                                            <span class="text-xs font-bold">02</span>
+                                            <button type="button" class="text-gray-400 text-xs hover:text-[#8B6B4E]">+</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-center text-gray-500 mb-1">Trẻ em</label>
+                                        <div class="flex items-center justify-between border border-gray-200 rounded px-2 py-1">
+                                            <button type="button" class="text-gray-400 text-xs hover:text-[#8B6B4E]">-</button>
+                                            <span class="text-xs font-bold">00</span>
+                                            <button type="button" class="text-gray-400 text-xs hover:text-[#8B6B4E]">+</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-center text-gray-500 mb-1">Em bé</label>
+                                        <div class="flex items-center justify-between border border-gray-200 rounded px-2 py-1">
+                                            <button type="button" class="text-gray-400 text-xs hover:text-[#8B6B4E]">-</button>
+                                            <span class="text-xs font-bold">00</span>
+                                            <button type="button" class="text-gray-400 text-xs hover:text-[#8B6B4E]">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endfor
+                        @endforeach
+                    </div>
+                    
+                    <div class="mt-6">
+                        <label class="block text-xs text-gray-500 mb-2">Yêu cầu bổ sung (nếu có)</label>
+                        <textarea name="special_requests" rows="3" class="w-full text-sm border-gray-200 rounded focus:ring-[#8B6B4E] focus:border-[#8B6B4E]" placeholder="Nhập tin nhắn"></textarea>
+                    </div>
+                </section>
+                
+                {{-- Policy --}}
+                <section>
+                    <h3 class="font-display text-4xl text-[#D4C5B0] text-center mb-6">Chính sách villa</h3>
+                    
+                    <div class="space-y-6 text-sm text-gray-600 font-light">
+                        <div>
+                            <h4 class="font-display text-xl text-[#8B6B4E] mb-2">Thanh toán & huỷ đặt phòng</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Đặt cọc 50% tổng giá trị booking để xác nhận giữ phòng.</li>
+                                <li>Thanh toán 50% còn lại trước khi check-in.</li>
+                                <li>Huỷ phòng trước 7 ngày: Miễn phí huỷ phòng.</li>
+                                <li>Huỷ phòng trong vòng 7 ngày: Phí phạt 100% tiền cọc.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-display text-xl text-[#8B6B4E] mb-2">Thời gian nhận và trả phòng</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Giờ nhận phòng: 14:00</li>
+                                <li>Giờ trả phòng: 12:00</li>
+                                <li>Nhận phòng sớm hoặc trả phòng muộn tuỳ thuộc vào tình trạng phòng trống và có thể tính phí phụ thu.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-display text-xl text-[#8B6B4E] mb-2">Chính sách trẻ em</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Trẻ em dưới 6 tuổi: Miễn phí (ngủ chung giường với bố mẹ).</li>
+                                <li>Trẻ em từ 6-11 tuổi: Phụ thu ăn sáng.</li>
+                                <li>Trẻ em từ 12 tuổi trở lên: Tính như người lớn.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {{-- COLUMN RIGHT --}}
+            <div class="space-y-12">
+                {{-- Customer Info --}}
+                <section>
+                    <h3 class="font-display text-2xl text-[#8B6B4E] mb-6 text-center lg:text-left">Thông tin khách hàng</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="space-y-1">
+                            <label class="text-xs text-gray-500">Họ và tên *</label>
+                            <input type="text" name="name" required class="w-full border-gray-200 rounded text-sm focus:ring-[#8B6B4E] focus:border-[#8B6B4E]" placeholder="Nhập họ và tên">
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <label class="text-xs text-gray-500">Số điện thoại *</label>
+                            <div class="flex items-center">
+                                <div class="flex items-center border border-r-0 border-gray-200 rounded-l px-3 py-2 bg-gray-50">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" class="w-4 h-3 mr-2" alt="VN">
+                                    <span class="text-xs text-gray-500">▼</span>
+                                </div>
+                                <input type="tel" name="phone" required class="w-full border-gray-200 rounded-r text-sm focus:ring-[#8B6B4E] focus:border-[#8B6B4E]" placeholder="Nhập số điện thoại">
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <label class="text-xs text-gray-500">Email *</label>
+                            <input type="email" name="email" required class="w-full border-gray-200 rounded text-sm focus:ring-[#8B6B4E] focus:border-[#8B6B4E]" placeholder="Nhập địa chỉ email">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-1">
+                                <label class="text-xs text-gray-500">ID/Passport *</label>
+                                <input type="text" name="id_passport" class="w-full border-gray-200 rounded text-sm focus:ring-[#8B6B4E] focus:border-[#8B6B4E]" placeholder="Nhập số định danh">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs text-gray-500">Giới tính theo ID/Passport *</label>
+                                <select name="gender" class="w-full border-gray-200 rounded text-sm focus:ring-[#8B6B4E] focus:border-[#8B6B4E]">
+                                    <option value="male">Nam</option>
+                                    <option value="female">Nữ</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <label class="text-xs text-gray-500">Ngày sinh *</label>
+                            <input type="date" name="dob" class="w-full border-gray-200 rounded text-sm focus:ring-[#8B6B4E] focus:border-[#8B6B4E]">
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <label class="text-xs text-gray-500">Quốc tịch *</label>
+                            <select name="nationality" class="w-full border-gray-200 rounded text-sm focus:ring-[#8B6B4E] focus:border-[#8B6B4E]">
+                                <option value="vn">Việt Nam</option>
+                                <option value="us">United States</option>
+                                <option value="other">Khác</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+                
+                {{-- Payment Summary --}}
+                <section>
+                    <h3 class="font-display text-2xl text-[#8B6B4E] mb-6 text-center lg:text-left">Thông tin thanh toán</h3>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <div class="flex justify-between items-center mb-4 font-bold text-sm text-gray-800">
+                            <span>Chi tiết</span>
+                            <span>Giá (VNĐ)</span>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6 pb-6 border-b border-gray-200 text-sm">
+                            @foreach($selectedRooms as $item)
+                            <div class="flex justify-between text-[#8B6B4E]">
+                                <span>{{ $item['room']->name }}</span>
+                                <span>{{ number_format($item['subtotal']) }} đ</span>
+                            </div>
+                            @endforeach
+                        </div>
+                        
+                        {{-- Coupon --}}
+                        <div class="flex gap-2 mb-6">
+                            <input type="text" placeholder="Nhập mã giảm giá" class="w-full text-sm border-gray-200 rounded focus:ring-[#8B6B4E] focus:border-[#8B6B4E]">
+                            <button type="button" class="text-xs whitespace-nowrap text-gray-400 hover:text-[#8B6B4E] underline">Chọn mã ưu đãi</button>
+                        </div>
+                        
+                        <div class="space-y-3 text-sm text-gray-600 font-bold mb-6 pb-6 border-b border-gray-200">
+                            <div class="flex justify-between">
+                                <span>Tiền phòng</span>
+                                <span>{{ number_format($grandTotal) }} đ</span>
+                            </div>
+                            @if($hasWeekend && $surcharge > 0)
+                            <div class="flex justify-between text-orange-600">
+                                <span>Phụ thu cuối tuần ({{ $weekendNights }} đêm × {{ $surchargePercent }}%)</span>
+                                <span>{{ number_format($surcharge) }} đ</span>
+                            </div>
+                            @endif
+                            <div class="flex justify-between">
+                                <span>Dịch vụ</span>
+                                <span>0 đ</span>
+                            </div>
+                            <div class="flex justify-between text-[#8B6B4E]">
+                                <span>Khuyến mãi</span>
+                                <span>0 đ</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center mb-2 font-bold text-gray-800">
+                            <span>Tổng thanh toán</span>
+                            <span>{{ number_format($finalTotal) }} đ</span>
+                        </div>
+                        @if($hasWeekend)
+                        <p class="text-[10px] text-red-500 text-right mb-2">* Giá này áp dụng tăng {{ $surchargePercent }}% khi quý khách đặt Thứ 7 - Chủ nhật</p>
+                        @endif
+                        <p class="text-[10px] text-gray-400 text-right mb-6">(Bao gồm thuế GTGT 10% và phí dịch vụ 5%)</p>
+                        
+                        {{-- Payment Method --}}
+                        <div class="mb-6">
+                            <label class="flex items-center gap-3 p-3 border border-gray-200 rounded cursor-pointer bg-white">
+                                <input type="radio" name="payment_method" value="bank_transfer" class="custom-radio text-[#8B6B4E] focus:ring-[#8B6B4E]" checked>
+                                <span class="material-icons-outlined text-gray-500">account_balance</span>
+                                <span class="text-sm font-medium">Thanh toán chuyển khoản</span>
+                            </label>
+                        </div>
+                        
+                        <div class="mb-6 flex items-start gap-2">
+                            <input type="checkbox" required class="mt-1 text-[#8B6B4E] rounded border-gray-300 focus:ring-[#8B6B4E]">
+                            <span class="text-xs text-gray-500">Tôi đã đọc và đồng ý với chính sách của villa</span>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-[#afab95] hover:bg-[#9e9a85] text-white py-4 text-xs font-bold uppercase tracking-widest rounded shadow transition-colors">
+                            XÁC NHẬN ĐẾN BƯỚC THANH TOÁN
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
+</form>
 
-    <div class="p-6 space-y-4">
-      <div class="flex flex-col sm:flex-row justify-between items-center border border-primary/20 dark:border-primary/30 rounded p-4 bg-[#fcfbf9] dark:bg-[#302e2b]">
-        <div class="w-full sm:w-auto mb-4 sm:mb-0">
-          <h3 class="font-display text-lg text-gray-700 dark:text-gray-200">Deluxe room</h3>
-          <div class="flex items-center mt-2">
-            <button class="w-8 h-8 flex items-center justify-center border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-primary hover:text-primary transition-colors rounded-l">-</button>
-            <input class="w-10 h-8 text-center text-xs border-y border-gray-300 dark:border-gray-600 bg-transparent text-gray-700 dark:text-gray-200 focus:ring-0 focus:border-gray-300" readonly type="text" value="01" />
-            <button class="w-8 h-8 flex items-center justify-center border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-primary hover:text-primary transition-colors rounded-r">+</button>
-          </div>
-        </div>
-
-        <div class="text-right w-full sm:w-auto flex flex-row sm:flex-col justify-between items-center sm:items-end">
-          <span class="font-display text-xl text-gray-600 dark:text-gray-300 font-bold mb-0 sm:mb-2">
-            50.000.000 <span class="text-xs font-sans font-normal">đ</span>
-          </span>
-          <button class="text-primary hover:text-red-600 dark:text-primary dark:hover:text-red-400 transition-colors" title="Xóa phòng">
-            <span class="material-icons-outlined">delete_outline</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="flex flex-col sm:flex-row justify-between items-center border border-primary/20 dark:border-primary/30 rounded p-4 bg-[#fcfbf9] dark:bg-[#302e2b]">
-        <div class="w-full sm:w-auto mb-4 sm:mb-0">
-          <h3 class="font-display text-lg text-gray-700 dark:text-gray-200">Red rose house</h3>
-          <div class="flex items-center mt-2">
-            <button class="w-8 h-8 flex items-center justify-center border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-primary hover:text-primary transition-colors rounded-l">-</button>
-            <input class="w-10 h-8 text-center text-xs border-y border-gray-300 dark:border-gray-600 bg-transparent text-gray-700 dark:text-gray-200 focus:ring-0 focus:border-gray-300" readonly type="text" value="01" />
-            <button class="w-8 h-8 flex items-center justify-center border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-primary hover:text-primary transition-colors rounded-r">+</button>
-          </div>
-        </div>
-
-        <div class="text-right w-full sm:w-auto flex flex-row sm:flex-col justify-between items-center sm:items-end">
-          <span class="font-display text-xl text-gray-600 dark:text-gray-300 font-bold mb-0 sm:mb-2">
-            50.000.000 <span class="text-xs font-sans font-normal">đ</span>
-          </span>
-          <button class="text-primary hover:text-red-600 dark:text-primary dark:hover:text-red-400 transition-colors" title="Xóa phòng">
-            <span class="material-icons-outlined">delete_outline</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-gray-50 dark:bg-zinc-900/50 p-6 flex justify-between items-center border-t border-gray-100 dark:border-gray-700">
-      <div>
-        <span class="text-sm text-gray-500 dark:text-gray-400 mr-2">Tạm tính:</span>
-        <span class="font-display text-2xl font-bold text-gray-800 dark:text-white">
-          100.000.000 <span class="text-base font-sans font-normal">đ</span>
-        </span>
-      </div>
-      <button class="bg-brand-brown hover:bg-brand-brown-dark text-white text-xs font-bold uppercase px-6 py-3 rounded shadow-lg transition-transform transform hover:-translate-y-0.5">
-        Đặt ngay
-      </button>
-    </div>
-  </div>
-</div>
-
-</div>
-<div id="pageContent" class="space-y-16 transition-all duration-700">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-<div class="relative h-64 lg:h-80 rounded overflow-hidden shadow-md">
-<img alt="Deluxe Room Interior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOS6yi10lm0H28IruT7QXPqdDZb9qfX_sB1vAHew0Kf1K0btdh8YGbWjdCcQKQ5aGEH7quUqbz_0v6I65nyMl4-TasfL8nMoedti6HyFFPpBZPv8wR9rcLciz_4fG9Mav0dFhJ8R2Mu-3sNu1zmb-Vzwn3pEejDl52S7UWxMSs9Pw7PpSU0h1n1KhAv3Vj3iqBzz6gK0H7DgC4F2jt9Rf58Pv6KWeYgbiOwXpKy2dyFV87185IMwAQxSLIgQamllhDaNv4xfT2"/>
-<div class="absolute bottom-4 left-4 text-white flex space-x-4">
-<span class="material-icons-outlined">west</span>
-</div>
-<div class="absolute bottom-4 right-4 text-white flex space-x-4">
-<span class="material-icons-outlined">east</span>
-</div>
-</div>
-<div class="flex flex-col justify-center">
-<h2 class="font-display text-3xl text-primary mb-4 italic">Deluxe room</h2>
-<div class="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-600 dark:text-gray-400 mb-6 font-light">
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">person</span> 02 người lớn</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">square_foot</span> 40 m²</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bedroom_parent</span> 01 phòng ngủ</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bed</span> 01 giường</div>
-</div>
-<div class="flex justify-between items-end border-t border-dashed border-gray-300 dark:border-gray-700 pt-6">
-<div>
-<button class="border border-gray-400 text-gray-500 text-xs px-4 py-2 uppercase tracking-wide rounded hover:bg-gray-100">Chọn</button>
-</div>
-<div class="text-right">
-<div class="font-display text-2xl text-primary mb-1">5.000.000 <span class="text-sm font-sans">đ</span> <span class="text-xs text-gray-400 font-sans italic">(1 đêm)</span></div>
-<div class="text-xs text-gray-500 mb-2">Còn 02 phòng</div>
-<button class="bg-brand-brown text-white text-xs px-6 py-2 uppercase tracking-wide rounded">Đặt ngay</button>
-</div>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-<div class="relative h-64 lg:h-80 rounded overflow-hidden shadow-md">
-<img alt="Family Room Interior" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQVloOEUJ02qQHvgpnZ4dyMHft7LaPk8FI4rroxJwdq7Di_d0n2tOHzxhffRKojvFo9eLnB5_C9CqMvZLxdWDhFtIzq_q8CvsvnWc9WwF66bgpwBS1j0COj_CUCMp19vnWxd0anVxRHNS6_YXdwWfM03y8BiMnNx5ko9LBjA6WDanuFwBkqXEM9fdOYmcbWTxNv7mWYdXCetyHY6yoxfGUNAakjbjWbdfk0K-X6nD7dBS-x053sqw3Q5rNn3aAih-cw74E2SZv"/>
-</div>
-<div class="flex flex-col justify-center">
-<h2 class="font-display text-3xl text-primary mb-4 italic">Family room</h2>
-<div class="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-600 dark:text-gray-400 mb-6 font-light">
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">groups</span> 04 người lớn</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">square_foot</span> 65 m²</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bedroom_parent</span> 02 phòng ngủ</div>
-<div class="flex items-center"><span class="material-icons-outlined text-xs mr-2">bed</span> 02 giường</div>
-</div>
-<div class="flex justify-between items-end border-t border-dashed border-gray-300 dark:border-gray-700 pt-6">
-<div>
-<button class="border border-gray-400 text-gray-500 text-xs px-4 py-2 uppercase tracking-wide rounded hover:bg-gray-100">Chọn</button>
-</div>
-<div class="text-right">
-<div class="font-display text-2xl text-primary mb-1">8.000.000 <span class="text-sm font-sans">đ</span> <span class="text-xs text-gray-400 font-sans italic">(1 đêm)</span></div>
-<div class="text-xs text-gray-500 mb-2">Còn 01 phòng</div>
-<button class="bg-brand-brown text-white text-xs px-6 py-2 uppercase tracking-wide rounded">Đặt ngay</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="mt-32 pt-16 border-t border-divider-light dark:border-divider-dark">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-<div class="flex flex-col items-center">
-<h2 class="font-display text-4xl lg:text-5xl text-primary mb-12 text-center leading-tight">
-                        Tiện nghi đã bao<br/><span class="italic">gồm</span>
-</h2>
-<div class="w-full space-y-0">
-<div class="text-center py-6 border-b border-divider-light dark:border-divider-dark w-3/4 mx-auto group hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors rounded-lg cursor-default">
-<h3 class="font-display text-xl text-primary-dark dark:text-primary mb-2">Wi-Fi 24/7</h3>
-<p class="text-sm font-light text-gray-600 dark:text-gray-400">Luôn duy trì sự kết nối mượt mà trong suốt kỳ nghỉ.</p>
-</div>
-<div class="text-center py-6 border-b border-divider-light dark:border-divider-dark w-3/4 mx-auto group hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors rounded-lg cursor-default">
-<h3 class="font-display text-xl text-primary-dark dark:text-primary mb-2">Trà và cà phê miễn phí</h3>
-<p class="text-sm font-light text-gray-600 dark:text-gray-400">Được chuẩn bị sẵn để có thể thưởng thức bất cứ lúc nào.</p>
-</div>
-<div class="text-center py-6 border-b border-divider-light dark:border-divider-dark w-3/4 mx-auto group hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors rounded-lg cursor-default">
-<h3 class="font-display text-xl text-primary-dark dark:text-primary mb-2">Nệm pillow-top cao cấp</h3>
-<p class="text-sm font-light text-gray-600 dark:text-gray-400">Mang lại giấc ngủ êm ái và trọn vẹn.</p>
-</div>
-<div class="text-center py-6 border-b border-divider-light dark:border-divider-dark w-3/4 mx-auto group hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors rounded-lg cursor-default">
-<h3 class="font-display text-xl text-primary-dark dark:text-primary mb-2">Vòi sen mưa &amp; sen cầm tay</h3>
-<p class="text-sm font-light text-gray-600 dark:text-gray-400">Mang lại giấc ngủ êm ái và trọn vẹn.</p>
-</div>
-<div class="text-center py-6 border-b border-divider-light dark:border-divider-dark w-3/4 mx-auto group hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors rounded-lg cursor-default">
-<h3 class="font-display text-xl text-primary-dark dark:text-primary mb-2">Điều hòa không khí</h3>
-<p class="text-sm font-light text-gray-600 dark:text-gray-400">Duy trì không gian thoáng mát, dễ chịu.</p>
-</div>
-<div class="text-center py-6 w-3/4 mx-auto group hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors rounded-lg cursor-default">
-<h3 class="font-display text-xl text-primary-dark dark:text-primary mb-2">Smart TV &amp; điều hòa</h3>
-<p class="text-sm font-light text-gray-600 dark:text-gray-400">Mang đến trải nghiệm giải trí đa dạng ngay tại phòng.</p>
-</div>
-</div>
-</div>
-<div>
-<h2 class="font-display text-4xl lg:text-5xl text-primary mb-12 text-center lg:text-left">
-                        Chính sách <span class="italic">villa</span>
-</h2>
-<div class="space-y-10 pl-0 lg:pl-8">
-<div>
-<h3 class="font-display text-2xl text-primary-dark dark:text-primary mb-4 border-b border-dashed border-primary/30 pb-2 inline-block">Thanh toán &amp; huỷ đặt phòng</h3>
-<ul class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
-<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-<li>Suspendisse iaculis urna nec odio tincidunt, sed aliquet libero imperdiet.</li>
-<li>Fusce quis massa ac velit cursus dictum.</li>
-<li>Ut placerat ipsum eu efficitur aliquam.</li>
-</ul>
-</div>
-<div>
-<h3 class="font-display text-2xl text-primary-dark dark:text-primary mb-4 border-b border-dashed border-primary/30 pb-2 inline-block">Thời gian nhận và trả phòng</h3>
-<ul class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
-<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-<li>Suspendisse iaculis urna nec odio tincidunt, sed aliquet libero imperdiet.</li>
-<li>Fusce quis massa ac velit cursus dictum.</li>
-<li>Ut placerat ipsum eu efficitur aliquam.</li>
-</ul>
-</div>
-<div>
-<h3 class="font-display text-2xl text-primary-dark dark:text-primary mb-4 border-b border-dashed border-primary/30 pb-2 inline-block">Chính sách trẻ em</h3>
-<ul class="list-disc list-outside ml-4 space-y-2 text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
-<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-<li>Suspendisse iaculis urna nec odio tincidunt, sed aliquet libero imperdiet.</li>
-<li>Fusce quis massa ac velit cursus dictum.</li>
-<li>Ut placerat ipsum eu efficitur aliquam.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-
-<!-- ✅ phần còn lại bạn giữ nguyên y chang -->
-<!-- (mình không sửa nội dung body vì bạn chỉ yêu cầu tách CSS) -->
-<!-- Bạn copy nguyên phần còn lại từ code bạn gửi vào đây -->
 <script>
-
-  const modal = document.getElementById("bookingModal");
-  const btnClose = document.getElementById("btnCloseModal");
-  const backdrop = document.getElementById("modalBackdrop");
-  const pageContent = document.getElementById("pageContent");
-
-  function closeModal() {
-    modal.classList.add("hidden");
-    if (pageContent) {
-      pageContent.classList.remove(
-        "opacity-40",
-        "dark:opacity-30",
-        "blur-[1px]",
-        "select-none",
-        "pointer-events-none",
-        "grayscale-[50%]"
-      );
-    }
-  }
-
-  function openModal() {
-    modal.classList.remove("hidden");
-    if (pageContent) {
-      pageContent.classList.add(
-        "opacity-40",
-        "dark:opacity-30",
-        "blur-[1px]",
-        "select-none",
-        "pointer-events-none",
-        "grayscale-[50%]"
-      );
-    }
-  }
-
-  btnClose?.addEventListener("click", closeModal);
-  backdrop?.addEventListener("click", closeModal);
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !modal.classList.contains("hidden")) closeModal();
-  });
-
-  // Nếu modal đang mở sẵn ngay khi load trang (như hiện tại)
-  // thì bật blur luôn:
-  if (pageContent && !modal.classList.contains("hidden")) {
-    pageContent.classList.add(
-      "opacity-40",
-      "dark:opacity-30",
-      "blur-[1px]",
-      "select-none",
-      "pointer-events-none",
-      "grayscale-[50%]"
-    );
-  }
-
-  // Nếu muốn mở modal từ nút "Đặt ngay" bên ngoài:
-  // gắn onclick="openModal()" vào nút đó.
-  window.openBookingModal = openModal; // optional
+    // Countdown Timer logic
+    let duration = 600; // 10 minutes in seconds
+    const timerDisplay = document.getElementById('countdown-timer');
+    
+    const timer = setInterval(() => {
+        const minutes = Math.floor(duration / 60);
+        const seconds = duration % 60;
+        
+        timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        if (--duration < 0) {
+            clearInterval(timer);
+            alert("Hết thời gian giữ phòng. Vui lòng thực hiện lại.");
+            window.location.href = "{{ route('booking.create') }}";
+        }
+    }, 1000);
+    
+    // Warn before unload
+    window.onbeforeunload = function() {
+        return "Dữ liệu sẽ không được lưu nếu bạn rời đi?";
+    };
+    
+    // Disable warning on form submit
+    document.getElementById('confirmForm').onsubmit = function() {
+        window.onbeforeunload = null;
+    };
 </script>
-
 
 </body>
 </html>

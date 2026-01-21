@@ -107,7 +107,7 @@
         <h2 class="font-display text-4xl md:text-5xl text-center text-primary mb-12">Hình ảnh & video</h2>
         
         <div class="text-center mb-12">
-            <a class="inline-block bg-primary text-white px-8 py-3 rounded text-sm uppercase tracking-wider hover:bg-primary-dark transition" href="#">
+            <a class="inline-block bg-primary text-white px-8 py-3 rounded text-sm uppercase tracking-wider hover:bg-primary-dark transition" href="{{ route('contact') }}">
                 Xem thêm
             </a>
         </div>
